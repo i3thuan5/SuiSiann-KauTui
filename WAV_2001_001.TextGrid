@@ -11,7 +11,7 @@ item []:
         name = "silences" 
         xmin = 0 
         xmax = 89.49913832199546 
-        intervals: size = 93 
+        intervals: size = 53 
         intervals [1]:
             xmin = 0 
             xmax = 5.743332440573741 
@@ -90,297 +90,137 @@ item []:
             text = "SIL" 
         intervals [20]:
             xmin = 32.87356916099773 
-            xmax = 33.64956916099773 
-            text = "sounding" 
+            xmax = 34.96956916099773 
+            text = "soundingSILsounding" 
         intervals [21]:
-            xmin = 33.64956916099773 
-            xmax = 33.897569160997726 
+            xmin = 34.96956916099773 
+            xmax = 35.37304624696559 
             text = "SIL" 
         intervals [22]:
-            xmin = 33.897569160997726 
-            xmax = 34.96956916099773 
-            text = "sounding" 
-        intervals [23]:
-            xmin = 34.96956916099773 
-            xmax = 35.58556916099773 
-            text = "SIL" 
-        intervals [24]:
-            xmin = 35.58556916099773 
-            xmax = 36.03356916099773 
-            text = "sounding" 
-        intervals [25]:
-            xmin = 36.03356916099773 
-            xmax = 36.25756916099773 
-            text = "SIL" 
-        intervals [26]:
-            xmin = 36.25756916099773 
-            xmax = 36.73756916099773 
-            text = "sounding" 
-        intervals [27]:
-            xmin = 36.73756916099773 
-            xmax = 37.089569160997726 
-            text = "SIL" 
-        intervals [28]:
-            xmin = 37.089569160997726 
+            xmin = 35.37304624696559 
             xmax = 37.80956916099773 
-            text = "sounding" 
-        intervals [29]:
+            text = "soundingSILsoundingSILsounding" 
+        intervals [23]:
             xmin = 37.80956916099773 
             xmax = 38.84156916099773 
             text = "SIL" 
-        intervals [30]:
+        intervals [24]:
             xmin = 38.84156916099773 
-            xmax = 39.72956916099773 
-            text = "sounding" 
-        intervals [31]:
-            xmin = 39.72956916099773 
-            xmax = 40.32156916099773 
+            xmax = 41.737341555366534 
+            text = "soundingSILsoundingSIL" 
+        intervals [25]:
+            xmin = 41.737341555366534 
+            xmax = 42.16833357101055 
             text = "SIL" 
-        intervals [32]:
-            xmin = 40.32156916099773 
-            xmax = 41.64956916099773 
-            text = "sounding" 
-        intervals [33]:
-            xmin = 41.64956916099773 
-            xmax = 42.36956916099773 
-            text = "SIL" 
-        intervals [34]:
-            xmin = 42.36956916099773 
+        intervals [26]:
+            xmin = 42.16833357101055 
             xmax = 43.31356916099773 
-            text = "sounding" 
-        intervals [35]:
+            text = "X" 
+        intervals [27]:
             xmin = 43.31356916099773 
             xmax = 45.02556916099773 
             text = "SIL" 
-        intervals [36]:
+        intervals [28]:
             xmin = 45.02556916099773 
-            xmax = 46.12956916099773 
-            text = "sounding" 
-        intervals [37]:
-            xmin = 46.12956916099773 
-            xmax = 46.76956916099773 
-            text = "SIL" 
-        intervals [38]:
-            xmin = 46.76956916099773 
-            xmax = 47.48956916099773 
-            text = "sounding" 
-        intervals [39]:
-            xmin = 47.48956916099773 
-            xmax = 47.59356916099773 
-            text = "SIL" 
-        intervals [40]:
-            xmin = 47.59356916099773 
             xmax = 47.89756916099773 
-            text = "sounding" 
-        intervals [41]:
+            text = "X" 
+        intervals [29]:
             xmin = 47.89756916099773 
-            xmax = 50.36956916099773 
+            xmax = 50.16797657706757 
             text = "SIL" 
-        intervals [42]:
-            xmin = 50.36956916099773 
-            xmax = 51.50556916099773 
-            text = "sounding" 
-        intervals [43]:
-            xmin = 51.50556916099773 
-            xmax = 51.97756916099773 
-            text = "SIL" 
-        intervals [44]:
-            xmin = 51.97756916099773 
-            xmax = 52.12156916099773 
-            text = "sounding" 
-        intervals [45]:
-            xmin = 52.12156916099773 
-            xmax = 52.22556916099773 
-            text = "SIL" 
-        intervals [46]:
-            xmin = 52.22556916099773 
+        intervals [30]:
+            xmin = 50.16797657706757 
             xmax = 52.60156916099773 
-            text = "sounding" 
-        intervals [47]:
+            text = "soundingSILsoundingSILsounding" 
+        intervals [31]:
             xmin = 52.60156916099773 
             xmax = 53.08956916099773 
             text = "SIL" 
-        intervals [48]:
+        intervals [32]:
             xmin = 53.08956916099773 
-            xmax = 53.79356916099773 
-            text = "sounding" 
-        intervals [49]:
-            xmin = 53.79356916099773 
-            xmax = 53.95356916099773 
-            text = "SIL" 
-        intervals [50]:
-            xmin = 53.95356916099773 
-            xmax = 54.92156916099773 
-            text = "sounding" 
-        intervals [51]:
-            xmin = 54.92156916099773 
-            xmax = 55.25756916099773 
-            text = "SIL" 
-        intervals [52]:
-            xmin = 55.25756916099773 
-            xmax = 55.39356916099773 
-            text = "sounding" 
-        intervals [53]:
-            xmin = 55.39356916099773 
-            xmax = 55.50556916099773 
-            text = "SIL" 
-        intervals [54]:
-            xmin = 55.50556916099773 
             xmax = 55.84956916099773 
-            text = "sounding" 
-        intervals [55]:
+            text = "soundingSILsoundingSILsoundingSILsounding" 
+        intervals [33]:
             xmin = 55.84956916099773 
             xmax = 56.54556916099773 
             text = "SIL" 
-        intervals [56]:
+        intervals [34]:
             xmin = 56.54556916099773 
-            xmax = 58.21756916099773 
-            text = "sounding" 
-        intervals [57]:
-            xmin = 58.21756916099773 
-            xmax = 58.51356916099773 
-            text = "SIL" 
-        intervals [58]:
-            xmin = 58.51356916099773 
             xmax = 59.77756916099773 
-            text = "sounding" 
-        intervals [59]:
+            text = "soundingSILsounding" 
+        intervals [35]:
             xmin = 59.77756916099773 
             xmax = 60.65756916099773 
             text = "SIL" 
-        intervals [60]:
+        intervals [36]:
             xmin = 60.65756916099773 
             xmax = 62.15356916099773 
             text = "sounding" 
-        intervals [61]:
+        intervals [37]:
             xmin = 62.15356916099773 
-            xmax = 62.85756916099773 
+            xmax = 62.68903749800515 
             text = "SIL" 
-        intervals [62]:
-            xmin = 62.85756916099773 
+        intervals [38]:
+            xmin = 62.68903749800515 
             xmax = 64.17756916099773 
             text = "sounding" 
-        intervals [63]:
+        intervals [39]:
             xmin = 64.17756916099773 
             xmax = 64.90556916099773 
             text = "SIL" 
-        intervals [64]:
+        intervals [40]:
             xmin = 64.90556916099773 
             xmax = 66.59356916099773 
             text = "sounding" 
-        intervals [65]:
+        intervals [41]:
             xmin = 66.59356916099773 
             xmax = 66.99356916099774 
             text = "SIL" 
-        intervals [66]:
+        intervals [42]:
             xmin = 66.99356916099774 
             xmax = 68.99356916099774 
             text = "sounding" 
-        intervals [67]:
+        intervals [43]:
             xmin = 68.99356916099774 
-            xmax = 69.68156916099773 
+            xmax = 69.46366158143992 
             text = "SIL" 
-        intervals [68]:
-            xmin = 69.68156916099773 
-            xmax = 70.65756916099772 
-            text = "sounding" 
-        intervals [69]:
-            xmin = 70.65756916099772 
-            xmax = 70.80156916099773 
-            text = "SIL" 
-        intervals [70]:
-            xmin = 70.80156916099773 
-            xmax = 71.24956916099774 
-            text = "sounding" 
-        intervals [71]:
-            xmin = 71.24956916099774 
-            xmax = 71.52956916099772 
-            text = "SIL" 
-        intervals [72]:
-            xmin = 71.52956916099772 
+        intervals [44]:
+            xmin = 69.46366158143992 
             xmax = 71.73756916099774 
-            text = "sounding" 
-        intervals [73]:
+            text = "X" 
+        intervals [45]:
             xmin = 71.73756916099774 
-            xmax = 73.34556916099773 
+            xmax = 73.14231016526908 
             text = "SIL" 
-        intervals [74]:
-            xmin = 73.34556916099773 
-            xmax = 74.28956916099773 
-            text = "sounding" 
-        intervals [75]:
-            xmin = 74.28956916099773 
-            xmax = 74.56156916099773 
-            text = "SIL" 
-        intervals [76]:
-            xmin = 74.56156916099773 
-            xmax = 75.04156916099772 
-            text = "sounding" 
-        intervals [77]:
-            xmin = 75.04156916099772 
-            xmax = 75.25756916099773 
-            text = "SIL" 
-        intervals [78]:
-            xmin = 75.25756916099773 
+        intervals [46]:
+            xmin = 73.14231016526908 
             xmax = 76.18556916099773 
-            text = "sounding" 
-        intervals [79]:
+            text = "soundingSILsoundingSILsounding" 
+        intervals [47]:
             xmin = 76.18556916099773 
-            xmax = 77.21756916099773 
+            xmax = 77.154962467613 
             text = "SIL" 
-        intervals [80]:
-            xmin = 77.21756916099773 
-            xmax = 77.61756916099773 
-            text = "sounding" 
-        intervals [81]:
-            xmin = 77.61756916099773 
+        intervals [48]:
+            xmin = 77.154962467613 
+            xmax = 77.68173048673347 
+            text = "X" 
+        intervals [49]:
+            xmin = 77.68173048673347 
             xmax = 79.40956916099773 
             text = "SIL" 
-        intervals [82]:
+        intervals [50]:
             xmin = 79.40956916099773 
-            xmax = 80.52156916099773 
-            text = "sounding" 
-        intervals [83]:
-            xmin = 80.52156916099773 
-            xmax = 80.72956916099773 
-            text = "SIL" 
-        intervals [84]:
-            xmin = 80.72956916099773 
-            xmax = 80.88156916099773 
-            text = "sounding" 
-        intervals [85]:
-            xmin = 80.88156916099773 
-            xmax = 80.98556916099773 
-            text = "SIL" 
-        intervals [86]:
-            xmin = 80.98556916099773 
             xmax = 81.75356916099773 
-            text = "sounding" 
-        intervals [87]:
+            text = "soundingSILsoundingSILsounding" 
+        intervals [51]:
             xmin = 81.75356916099773 
-            xmax = 86.38556916099773 
+            xmax = 85.60305282853753 
             text = "SIL" 
-        intervals [88]:
-            xmin = 86.38556916099773 
-            xmax = 86.49756916099773 
-            text = "sounding" 
-        intervals [89]:
-            xmin = 86.49756916099773 
-            xmax = 86.60956916099774 
-            text = "SIL" 
-        intervals [90]:
-            xmin = 86.60956916099774 
-            xmax = 86.71356916099774 
-            text = "sounding" 
-        intervals [91]:
-            xmin = 86.71356916099774 
-            xmax = 88.34556916099773 
-            text = "SIL" 
-        intervals [92]:
-            xmin = 88.34556916099773 
+        intervals [52]:
+            xmin = 85.60305282853753 
             xmax = 89.37756916099774 
-            text = "sounding" 
-        intervals [93]:
+            text = "X" 
+        intervals [53]:
             xmin = 89.37756916099774 
             xmax = 89.49913832199546 
             text = "SIL" 
