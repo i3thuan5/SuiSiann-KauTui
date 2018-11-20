@@ -30,6 +30,11 @@ def odt內容轉陣列(odt內容陣列):
             countHanLo += 1
         else:
             raise RuntimeError('發生錯誤：', tsua)
+    
+    #共頁碼提掉
+    上尾逝 = 轉換陣列[-1]
+    if 上尾逝[0] == 上尾逝[1]:
+        轉換陣列.pop()
     return 轉換陣列
 
 
