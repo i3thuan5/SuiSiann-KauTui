@@ -1,6 +1,6 @@
 #!/bin/bash
 
-find ../Se-Kai-Tai/ -type f -name '*.odt' | while read inputName ; do
+find ../ -type f -name '*.odt' | while read inputName ; do
   #echo $inputName
   outputName=`basename "$inputName"` 
   echo $outputName
