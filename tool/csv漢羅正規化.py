@@ -1,6 +1,6 @@
 import sys
 import csv
-from .csv漢字正規化 import 漢字正規化
+from tool.csv漢字正規化 import 漢字正規化
 
 
 def csv正規化(輸入檔名):
