@@ -8,4 +8,4 @@ python:
 install:
 - pip install -r requirements.txt
 script:
-- find csv/ -type f -name '*.csv' -exec python 檢查csv漢羅對齊.py {} \;
+- find csv/ -type f -name '*.csv' -exec python tool/檢查csv漢羅對齊.py {} \;
