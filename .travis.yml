@@ -2,9 +2,9 @@ sudo: false
 language: python
 python:
 - '3.5'
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 install:
 - pip install -r requirements.txt
 script:
