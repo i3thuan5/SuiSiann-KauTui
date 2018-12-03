@@ -1,0 +1,12 @@
+from django.db import models
+
+class 文章表(models.Model):
+    文章名 = models.TextField(max_length=30)
+
+# Create your models here.
+class 句表(models.Model):
+    來源 = models.ForeignKey(文章表, related_name='+', on_delete=models.CASCADE)
+    音檔 = models.FileField(blank=True)
+    漢字 = models.CharField(blank=True, max_length=200)
+    臺羅 = models.CharField(blank=True, max_length=200)
+    修改時間 = models.DateTimeField(null=True)
