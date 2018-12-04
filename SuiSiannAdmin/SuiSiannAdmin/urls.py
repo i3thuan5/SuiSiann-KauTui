@@ -21,4 +21,4 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-] + static('wavs', document_root=settings.MEDIA_ROOT)
+] + static('wavs', document_root=settings.STATIC_ROOT)
