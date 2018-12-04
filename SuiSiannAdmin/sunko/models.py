@@ -10,3 +10,4 @@ class 句表(models.Model):
     漢字 = models.CharField(blank=True, max_length=200)
     臺羅 = models.CharField(blank=True, max_length=200)
     修改時間 = models.DateTimeField(null=True)
+    對齊狀態 = models.BooleanField()
