@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand
 import argparse
 from sunko.models import 句表, 文章表
 from os.path import basename
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class Command(BaseCommand):
@@ -22,7 +24,8 @@ class Command(BaseCommand):
                     來源=一文章,
                     音檔=tsua['Im-tóng'],
                     漢字=tsua['Hàn-jī'],
-                    臺羅=tsua['Lô-má-jī']
+                    臺羅=tsua['Lô-má-jī'],
+                    對齊狀態=檢查對齊狀態(tsua),
                 )
                 一句.save()
 
@@ -32,3 +35,11 @@ def 提著csv檔名(csv路徑):
     點所在 = 檔名.index('.')
     純檔名 = 檔名[:點所在].replace('_hanlo', '')
     return 純檔名
+
+def 檢查對齊狀態(tsua):
+    try:
+        拆文分析器.對齊句物件(tsua['Hàn-jī'], tsua['Lô-má-jī'])
+    except 解析錯誤 as 錯誤:
+        return str(錯誤)
+    else:
+        return ''
