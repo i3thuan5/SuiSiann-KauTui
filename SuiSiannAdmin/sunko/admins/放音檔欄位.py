@@ -1,5 +1,5 @@
 from django.utils.html import format_html
-from sunko.management.記音檔所在 import 音檔網址表
+from sunko.management.算音檔網址 import 音檔網址表
 
 
 class 放音檔欄位():
