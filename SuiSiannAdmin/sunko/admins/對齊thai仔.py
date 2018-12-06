@@ -26,10 +26,9 @@ class 對齊thai仔(admin.SimpleListFilter):
         provided in the query string and retrievable via
         `self.value()`.
         """
-        print(self.value(), len(queryset.exclude(對齊狀態__isnull=True).exclude(對齊狀態__exact='')))
         if self.value() == '0':
             return queryset.filter(對齊狀態__isnull=True)
         elif self.value() == '1':
-            return queryset.filter(對齊狀態__exact='')
+            return queryset.filter(對齊狀態__exact='True')
         elif self.value() == '2':
-            return queryset.exclude(對齊狀態__isnull=True).exclude(對齊狀態__exact='')
+            return queryset.exclude(對齊狀態__isnull=True).exclude(對齊狀態__exact='True')
