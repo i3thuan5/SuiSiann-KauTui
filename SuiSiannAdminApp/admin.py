@@ -1,6 +1,6 @@
 from django.contrib import admin
-from sunko.models import 句表, 文章表
-from sunko.admins.句後台 import 句後台
+from SuiSiannAdminApp.models import 句表, 文章表
+from SuiSiannAdminApp.admins.句後台 import 句後台
 
 # Register your models here.
 

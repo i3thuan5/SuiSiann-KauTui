@@ -3,4 +3,4 @@
 *__pycache__/
 venv/
 *db.sqlite3
-SuiSiannAdmin/wavs
+wavs

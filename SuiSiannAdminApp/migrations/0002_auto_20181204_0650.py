@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sunko', '0001_initial'),
+        ('SuiSiannAdminApp', '0001_initial'),
     ]
 
     operations = [

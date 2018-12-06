@@ -7,13 +7,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sunko', '0002_auto_20181204_0650'),
+        ('SuiSiannAdminApp', '0002_auto_20181204_0650'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='句表',
             name='來源',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='sunko.文章表'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='SuiSiannAdminApp.文章表'),
         ),
     ]

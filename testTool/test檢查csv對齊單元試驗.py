@@ -1,5 +1,5 @@
 from unittest.case import TestCase
-from 檢查csv漢羅對齊 import 檢查一段漢羅對齊
+from tool.檢查csv漢羅對齊 import 檢查一段漢羅對齊
 
 
 class 檢查csv對齊單元試驗(TestCase):

@@ -1,5 +1,5 @@
 from django.db import models
-from sunko.management.檢查對齊狀態 import 檢查對齊狀態
+from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 
 class 文章表(models.Model):

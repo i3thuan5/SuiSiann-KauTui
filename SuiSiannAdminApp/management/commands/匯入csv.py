@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand
 import argparse
-from sunko.models import 句表, 文章表
+from SuiSiannAdminApp.models import 句表, 文章表
 from os.path import basename
 import csv
-from sunko.management.檢查對齊狀態 import 檢查對齊狀態
+from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from django.db.utils import IntegrityError
 
 

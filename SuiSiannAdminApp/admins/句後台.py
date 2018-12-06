@@ -1,9 +1,9 @@
 from django.contrib import admin
-from sunko.admins.對齊thai仔 import 對齊thai仔
+from SuiSiannAdminApp.admins.對齊thai仔 import 對齊thai仔
 from django.utils.html import format_html
-from sunko.admins.放音檔欄位 import 放音檔欄位
-from sunko.admins.句表單 import 句表單
-from sunko.admins.action正規化漢字 import 漢字括號共提掉
+from SuiSiannAdminApp.admins.放音檔欄位 import 放音檔欄位
+from SuiSiannAdminApp.admins.句表單 import 句表單
+from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
 
 
 

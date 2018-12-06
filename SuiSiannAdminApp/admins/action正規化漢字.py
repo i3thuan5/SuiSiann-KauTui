@@ -1,4 +1,4 @@
-from sunko.management.正規化漢字 import 提掉漢字的括號
+from SuiSiannAdminApp.management.正規化漢字 import 提掉漢字的括號
 
 
 
