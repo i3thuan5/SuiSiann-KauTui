@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='句表',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('音檔', models.FileField(blank=True, upload_to='')),
                 ('漢字', models.CharField(blank=True, max_length=200)),
                 ('臺羅', models.CharField(blank=True, max_length=200)),
@@ -25,13 +26,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='文章表',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('文章名', models.TextField(max_length=30)),
             ],
         ),
         migrations.AddField(
             model_name='句表',
             name='來源',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to='SuiSiannAdminApp.文章表'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='+',
+                to='SuiSiannAdminApp.文章表'),
         ),
     ]

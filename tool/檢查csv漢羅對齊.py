@@ -28,7 +28,7 @@ def 檢查csv漢羅對齊(輸入檔名):
         tshoNgoo = ""
         for hoBe, tsua in enumerate(csv檔頭):
             kiatKo = 檢查一段漢羅對齊(tsua)
-            if kiatKo != True:
+            if kiatKo is not True:
                 tshoNgoo += '\n\n{}.\n{}\n'.format(hoBe, kiatKo)
         if tshoNgoo:
             raise 解析錯誤(tshoNgoo)

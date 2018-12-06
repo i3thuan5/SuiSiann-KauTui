@@ -20,6 +20,7 @@ class 檢查csv對齊單元試驗(TestCase):
             'Tsing-kui-lô-má-jī': 'Nn̄g-tshing nî'
         }
         self.assertEqual(
-            檢查一段漢羅對齊(tsua),
-            '詞組內底的型「2000年」比音「Nn̄g-tshing nî」少！' +
-            '配對結果：[詞：[字：2000 Nn̄g, 字：年 tshing]]')
+            檢查一段漢羅對齊(tsua), (
+                '詞組內底的型「2000年」比音「Nn̄g-tshing nî」少！'
+                '配對結果：[詞：[字：2000 Nn̄g, 字：年 tshing]]'
+            ))

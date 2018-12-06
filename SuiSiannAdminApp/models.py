@@ -20,7 +20,7 @@ class 句表(models.Model):
 
     def __str__(self):
         return self.漢字
-    
+
     def save(self, *args, **kwargs):
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.臺羅)
         super().save(*args, **kwargs)  # Call the "real" save() method.

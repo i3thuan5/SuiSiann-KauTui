@@ -1,5 +1,5 @@
 from unittest.case import TestCase
-from sunko.management.commands.匯入csv import 提著csv檔名
+from SuiSiannAdminApp.management.commands.匯入csv import 提著csv檔名
 
 
 class 提著csv檔名單元試驗(TestCase):

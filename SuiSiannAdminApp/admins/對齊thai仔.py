@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+
 class 對齊thai仔(admin.SimpleListFilter):
     title = '有對齊無'
 
@@ -31,4 +32,5 @@ class 對齊thai仔(admin.SimpleListFilter):
         elif self.value() == '1':
             return queryset.filter(對齊狀態__exact='True')
         elif self.value() == '2':
-            return queryset.exclude(對齊狀態__isnull=True).exclude(對齊狀態__exact='True')
+            return queryset.exclude(
+                對齊狀態__isnull=True).exclude(對齊狀態__exact='True')

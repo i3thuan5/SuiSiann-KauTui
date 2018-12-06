@@ -3,7 +3,6 @@ import argparse
 from SuiSiannAdminApp.models import 句表, 文章表
 from os.path import basename
 import csv
-from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from django.db.utils import IntegrityError
 
 
@@ -20,7 +19,7 @@ class Command(BaseCommand):
             try:
                 一文章 = 文章表(文章名=tongMia)
                 一文章.save()
-            except IntegrityError as e:
+            except IntegrityError:
                 raise RuntimeError('{}：文章已經匯--li̍p-bâi矣'.format(tongMia))
             # Khiam 文章的句
             csvDict = csv.DictReader(csvPath)

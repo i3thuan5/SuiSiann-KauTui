@@ -1,6 +1,6 @@
 import sys
 import csv
-from tool.正規化漢字 import 漢字正規化
+from testAdmin.management.test漢字正規化單元試驗 import 漢字正規化單元試驗
 
 
 def csv正規化(輸入檔名):
@@ -12,7 +12,7 @@ def csv正規化(輸入檔名):
         for tsua in bunTsiunn:
             piHun = dict(tsua)
             print('pihun={}', piHun)
-            tsingKuiHanji = 漢字正規化(piHun['Hàn-jī'])
+            tsingKuiHanji = 漢字正規化單元試驗(piHun['Hàn-jī'])
             kiatKo.append(piHun.update({
                 'Tsing-kui-hàn-jī': tsingKuiHanji,
             }))
@@ -20,15 +20,16 @@ def csv正規化(輸入檔名):
     with open(輸入檔名, 'w') as csv檔:
         try:
             fieldnames = bunTsiunn[0].keys()
-        except Exception as e:
+        except Exception:
             raise
         csv檔頭 = csv.DictWriter(csv檔, fieldnames=fieldnames)
         csv檔頭.writeheader()
-        for tsua in kiatKo:  
+        for tsua in kiatKo:
             csv檔頭.writerow(tsua)
-            
-    csv檔頭.writerow({'first_name': 'Baked', 'last_name': 'Beans'}) 
-            
+
+    csv檔頭.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+
+
 if __name__ == '__main__':
     輸入檔名 = sys.argv[1]
     csv正規化(輸入檔名)
