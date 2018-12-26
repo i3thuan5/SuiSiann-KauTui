@@ -28,7 +28,7 @@
 | 翻身番身_話頭_劉承賢_hanlo.odt.csv      | o    | o  | o     |  | 
 | 角花仔佮素花仔_hanlo.odt.csv          | o    | o  | o     |  | 
 | 賣圓仔的神仙_hanlo.odt.csv           | o    | o  | o     |  | 
-| 錄音稿.odt.csv                    |      |    |       |  | 
+| 錄音稿.odt.csv                    | o      |    |       |  | 
 | 鐵路_hanlo.odt.csv               | o    | o  | o     |  | 
 | 電影院_hanlo.odt.csv              | o    | o  | o     |  | 
 
