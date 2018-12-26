@@ -33,12 +33,12 @@ class 檢查對齊狀態整合試驗(TestCase):
         self.hanji = "3月10號"
         self.lomaji = "sann gue̍h tsa̍p hō"
         self.expect = False
-    
+
     def test_羅馬字袂使有阿拉伯數字(self):
         self.hanji = "3月10號"
         self.lomaji = "3 gue̍h tsa̍p hō"
         self.expect = False
-        
+
     def test_合音(self):
         self.hanji = "siáng"
         self.lomaji = "siáng"
