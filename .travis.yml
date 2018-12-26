@@ -1,0 +1,13 @@
+sudo: false
+language: python
+python:
+- '3.5'
+branches:
+#  only:
+#    - master
+install:
+- pip install -r requirements.txt
+script:
+- python manage.py test
+- flake8 --exclude venv,__pychache__,.git,csv,wavs --max-line-length 100 ./
+#- find csv/ -type f -name '*.csv' -print0 | xargs -0 -n 1 python tool/檢查csv漢羅對齊.py
