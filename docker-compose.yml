@@ -5,4 +5,5 @@ services:
     build: .
     ports: 
       - 8000:8000
-
+    volumes:
+      - "./tsu-liāu:/djangoAdmin/tsu-liāu"
