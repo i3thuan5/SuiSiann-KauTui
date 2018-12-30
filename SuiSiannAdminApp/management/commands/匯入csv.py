@@ -10,7 +10,7 @@ class Command(BaseCommand):
     help = '逐篇文章音檔kah句的csv檔，寄入來db'
 
     def add_arguments(self, parser):
-        parser.add_argument('--csv', nargs='+', type=argparse.FileType('r'))
+        parser.add_argument('csv', nargs='+', type=argparse.FileType('r'))
 
     def handle(self, *args, **options):
         for csvPath in options['csv']:
