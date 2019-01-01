@@ -15,7 +15,9 @@ services:
     environment:
        VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
        VIRTUAL_PORT: 8000
+    restart: always
   it:
+#    image: kaldikiamtsalmj_it
     image: i3thuan5/kaldi-kiamtsa-lmj:it
     expose:
       - 5000
@@ -24,7 +26,7 @@ services:
       - kaldis5:/kaldis5
     restart: always
   ji:
-    image: lmj
+    image: kaldikiamtsalmj_ji
     expose:
       - 5000
     volumes:
