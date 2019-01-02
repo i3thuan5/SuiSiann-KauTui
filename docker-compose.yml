@@ -13,6 +13,33 @@ services:
       - 8000
     environment:
        VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
+    restart: always
+  it:
+    image: i3thuan5/kaldi-kiamtsa-lmj:it
+    expose:
+      - 5000
+    volumes:
+      - './wavs/:/wav/:ro'
+      - kaldis5:/kaldis5
+    restart: always
+  ji:
+    image: kaldikiamtsalmj_ji
+    expose:
+      - 5000
+    volumes:
+      - './wavs/:/wav/:ro'
+      - kaldis5:/kaldis5
+    restart: always
+  sann:
+    image: i3thuan5/kaldi-kiamtsa-lmj:sann
+    expose:
+      - 5000
+    volumes:
+      - kaldis5:/kaldis5
+    restart: always
+
+volumes:
+  kaldis5:
 
 networks:
   nginx-bridge:
