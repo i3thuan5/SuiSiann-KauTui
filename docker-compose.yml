@@ -3,10 +3,9 @@ version: '3.5'
 services:
   admin:
     build: .
-    ports: 
-      - 8000:8000
     volumes:
       - "./tsu-liāu:/djangoAdmin/tsu-liāu"
+      - "./wavs:/djangoAdmin/wavs:ro"
     networks:
       - default
       - nginx-bridge
@@ -14,7 +13,6 @@ services:
       - 8000
     environment:
        VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
-       VIRTUAL_PORT: 8000
 
 networks:
   nginx-bridge:
