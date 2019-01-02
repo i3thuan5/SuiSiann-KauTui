@@ -1,14 +1,25 @@
-from urllib.parse import quote
 import http
 import json
+from urllib.parse import quote
+
+from SuiSiannAdminApp.models import 句表
 from django.http.response import JsonResponse
 
 
-def kiamtsa(request):
+from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
+from 臺灣言語工具.基本物件.公用變數 import 標點符號
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+
+
+def kiamtsa(request, kuid):
+    ku = 句表.objects.get(id=kuid)
+    han = []
+    for ji in 拆文分析器.建立句物件(ku.漢字).篩出字物件():
+        if ji not in 標點符號:
+            han.append(ji.型)
+    tong = 音檔網址表[ku.音檔][6:]
     conn = http.client.HTTPConnection("it", port=5000)
-    han = '坐 咧'
-    tong = 'Nov 3, 2018/動詞/Nov 3, 2018.wav'
-    conn.request("GET", quote("/{}/{}".format(han, tong)))
+    conn.request("GET", quote("/{}/{}".format(' '.join(han), tong)))
     r1 = conn.getresponse()
     print(r1.status, r1.reason)
     a = r1.read()

@@ -22,5 +22,5 @@ from kaldi.view import kiamtsa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('kaldi/', kiamtsa),
+    path('kaldi/<kuid>', kiamtsa),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
