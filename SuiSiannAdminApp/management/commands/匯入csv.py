@@ -27,8 +27,10 @@ class Command(BaseCommand):
                 一句 = 句表(
                     來源=一文章,
                     音檔=tsua['Im-tóng'],
+                    原始漢字=tsua['Hàn-jī'],
+                    原始臺羅=tsua['Lô-má-jī'],
                     漢字=tsua['Hàn-jī'],
-                    臺羅=tsua['Lô-má-jī']
+                    臺羅=tsua['Lô-má-jī'],
                 )
                 一句.save()
 
