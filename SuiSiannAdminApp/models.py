@@ -17,6 +17,8 @@ class 句表(models.Model):
     來源 = models.ForeignKey(文章表, null=True,
                            related_name='+', on_delete=models.CASCADE)
     音檔 = models.FileField(blank=True)
+    原始漢字 = models.CharField(blank=True, max_length=200)
+    原始臺羅 = models.CharField(blank=True, max_length=200)
     漢字 = models.CharField(blank=True, max_length=200)
     臺羅 = models.CharField(blank=True, max_length=200)
     修改時間 = models.DateTimeField(null=True)
