@@ -6,7 +6,7 @@ from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
 
 
 class 句後台(admin.ModelAdmin, 放音檔欄位):
-    list_display = ['id', '放音檔', '漢字', '臺羅', '對齊狀態']
+    list_display = ['id', '放音檔', '漢字', '臺羅', '備註', '對齊狀態']
     list_filter = ['來源', 對齊thai仔]
     ordering = ['id']
     list_per_page = 10
@@ -14,5 +14,5 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
 
     # change view
     readonly_fields = ('音檔', '放音檔', '修改時間', '對齊狀態')
-    fields = ('漢字', '臺羅', '對齊狀態', '放音檔', '音檔', '修改時間', )
+    fields = ('漢字', '臺羅', '對齊狀態', '放音檔', '備註', '音檔', '修改時間',)
     form = 句表單
