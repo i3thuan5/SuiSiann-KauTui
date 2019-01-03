@@ -21,7 +21,7 @@ class 句表(models.Model):
     臺羅 = models.CharField(blank=True, max_length=200)
     修改時間 = models.DateTimeField(null=True)
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
-    備註 = models.TextField(blank=True)
+    備註 = models.TextField(blank=True,)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
 
     def __str__(self):
