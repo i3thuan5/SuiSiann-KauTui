@@ -13,7 +13,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='語料狀況表',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('狀況', models.CharField(max_length=30, unique=True)),
             ],
             options={
@@ -32,6 +33,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='句表',
             name='語料狀況',
-            field=models.ManyToManyField(blank=True, to='SuiSiannAdminApp.語料狀況表'),
+            field=models.ManyToManyField(
+                blank=True, to='SuiSiannAdminApp.語料狀況表'),
         ),
     ]

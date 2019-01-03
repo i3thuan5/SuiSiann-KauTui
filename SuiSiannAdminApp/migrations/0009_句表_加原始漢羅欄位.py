@@ -3,11 +3,12 @@
 from django.db import migrations, models
 from django.db.models import F
 
+
 def 備份原始漢羅(apps, schema_editor):
     句表 = apps.get_model('SuiSiannAdminApp', '句表')
     句表.objects.all().update(原始漢字=F('漢字'), 原始臺羅=F('臺羅'))
-    
-    
+
+
 class Migration(migrations.Migration):
 
     dependencies = [

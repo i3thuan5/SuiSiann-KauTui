@@ -32,4 +32,3 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
     def save_model(self, request, obj, form, change):
         obj.修改時間 = now()
         super(句後台, self).save_model(request, obj, form, change)
-
