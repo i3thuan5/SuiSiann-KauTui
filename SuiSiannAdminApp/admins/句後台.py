@@ -8,7 +8,7 @@ from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
 class 句後台(admin.ModelAdmin, 放音檔欄位):
     # change list
     list_display = ['id', '放音檔', '漢字', '臺羅', '狀況', '備註', '對齊狀態']
-    list_filter = ['來源', 對齊thai仔]
+    list_filter = ['語料狀況', 對齊thai仔, '來源']
     ordering = ['id']
     list_per_page = 10
     actions = [漢字括號共提掉]
