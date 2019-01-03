@@ -9,7 +9,7 @@ from django.utils.timezone import now
 class 句後台(admin.ModelAdmin, 放音檔欄位):
     list_display = ['id', '放音檔', '漢字', '臺羅', '對齊狀態', '修改時間']
     list_filter = ['來源', 對齊thai仔]
-    ordering = ['id']
+    ordering = ['修改時間', 'id']
     list_per_page = 10
     actions = [漢字括號共提掉]
 
