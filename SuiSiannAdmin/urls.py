@@ -18,9 +18,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from kaldi.view import kiamtsa
+from SuiSiannAdminApp.views.diffView import DiffView
 
 
 urlpatterns = [
+    path('admin/edit_diff/', DiffView.as_view(), name='sui2'),
     path('admin/', admin.site.urls),
     path('kaldi/<kuid>', kiamtsa),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
