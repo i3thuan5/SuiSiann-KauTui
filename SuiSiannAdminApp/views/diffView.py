@@ -13,7 +13,16 @@ class DiffView(View):
     
     def 顯示比對(self, 全部句):
         dmp = diff_match_patch.diff_match_patch()
-        全部比對html = ''
+        全部比對html = '''<style>
+            .del, .ins {
+                padding: 4px;
+                display:block;
+                width: 90%; 
+            }
+            .del {background:#ffeef0;}
+            .ins {background:#e6ffed;}
+            </style>
+        '''
         for 原始句, 句 in zip(全部句[0], 全部句[1]):
             if 原始句 == 句:
                 比對html = '<p>{}</p>'.format(原始句)
@@ -32,10 +41,10 @@ class DiffView(View):
                         # = 0
                         紅色.append(一組)
                         青色.append(一組)
-                delHtml = dmp.diff_prettyHtml(紅色)
-                insHtml = dmp.diff_prettyHtml(青色)
-                比對html = (('<p><span style="background:#ffeef0">{}</span>'+
-                '<br/><span style="background:#e6ffed">{}</span></p>').format(delHtml, insHtml)
+                delHtml = dmp.diff_prettyHtml(紅色).replace("#ffe6e6", "#fdb8c0").replace("del", "ins")
+                insHtml = dmp.diff_prettyHtml(青色).replace("#e6ffe6", "#acf2bd")
+                比對html = (('<p><span class="del">{}</span>'+
+                '<span class="ins">{}</span></p>').format(delHtml, insHtml)
                 )
             全部比對html += 比對html  
             
