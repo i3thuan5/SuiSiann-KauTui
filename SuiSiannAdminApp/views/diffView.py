@@ -15,14 +15,14 @@ class DiffView(View):
     def 顯示比對(self, 全部句):
         dmp = diff_match_patch.diff_match_patch()
         全部比對html = '''<style>
-            .del, .ins {
-                padding: 4px;
-                display:block;
-                width: 90%; 
-            }
-            .del {background:#ffeef0;}
-            .ins {background:#e6ffed;}
-            </style>
+        .del, .ins {
+            padding: 4px;
+            display:block;
+            width: 90%;
+        }
+        .del {background:#ffeef0;}
+        .ins {background:#e6ffed;}
+        </style>
         '''
         for 原始句, 句 in zip(全部句[0], 全部句[1]):
             if 原始句 == 句:
