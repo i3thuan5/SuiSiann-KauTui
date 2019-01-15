@@ -22,7 +22,7 @@ class 提原始漢羅kah漢羅單元試驗(TestCase):
         self.assertEqual(提原始漢羅kah漢羅(), (
             [
                 pk1, "媠姑娘", "suí koo-niû", pk2, "豬", "ti",
-            ],[
+            ], [
                 pk1, "媠", "suí", pk2, "豬仔", "ti-á",
             ],
         ))
