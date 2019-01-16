@@ -8,7 +8,7 @@ python manage.py 匯入csv \
 "csv/808 免錢的上貴 面冊拜託收我1箍.odt.csv" \
 "csv/809 同性婚合法化 閣來看澳洲.odt.csv" \
 "csv/810 教宗成做左派領袖？.odt.csv" \
-"csv/附加詞類訊息_楊允言.odt.csv" \
+#"csv/附加詞類訊息_楊允言.odt.csv" \
 #"suánn_ê散的_hanlo.odt.csv" \
 #"tia̍h-jī-sû疊字詞_hanlo.odt.csv" \
 #"tshua-thuan_hanlo.odt.csv" \
