@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('SuiSiannAdminApp', '0009_句表_加原始漢羅欄位'),
+        ('SuiSiannAdminApp', '0010_auto_20190103_1152'),
     ]
 
     operations = [
