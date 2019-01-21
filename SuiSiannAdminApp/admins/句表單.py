@@ -7,9 +7,9 @@ class 句表單(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(句表單, self).__init__(*args, **kwargs)
         self.fields["漢字"].widget = forms.widgets.Textarea(
-            attrs={'rows': 2, 'cols': 100})
+            attrs={'rows': 4, 'cols': 120})
         self.fields["臺羅"].widget = forms.widgets.Textarea(
-            attrs={'rows': 2, 'cols': 100})
+            attrs={'rows': 6, 'cols': 120})
         self.fields["備註"].widget = forms.widgets.Textarea(
             attrs={'rows': 2, 'cols': 100})
         self.fields["語料狀況"].widget = forms.widgets.CheckboxSelectMultiple()
