@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from SuiSiannAdminApp.models import 句表
-from django.core.exceptions import MultipleObjectsReturned
 
 
 class Command(BaseCommand):
