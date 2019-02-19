@@ -3,15 +3,15 @@
 # csv/ 當中有完成錄音和人工校對的
 
 python manage.py 匯入csv \
-"csv/806 頁岩石油發展緊  OPEC地位不保.odt.csv" \
-"csv/807 美國面對Islam國的兩難.odt.csv" \
-"csv/808 免錢的上貴 面冊拜託收我1箍.odt.csv" \
-"csv/809 同性婚合法化 閣來看澳洲.odt.csv" \
-"csv/810 教宗成做左派領袖？.odt.csv" \
-"csv/附加詞類訊息_楊允言.odt.csv" \
-#"suánn_ê散的_hanlo.odt.csv" \
-#"tia̍h-jī-sû疊字詞_hanlo.odt.csv" \
-#"tshua-thuan_hanlo.odt.csv" \
+"csv/tshua-thuan_hanlo.odt.csv"
+#"csv/806 頁岩石油發展緊  OPEC地位不保.odt.csv" \
+#"csv/807 美國面對Islam國的兩難.odt.csv" \
+#"csv/808 免錢的上貴 面冊拜託收我1箍.odt.csv" \
+#"csv/809 同性婚合法化 閣來看澳洲.odt.csv" \
+#"csv/810 教宗成做左派領袖？.odt.csv" \
+#"csv/附加詞類訊息_楊允言.odt.csv" \
+#"csv/uánn_ê散的_hanlo.odt.csv" \
+#"csv/tia̍h-jī-sû疊字詞_hanlo.odt.csv" \
 #"csv/bô_kóng-liáu無講了_hanlo.odt.csv" \
 #"csv/hóo-tīng否定句_hanlo.odt.csv" \
 #"csv/ing-gí-sû英語詞_hanlo.odt.csv" \

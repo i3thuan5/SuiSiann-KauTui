@@ -17,17 +17,17 @@ class 句表(models.Model):
     來源 = models.ForeignKey(文章表, null=True,
                            related_name='+', on_delete=models.CASCADE)
     音檔 = models.FileField(blank=True)
-    原始漢字 = models.CharField(max_length=200)
-    原始臺羅 = models.CharField(max_length=200)
-    漢字 = models.CharField(max_length=200)
-    臺羅 = models.CharField(max_length=200)
+    原始漢字 = models.CharField(max_length=500)
+    原始臺羅 = models.CharField(max_length=2000)
+    漢字 = models.CharField(max_length=500)
+    臺羅 = models.CharField(max_length=2000)
     修改時間 = models.DateTimeField(null=True)
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True,)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
 
     def __str__(self):
-        return self.漢字
+        return '{}{}'.format(self.pk, self.漢字)
 
     def save(self, *args, **kwargs):
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.臺羅)
