@@ -23,11 +23,17 @@ class 匯入csv試驗(TestCase):
         csvPath = join(settings.BASE_DIR, 'csv_piansik', '664_雨後驕陽01.odt.csv')
         call_command("匯入csv", csvPath)
         句 = 句表.objects.get(音檔='Dia001.wav')
-        self.assertEqual(句.漢字, '喂，\n萬財')
+        self.assertEqual(句.漢字, '喂，\n萬財！')
     
-    def test_匯入一音檔多句_003含1句(self):
+    def test_匯入一音檔多句_072含1句(self):
         csvPath = join(settings.BASE_DIR, 'csv_piansik', '664_雨後驕陽01.odt.csv')
         call_command("匯入csv", csvPath)
-        句 = 句表.objects.get(音檔='Dia003.wav')
-        self.assertEqual(句.漢字, '你來矣喔！')
+        句 = 句表.objects.get(音檔='Dia072.wav')
+        self.assertEqual(句.漢字, '你看起來足瘦的，')
+    
+    def test_匯入一音檔多句_033含1句_羅(self):
+        csvPath = join(settings.BASE_DIR, 'csv_piansik', '664_雨後驕陽01.odt.csv')
+        call_command("匯入csv", csvPath)
+        句 = 句表.objects.get(音檔='Dia033.wav')
+        self.assertEqual(句.臺羅, "Îng-tshàn--ah,\nlâi lâi lâi,\nlâi tsia!")
     
