@@ -41,18 +41,18 @@ class Command(BaseCommand):
                     )
                     一句.save()
                     頂音檔名 = tsua['Im-tóng']
-                    頂一句漢字 = [tsua['Hàn-jī'],]
-                    頂一句台羅 = [tsua['Lô-má-jī'],]
+                    頂一句漢字 = [tsua['Hàn-jī'], ]
+                    頂一句台羅 = [tsua['Lô-má-jī'], ]
                 # 頭一擺
                 elif tsua['Im-tóng'] != 頂音檔名:
                     頂音檔名 = tsua['Im-tóng']
-                    頂一句漢字.append(tsua['Hàn-jī']) 
+                    頂一句漢字.append(tsua['Hàn-jī'])
                     頂一句台羅.append(tsua['Lô-má-jī'])
-                # 
+                #
                 else:
-                    頂一句漢字.append(tsua['Hàn-jī']) 
+                    頂一句漢字.append(tsua['Hàn-jī'])
                     頂一句台羅.append(tsua['Lô-má-jī'])
-            # 匯入最後一个音檔  
+            # 匯入最後一个音檔
             漢字 = '\n'.join(頂一句漢字)
             台羅 = '\n'.join(頂一句台羅)
             一句 = 句表(
@@ -64,6 +64,7 @@ class Command(BaseCommand):
                 臺羅=台羅,
             )
             一句.save()
+
 
 def 提著csv檔名(csv路徑):
     檔名 = basename(csv路徑)
