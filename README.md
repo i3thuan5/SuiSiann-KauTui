@@ -37,7 +37,7 @@ Dropbox/母語/語料/TTS 語音合成錄製/錄音進度.pdf
 
 ## 將csv匯入django admin
 ```
-python manage.py 匯入csv --csv csv/賣圓仔的神仙_hanlo.odt.csv
+python manage.py 匯入csv csv/賣圓仔的神仙_hanlo.odt.csv
 ```
 
 ## Autopep8 reformat
