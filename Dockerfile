@@ -1,6 +1,8 @@
 FROM python:3.7
 MAINTAINER a8568730
 
+RUN apt-get update && apt-get install -y sox normalize-audio
+
 RUN mkdir djangoAdmin
 WORKDIR djangoAdmin
 COPY requirements.txt .
