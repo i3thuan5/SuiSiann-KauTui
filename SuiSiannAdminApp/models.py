@@ -9,6 +9,7 @@ from jsonfield.fields import JSONField
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
+from kaldi.lib.換算切音所在 import 換算切音所在
 
 
 class 文章表(models.Model):
@@ -44,9 +45,10 @@ class 句表(models.Model):
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def 重對齊(self):
-        self.聲音檔().時間長度()
-        self.kaldi切音時間 = [[0.69, 2.04], [1.23, 2.04], [0, self.聲音檔().時間長度()]]
+        tuitse = self.kaldi_tuìtsê()
+        self.kaldi切音時間 = 換算切音所在(self.聲音檔().時間長度(), tuitse)
         self.save()
+        return tuitse, self.kaldi切音時間
 
     def kaldi切音時間網址(self):
         for kui, (thau, bue) in enumerate(self.kaldi切音時間, start=1):
