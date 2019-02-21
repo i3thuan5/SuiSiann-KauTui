@@ -22,7 +22,8 @@ class 放音檔欄位():
 
     def 重切音檔(self, obj):
         return format_html(
-            '''<input type="button" onclick="window.open(\'{}\')" value="{}"/>''',
+            '''<input type="button" onclick="window.open(\'{}\')" value="{}"/>
+            <input type="submit" value="儲存並繼續編輯" name="_continue">''',
             '/kaldi/{}'.format(obj.id),
-            '重切（需要30秒），切好需要重整理網頁',
+            '重切（需要30秒）。切好了後，需要「儲存並繼續編輯」來重整理網頁',
         )
