@@ -1,39 +1,39 @@
-import http
-import json
-from urllib.parse import quote
+
+from os.path import join
+from subprocess import Popen, PIPE
+from tempfile import TemporaryDirectory
 
 from SuiSiannAdminApp.models import 句表
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponse
 
 
-from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
-from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
 
 def kiamtsa(request, kuid):
-    ku = 句表.objects.get(id=kuid)
-    han = []
-    for ji in 拆文分析器.建立句物件(ku.漢字).篩出字物件():
-        if ji not in 標點符號:
-            han.append(ji.型)
-    tong = 音檔網址表[ku.音檔][6:]
-    conn = http.client.HTTPConnection("it", port=5000)
-    conn.request("GET", quote("/{}/{}".format(' '.join(han), tong)))
-    r1 = conn.getresponse()
-    print(r1.status, r1.reason)
-    a = r1.read()
-    print(a)
-    data1 = json.loads(a)  # This will return entire content.
-    conn = http.client.HTTPConnection("ji", port=5000)
-    conn.request("GET", data1)
-    r1 = conn.getresponse()
-    print(r1.status, r1.reason)
-    r1.read()  # This will return entire content.
-    conn = http.client.HTTPConnection("sann", port=5000)
-    conn.request("GET", data1)
-    r3 = conn.getresponse()
-    print(r3.status, r3.reason)
-    data3 = json.loads(r3.read())  # This will return entire content.
-    print(data3)
-    return JsonResponse({'LMJ': data3})
+    tuitse, kaldi切音時間 = 句表.objects.get(id=kuid).重對齊()
+    return JsonResponse({
+        'Tsîng-hîng': 'Hó--ah~',
+        'tuitse': tuitse,
+        'kaldi切音時間': kaldi切音時間,
+    })
+
+
+def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
+    全部音檔 = 句表.objects.get(id=音檔編號).聲音檔()
+    語句音檔 = 全部音檔.照秒數切出音檔(float(開始時間), float(結束時間))
+    try:
+        with TemporaryDirectory() as 資料夾:
+            檔名 = join(資料夾, 'audio.wav')
+            with open(檔名, 'wb') as 檔案:
+                指令 = Popen(['sox', '-', 檔名, 'remix', '1'], stdin=PIPE)
+                指令.communicate(input=語句音檔.wav格式資料())
+            程式腳本._走指令(['normalize-audio', 檔名])
+            with open(檔名, 'rb') as 檔案:
+                資料 = 檔案.read()
+    except RuntimeError:
+        資料 = 語句音檔.wav格式資料()
+    return HttpResponse(
+        資料,
+        content_type="audio/wav"
+    )

@@ -1,5 +1,15 @@
+from os.path import join, relpath
+
+from django.conf import settings
 from django.db import models
+from kaldi.liansuann import tuìtsê
+from jsonfield.fields import JSONField
+
+
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
+from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
+from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
+from kaldi.lib.換算切音所在 import 換算切音所在
 
 
 class 文章表(models.Model):
@@ -25,6 +35,7 @@ class 句表(models.Model):
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True,)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
+    kaldi切音時間 = JSONField(default=[])
 
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
@@ -32,6 +43,25 @@ class 句表(models.Model):
     def save(self, *args, **kwargs):
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.臺羅)
         super().save(*args, **kwargs)  # Call the "real" save() method.
+
+    def 重對齊(self):
+        tuitse = self.kaldi_tuìtsê()
+        self.kaldi切音時間 = 換算切音所在(self.聲音檔().時間長度(), tuitse)
+        self.save()
+        return tuitse, self.kaldi切音時間
+
+    def kaldi切音時間網址(self):
+        for kui, (thau, bue) in enumerate(self.kaldi切音時間, start=1):
+            yield (kui, '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue),)
+
+    def kaldi_tuìtsê(self):
+        return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))
+
+    def 聲音檔(self):
+        return 聲音檔.對檔案讀(
+            join(settings.MEDIA_ROOT, relpath(
+                音檔網址表[self.音檔], settings.MEDIA_URL))
+        )
 
     class Meta:
         verbose_name = "句表"

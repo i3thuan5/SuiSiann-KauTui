@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SuiSiannAdminApp',
     '用字',
+    'kaldi',
 ]
 
 MIDDLEWARE = [
