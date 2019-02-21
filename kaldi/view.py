@@ -11,8 +11,8 @@ from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
 
 def kiamtsa(request, kuid):
-    kiatko = 句表.objects.get(id=kuid).kaldi_tuìtsê()
-    return JsonResponse({'LMJ': kiatko})
+    句表.objects.get(id=kuid).重對齊()
+    return JsonResponse({'Tsîng-hîng': 'Hó--ah~'})
 
 
 def 傳音檔(request, 音檔編號, 開始時間, 結束時間):

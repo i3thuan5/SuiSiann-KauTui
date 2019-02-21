@@ -44,7 +44,8 @@ class 句表(models.Model):
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def 重對齊(self):
-        self.kaldi切音時間 = [[0.69, 2.04], [1.23, 2.04], ]
+        self.聲音檔().時間長度()
+        self.kaldi切音時間 = [[0.69, 2.04], [1.23, 2.04], [0,self.聲音檔().時間長度()]]
         self.save()
 
     def kaldi切音時間網址(self):

@@ -7,7 +7,7 @@ class 放音檔欄位():
                 <source src='{}'>
                 Your browser does not support the audio element.</audio></div>'''
 
-    def 放音檔(self, obj):
+    def 放原始全部音檔(self, obj):
         if obj.音檔:
             try:
                 音檔網址 = 音檔網址表[obj.音檔]
@@ -19,3 +19,10 @@ class 放音檔欄位():
 
     def 放切好音檔(self, obj):
         return format_html_join('\n', self._音檔html,  obj.kaldi切音時間網址())
+
+    def 重切音檔(self, obj):
+        return format_html(
+            '''<input type="button" onclick="window.open(\'{}\')" value="{}"/>''',
+            '/kaldi/{}'.format(obj.id),
+            '重切（需要30秒），切好需要重整理網頁',
+        )
