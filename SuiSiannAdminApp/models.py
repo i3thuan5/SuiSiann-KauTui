@@ -40,7 +40,6 @@ class 句表(models.Model):
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def kaldi_tuìtsê(self):
-        return tuìtsê(音檔網址表[self.音檔][6:], self.臺羅.split('\n'))
         return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))
 
     def 聲音檔(self):
