@@ -1,7 +1,11 @@
+from os.path import join, relpath
+
+from django.conf import settings
 from django.db import models
 from kaldi.liansuann import tuìtsê
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
+from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 
 
 class 文章表(models.Model):
@@ -37,6 +41,13 @@ class 句表(models.Model):
 
     def kaldi_tuìtsê(self):
         return tuìtsê(音檔網址表[self.音檔][6:], self.臺羅.split('\n'))
+        return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))
+
+    def 聲音檔(self):
+        return 聲音檔.對檔案讀(
+            join(settings.MEDIA_ROOT, relpath(
+                音檔網址表[self.音檔], settings.MEDIA_URL))
+        )
 
     class Meta:
         verbose_name = "句表"
