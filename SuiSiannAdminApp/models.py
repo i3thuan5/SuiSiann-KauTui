@@ -43,6 +43,14 @@ class 句表(models.Model):
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.臺羅)
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
+    def 重對齊(self):
+        self.kaldi切音時間 = [[0.69, 2.04], [1.23, 2.04], ]
+        self.save()
+
+    def kaldi切音時間網址(self):
+        for thau, bue in self.kaldi切音時間:
+            yield ('/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue),)
+
     def kaldi_tuìtsê(self):
         return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))
 
