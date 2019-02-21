@@ -3,6 +3,9 @@ from os.path import join, relpath
 from django.conf import settings
 from django.db import models
 from kaldi.liansuann import tuìtsê
+from jsonfield.fields import JSONField
+
+
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
@@ -31,6 +34,7 @@ class 句表(models.Model):
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True,)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
+    kaldi切音時間 = JSONField(default=[])
 
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
