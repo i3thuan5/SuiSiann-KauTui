@@ -1,4 +1,5 @@
 from django.test.testcases import TestCase
+from kaldi.lib.換算切音所在 import 換算切音所在
 
 
 class 換算切音所在單元試驗(TestCase):
