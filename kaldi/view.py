@@ -17,7 +17,7 @@ frame_subsampling_factor = 3
 
 def kiamtsa(request, kuid):
     ku = 句表.objects.get(id=kuid)
-    kiatko = tuìtsê(音檔網址表[ku.音檔][6:], ku.羅馬字.split('\n'))
+    kiatko = tuìtsê(音檔網址表[ku.音檔][6:], ku.臺羅.split('\n'))
     return JsonResponse({'LMJ': kiatko})
 
 
