@@ -45,12 +45,12 @@ class 句表(models.Model):
 
     def 重對齊(self):
         self.聲音檔().時間長度()
-        self.kaldi切音時間 = [[0.69, 2.04], [1.23, 2.04], [0,self.聲音檔().時間長度()]]
+        self.kaldi切音時間 = [[0.69, 2.04], [1.23, 2.04], [0, self.聲音檔().時間長度()]]
         self.save()
 
     def kaldi切音時間網址(self):
-        for thau, bue in self.kaldi切音時間:
-            yield ('/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue),)
+        for kui, (thau, bue) in enumerate(self.kaldi切音時間, start=1):
+            yield (kui, '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue),)
 
     def kaldi_tuìtsê(self):
         return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))
