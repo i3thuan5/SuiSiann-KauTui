@@ -36,3 +36,11 @@ class 匯入csv試驗(TestCase):
         call_command("匯入csv", csvPath)
         句 = 句表.objects.get(音檔='Dia033.wav')
         self.assertEqual(句.臺羅, "Îng-tshàn--ah,\nlâi lâi lâi,\nlâi tsia!")
+
+    def test_匯入兩擺失敗(self):
+        csvPath = join(settings.BASE_DIR, 'csv', '服務台_hanlo.odt.csv')
+        # import 1st time
+        call_command("匯入csv", csvPath)
+        # import 2nd time
+        with self.assertRaises(RuntimeError):
+            call_command("匯入csv", csvPath)
