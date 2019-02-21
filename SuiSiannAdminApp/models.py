@@ -1,5 +1,7 @@
 from django.db import models
+from kaldi.liansuann import tuìtsê
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
+from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 
 
 class 文章表(models.Model):
@@ -32,6 +34,9 @@ class 句表(models.Model):
     def save(self, *args, **kwargs):
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.臺羅)
         super().save(*args, **kwargs)  # Call the "real" save() method.
+
+    def kaldi_tuìtsê(self):
+        return tuìtsê(音檔網址表[self.音檔][6:], self.臺羅.split('\n'))
 
     class Meta:
         verbose_name = "句表"
