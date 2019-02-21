@@ -15,7 +15,7 @@ services:
        VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
     restart: always
   it:
-    image: i3thuan5/kaldi-kiamtsa-lmj:it
+    image: kaldi-tuitse_it
     expose:
       - 5000
     volumes:
@@ -23,15 +23,15 @@ services:
       - kaldis5:/kaldis5
     restart: always
   ji:
-    image: kaldikiamtsalmj_ji
+    image: kaldi-tuitse_ji
     expose:
       - 5000
     volumes:
       - './wavs/:/wav/:ro'
       - kaldis5:/kaldis5
     restart: always
-  sann:
-    image: i3thuan5/kaldi-kiamtsa-lmj:sann
+  sam:
+    image: kaldi-tuitse_sam
     expose:
       - 5000
     volumes:
