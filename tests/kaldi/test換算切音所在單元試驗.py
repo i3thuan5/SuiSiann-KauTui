@@ -4,9 +4,13 @@ from kaldi.lib.換算切音所在 import 換算切音所在
 
 class 換算切音所在單元試驗(TestCase):
     def tearDown(self):
-        self.assertEqual(
-            換算切音所在(self.總時間, self.kaldi結果), self.預期
-        )
+        執行 = 換算切音所在(self.總時間, self.kaldi結果)
+        self.assertEqual(len(執行), len(self.預期))
+        for 一執行, 一預期 in zip(執行, self.預期):
+            for 一所在, 一數字 in zip(一執行, 一預期):
+                self.assertAlmostEqual(
+                    一所在, 一數字
+                )
 
     def test_一句_還完整一句(self):
         self.總時間 = 2.503
@@ -77,4 +81,21 @@ class 換算切音所在單元試驗(TestCase):
                    [2.865, 4.785, ], [4.785, 9.027, ], ]
 
     def test_兩句1到2_2到3_還兩句(self):
-        self.fail()
+        self.總時間 = 4
+        self.kaldi結果 = [
+            [
+                "0000000無註明-tong0000000-ku0000000",
+                "1",
+                "1",
+                "2.33",
+                "1｜Eh,"
+            ],
+            [
+                "0000000無註明-tong0000000-ku0000000",
+                "1",
+                "2.33",
+                "3",
+                "2｜Bān-tsâi_!"
+            ]
+        ]
+        self.預期 = [[0.0, 2.33, ], [2.33, 4.0, ], ]
