@@ -3,5 +3,6 @@
 *__pycache__/
 venv/
 *db.sqlite3
+db.sqlite3*
 wavs
 Dockerfile
