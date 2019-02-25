@@ -2,7 +2,6 @@ import json
 
 from SuiSiannAdminApp.models import 句表
 from django.core.management.base import BaseCommand
-from django.db.utils import IntegrityError
 
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
