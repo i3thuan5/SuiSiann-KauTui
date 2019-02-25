@@ -21,7 +21,7 @@ class Command(BaseCommand):
             for lmj in 拆文分析器.建立句物件(句.臺羅).轉音(臺灣閩南語羅馬字拼音).篩出字物件():
                 u.add(lmj.型)
                 bo.add(lmj.型.rstrip('0987654321'))
-        with open(options('json'), 'w') as tong:
+        with open(options['json'], 'w') as tong:
             json.dump(
                 {'有聲調': u, '無聲調': bo},
                 tong,
