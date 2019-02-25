@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 bo.add(lmj.型.rstrip('0987654321'))
         with open(options['json'], 'w') as tong:
             json.dump(
-                {'有聲調': u, '無聲調': bo},
+                {'有聲調': sorted(u), '無聲調': sorted(bo)},
                 tong,
                 ensure_ascii=False,
                 sort_keys=True,
