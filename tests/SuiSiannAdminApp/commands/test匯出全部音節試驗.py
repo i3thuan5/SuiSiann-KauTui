@@ -10,11 +10,11 @@ from django.test.testcases import TestCase
 class 匯出全部音節試驗(TestCase):
     def test_無聲調(self):
         self.hue('sui2 koo-niû')
-        self.assertEqual(self.theh()['無聲調'], {'sui', 'koo', 'niu'})
+        self.assertEqual(self.theh()['無聲調'], sorted({'sui', 'koo', 'niu'}))
 
     def test_有聲調(self):
         self.hue('sui2 koo-niû')
-        self.assertEqual(self.theh()['有聲調'], {'sui2', 'koo1', 'niu5'})
+        self.assertEqual(self.theh()['有聲調'], sorted({'sui2', 'koo1', 'niu5'}))
 
     def hue(self, ji):
         句表.objects.create(
