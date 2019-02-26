@@ -61,5 +61,5 @@ class 分句欄位():
 
     def 一區html(self, kui):
         return '''<div>
-        <textarea cols=120 rows=3>{}</textarea>
-        <textarea cols=120 rows=4>{}</textarea>''' + (self.音檔html * kui) + '</div>'
+        <textarea cols=120 rows=3 name='han'>{}</textarea>
+        <textarea cols=120 rows=4 name='lo'>{}</textarea>''' + (self.音檔html * kui) + '</div>'

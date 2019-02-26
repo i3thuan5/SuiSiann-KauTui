@@ -41,4 +41,13 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     # change view
     def save_model(self, request, obj, form, change):
         obj.修改時間 = now()
+        han = self.tsuliau_rstrip(request.POST.getlist('han'))
+        lo = self.tsuliau_rstrip(request.POST.getlist('lo'))
+        obj.漢字 = '\n'.join(han)
+        obj.羅馬字 = '\n'.join(lo)
+
         super(句後台, self).save_model(request, obj, form, change)
+
+    def tsuliau_rstrip(self, tinliat):
+        for pit in tinliat:
+            yield pit.rstrip()
