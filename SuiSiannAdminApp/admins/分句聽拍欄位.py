@@ -25,7 +25,7 @@ class 分句欄位():
         im = []
         for 幾, (漢, 羅, 音檔網址) in enumerate(zip_longest(
             漢陣列, 羅陣列, 音陣列,
-        )):
+        ),start=1):
             if 漢 is not None:
                 han.append(漢)
             else:
@@ -61,5 +61,5 @@ class 分句欄位():
 
     def 一區html(self, kui):
         return '''<div>
-        <textarea >{}</textarea>
-        <textarea >{}</textarea>''' + (self.音檔html * kui) + '</div>'
+        <textarea cols=120 rows=3>{}</textarea>
+        <textarea cols=120 rows=4>{}</textarea>''' + (self.音檔html * kui) + '</div>'
