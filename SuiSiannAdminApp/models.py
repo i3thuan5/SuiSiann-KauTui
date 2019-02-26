@@ -67,8 +67,8 @@ class 句表(models.Model):
         return tuitse, self.kaldi切音時間
 
     def kaldi切音時間網址(self):
-        for kui, (thau, bue) in enumerate(self.kaldi切音時間, start=1):
-            yield (kui, '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue),)
+        for thau, bue in self.kaldi切音時間:
+            yield '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue)
 
     def kaldi_tuìtsê(self):
         return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))

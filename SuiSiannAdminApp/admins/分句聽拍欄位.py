@@ -1,4 +1,4 @@
-from django.utils.html import format_html, format_html_join
+from django.utils.html import format_html
 from itertools import zip_longest
 from django.conf import settings
 
@@ -61,5 +61,5 @@ class 分句欄位():
 
     def 一區html(self, kui):
         return '''<div>
-        <textarea value="{}"/>
-        <textarea value="{}"/>''' + (self.音檔html * kui) + '</div>'
+        <textarea >{}</textarea>
+        <textarea >{}</textarea>''' + (self.音檔html * kui) + '</div>'
