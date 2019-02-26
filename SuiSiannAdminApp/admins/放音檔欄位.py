@@ -18,7 +18,11 @@ class 放音檔欄位():
             return ''
 
     def 放切好音檔(self, obj):
-        return format_html_join('\n', self._音檔html,  obj.kaldi切音時間網址())
+        return format_html_join(
+            '\n',
+            self._音檔html,
+            enumerate(obj.kaldi切音時間網址(), start=1)
+        )
 
     def 重切音檔(self, obj):
         return format_html(

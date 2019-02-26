@@ -37,6 +37,22 @@ class 句表(models.Model):
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
     kaldi切音時間 = JSONField(default=[])
 
+    @property
+    def 羅馬字(self):
+        return self.臺羅
+
+    @羅馬字.setter
+    def 羅馬字(self, value):
+        self.臺羅 = value
+
+    @property
+    def 原始羅馬字(self):
+        return self.原始臺羅
+
+    @原始羅馬字.setter
+    def 原始羅馬字(self, value):
+        self.原始臺羅 = value
+
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
 
@@ -51,8 +67,8 @@ class 句表(models.Model):
         return tuitse, self.kaldi切音時間
 
     def kaldi切音時間網址(self):
-        for kui, (thau, bue) in enumerate(self.kaldi切音時間, start=1):
-            yield (kui, '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue),)
+        for thau, bue in self.kaldi切音時間:
+            yield '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue)
 
     def kaldi_tuìtsê(self):
         return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))

@@ -6,3 +6,4 @@ venv/
 wavs
 .*.swp
 
+/.DS_Store
