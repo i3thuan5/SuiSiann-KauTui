@@ -25,7 +25,7 @@ class 分句欄位():
         im = []
         for 幾, (漢, 羅, 音檔網址) in enumerate(zip_longest(
             漢陣列, 羅陣列, 音陣列,
-        ),start=1):
+        ), start=1):
             if 漢 is not None:
                 han.append(漢)
             else:
