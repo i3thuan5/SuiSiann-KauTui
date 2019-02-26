@@ -37,6 +37,22 @@ class 句表(models.Model):
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
     kaldi切音時間 = JSONField(default=[])
 
+    @property
+    def 羅馬字(self):
+        return self.臺羅
+
+    @羅馬字.setter
+    def 羅馬字(self, value):
+        self.臺羅 = value
+
+    @property
+    def 原始羅馬字(self):
+        return self.原始臺羅
+
+    @原始羅馬字.setter
+    def 原始羅馬字(self, value):
+        self.原始臺羅 = value
+
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
 
