@@ -2,8 +2,8 @@
 .pydevproject
 *__pycache__/
 venv/
-*db.sqlite3
+*db.sqlite3*
 wavs
 .*.swp
-
+*.html
 /.DS_Store
