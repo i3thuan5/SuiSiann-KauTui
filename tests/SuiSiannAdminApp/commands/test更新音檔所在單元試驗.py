@@ -3,6 +3,8 @@ from SuiSiannAdminApp.models import 句表
 from SuiSiannAdminApp.management.commands.更新音檔所在 import 更新音檔所在
 from unittest import mock
 from django.core.management import call_command
+from SuiSiannAdmin.settings import BASE_DIR
+from os.path import os
 
 
 class 更新音檔所在單元試驗(TestCase):
@@ -10,8 +12,8 @@ class 更新音檔所在單元試驗(TestCase):
     @mock.patch(
         'SuiSiannAdminApp.management.commands.更新音檔所在.更新音檔所在')
     def test_有傳入參數(self, 更新音檔所在):
-        call_command('更新音檔所在', '1', '以早若我', 'Mar 16, 2019_1.wav')
-        更新音檔所在.assert_called_once_with('1', '以早若我', 'Mar 16, 2019_1.wav')
+        call_command('更新音檔所在', os.path.join(BASE_DIR, 'NG-kù', 'NG句.csv'))
+        更新音檔所在.assert_any_call('864', '若以早我', 'Mar 16, 2019_220.wav')
 
     def test_改著一筆(self):
         整句漢字 = "若以早我真厚話，愛我起攔頭"
