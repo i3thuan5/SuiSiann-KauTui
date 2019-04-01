@@ -3,7 +3,6 @@ from SuiSiannAdminApp.models import 句表
 from SuiSiannAdminApp.management.commands.更新音檔所在 import 更新音檔所在
 from unittest import mock
 from django.core.management import call_command
-from SuiSiannAdmin.settings import BASE_DIR
 from os.path import os, dirname
 
 
