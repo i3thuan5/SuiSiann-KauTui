@@ -14,7 +14,15 @@ class 匯出全部音節試驗(TestCase):
 
     def test_有聲調(self):
         self.hue('sui2 koo-niû')
-        self.assertEqual(self.theh()['有聲調'], sorted({'sui2', 'koo1', 'niu5'}))
+        self.assertEqual(self.theh()['有聲調'], sorted({'suí', 'koo', 'niû'}))
+
+    def test_標點莫算(self):
+        self.hue(',')
+        self.assertEqual(self.theh()['有聲調'], [])
+
+    def test_英語莫算(self):
+        self.hue('ABCD')
+        self.assertEqual(self.theh()['有聲調'], [])
 
     def hue(self, ji):
         句表.objects.create(
