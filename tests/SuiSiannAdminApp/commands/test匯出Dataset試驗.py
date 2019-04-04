@@ -3,6 +3,7 @@ from filecmp import cmp
 import json
 from os.path import join
 from tempfile import TemporaryDirectory
+from unittest.case import skip
 import wave
 
 from SuiSiannAdminApp.models import 句表, 文章表
@@ -40,6 +41,10 @@ class 匯出Dataset試驗(TestCase):
                 cmp(im), join(tsuliaugiap, 'ImTong/SuiSiann_0001.wav')
             )
 
+    @skip
+    def test_照對齊結果切(self):
+        raise NotImplementedError()
+
     def hue(self, 文章, ji, imtong):
         句表.objects.create(
             來源=文章,
@@ -48,7 +53,7 @@ class 匯出Dataset試驗(TestCase):
             原始臺羅=ji,
             漢字=ji,
             臺羅=ji,
-            對齊結果=[],
+            kaldi切音時間=[],
         )
 
     def siaimtong(self, sootsai):
