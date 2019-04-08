@@ -1,7 +1,7 @@
 from csv import DictWriter
 from os import makedirs
 from os.path import join, relpath
-from shutil import copyfile
+from shutil import copy
 
 from SuiSiannAdminApp.models import 句表
 from django.conf import settings
@@ -39,7 +39,7 @@ class Command(BaseCommand):
                     '漢字': 句.漢字,
                     '羅馬字': 句.羅馬字,
                 })
-                copyfile(
+                copy(
                     join(
                         settings.MEDIA_ROOT,
                         relpath(音檔網址表[句.音檔], settings.MEDIA_URL)

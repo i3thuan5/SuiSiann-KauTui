@@ -1,10 +1,9 @@
 from csv import DictReader
 from filecmp import cmp
 import json
-from os.path import join, basename
+from os.path import join, basename, dirname
 from tempfile import TemporaryDirectory
 from unittest.case import skip
-import wave
 
 from SuiSiannAdminApp.models import 句表, 文章表
 from django.core.management import call_command
@@ -14,8 +13,7 @@ from django.test.testcases import TestCase
 class 匯出Dataset試驗(TestCase):
     def test_資料照來源排(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(tsuliaugiap, 'Oct 13, 2018 _243.wav')
-            self.siaimtong(im)
+            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
 
@@ -29,8 +27,7 @@ class 匯出Dataset試驗(TestCase):
 
     def test_音檔名重編號(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(tsuliaugiap, 'Oct 13, 2018 _243.wav')
-            self.siaimtong(im)
+            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
 
@@ -42,13 +39,17 @@ class 匯出Dataset試驗(TestCase):
 
     def test_音檔名有khoopi(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(tsuliaugiap, 'Oct 13, 2018 _243.wav')
-            self.siaimtong(im)
+            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
+
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
+            self.assertEqual(
+                open(im, 'rb').read(),
+                open(join(kiatko, 'ImTong/SuiSiann_0001.wav'), 'rb').read()
+            )
             self.assertTrue(
                 cmp(im, join(kiatko, 'ImTong/SuiSiann_0001.wav'))
             )
@@ -67,13 +68,6 @@ class 匯出Dataset試驗(TestCase):
             臺羅=ji,
             kaldi切音時間=[],
         )
-
-    def siaimtong(self, sootsai):
-        with wave.open(sootsai, 'wb') as 音檔:
-            音檔.setnchannels(1)
-            音檔.setframerate(16000)
-            音檔.setsampwidth(2)
-            音檔.writeframesraw(b'0' * 100)
 
     def theh(self):
         with TemporaryDirectory() as sootsai:
