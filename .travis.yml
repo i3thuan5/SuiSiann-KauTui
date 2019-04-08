@@ -8,6 +8,8 @@ branches:
 install:
 - pip install 'django<2.2'
 - pip install -r requirements.txt
+- mkdir wavs
+- cp tests/SuiSiannAdminApp/commands/Oct\ 13\,\ 2018\ _243.wav wavs
 script:
 - python manage.py test
 - flake8 --exclude venv,__pychache__,.git,csv,wavs --max-line-length 100 ./
