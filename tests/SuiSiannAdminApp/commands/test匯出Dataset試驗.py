@@ -38,7 +38,7 @@ class 匯出Dataset試驗(TestCase):
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
             self.assertTrue(
-                cmp(im), join(tsuliaugiap, 'ImTong/SuiSiann_0001.wav')
+                cmp(im, join(kiatko, 'ImTong/SuiSiann_0001.wav'))
             )
 
     @skip
