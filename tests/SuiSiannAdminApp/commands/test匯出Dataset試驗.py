@@ -1,7 +1,7 @@
 from csv import DictReader
 from filecmp import cmp
 import json
-from os.path import join
+from os.path import join, basename
 from tempfile import TemporaryDirectory
 from unittest.case import skip
 import wave
@@ -14,7 +14,22 @@ from django.test.testcases import TestCase
 class 匯出Dataset試驗(TestCase):
     def test_資料照來源排(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(tsuliaugiap, 'Oct 3.wav')
+            im = join(tsuliaugiap, 'Oct 13, 2018 _243.wav')
+            self.siaimtong(im)
+            文章 = 文章表.objects.create(文章名='33')
+            self.hue(文章, 'sui', im)
+
+            kiatko = join(tsuliaugiap, 'kiatko')
+            call_command('匯出Dataset', kiatko)
+            with open(join(kiatko, 'sui-siann.csv')) as tong:
+                tsitpit = list(DictReader(tong))[0]
+                self.assertEqual(tsitpit['來源'], '33')
+                self.assertEqual(tsitpit['漢字'], 'sui')
+                self.assertEqual(tsitpit['羅馬字'], 'sui')
+
+    def test_音檔名重編號(self):
+        with TemporaryDirectory() as tsuliaugiap:
+            im = join(tsuliaugiap, 'Oct 13, 2018 _243.wav')
             self.siaimtong(im)
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
@@ -24,13 +39,10 @@ class 匯出Dataset試驗(TestCase):
             with open(join(kiatko, 'sui-siann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['音檔'], 'ImTong/SuiSiann_0001.wav')
-                self.assertEqual(tsitpit['來源'], '33')
-                self.assertEqual(tsitpit['漢字'], 'sui')
-                self.assertEqual(tsitpit['羅馬字'], 'sui')
 
-    def test_音檔名重編號(self):
+    def test_音檔名有khoopi(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(tsuliaugiap, 'Oct 3.wav')
+            im = join(tsuliaugiap, 'Oct 13, 2018 _243.wav')
             self.siaimtong(im)
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
@@ -48,7 +60,7 @@ class 匯出Dataset試驗(TestCase):
     def hue(self, 文章, ji, imtong):
         句表.objects.create(
             來源=文章,
-            音檔=None,
+            音檔=basename(imtong),
             原始漢字=ji,
             原始臺羅=ji,
             漢字=ji,
