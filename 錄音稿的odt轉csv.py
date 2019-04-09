@@ -17,7 +17,7 @@ def odt內容轉陣列(odt內容陣列):
 
     for tsua in odt內容陣列:
         trimTsua = tsua.strip()
-        if trimTsua == '':
+        if trimTsua == '' or trimTsua.startswith('['):
             # 清掉
             countHanLo = 0
         elif countHanLo % 2 == 0:
