@@ -12,5 +12,5 @@ install:
 - cp tests/SuiSiannAdminApp/commands/Oct\ 13\,\ 2018\ _243.wav wavs
 script:
 - python manage.py test
-- flake8 --exclude venv,__pychache__,.git,csv,wavs --max-line-length 100 ./
+- flake8 --exclude venv,__pychache__,.git,csv,wavs --max-line-length 160 ./
 #- find csv/ -type f -name '*.csv' -print0 | xargs -0 -n 1 python tool/檢查csv漢羅對齊.py
