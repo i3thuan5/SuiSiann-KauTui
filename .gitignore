@@ -7,3 +7,4 @@ wavs
 .*.swp
 *.html
 /.DS_Store
+[0-9]*
