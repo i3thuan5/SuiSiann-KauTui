@@ -24,8 +24,10 @@ class 文章表(models.Model):
 
 
 class 句表(models.Model):
-    來源 = models.ForeignKey(文章表, null=True,
-                           related_name='+', on_delete=models.CASCADE)
+    來源 = models.ForeignKey(
+        文章表, null=True,
+        related_name='句', on_delete=models.CASCADE
+    )
     音檔 = models.FileField(blank=True)
     原始漢字 = models.CharField(max_length=500)
     原始臺羅 = models.CharField(max_length=2000)

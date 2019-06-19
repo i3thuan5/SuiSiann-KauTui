@@ -29,7 +29,7 @@ class Command(BaseCommand):
             ])
             sia.writeheader()
             for kui, 句 in enumerate(
-                句表.objects.order_by('來源_id').select_related('來源'),
+                句表.objects.order_by('來源_id', 'id').select_related('來源'),
                 start=1,
             ):
                 wavtongmia = 'ImTong/SuiSiann_{:04}.wav'.format(kui)
