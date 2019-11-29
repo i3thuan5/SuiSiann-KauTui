@@ -30,7 +30,10 @@ class 匯出Dataset試驗(TestCase):
             im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
             文章 = 文章表.objects.create(文章名='33')
             漢 = '包括全羅三百四十六萬兩千三百六十七个音節佮漢羅五百五十六萬八千空五十七个音節；'
-            lo = 'Pau-kuah tsuân-lô sann-pah sì-tsa̍p-la̍k-bān nn̄g-tshing sann-pah la̍k-tsa̍p-tshit ê im-tsiat kah Hàn-lô gōo-pah gōo-tsa̍p-la̍k-bān peh-tshing khòng gōo-tsa̍p-tshit ê im-tsiat;'
+            lo = (
+                'Pau-kuah tsuân-lô sann-pah sì-tsa̍p-la̍k-bān nn̄g-tshing sann-pah la̍k-tsa̍p-tshit ê im-tsiat kah '
+                'Hàn-lô gōo-pah gōo-tsa̍p-la̍k-bān peh-tshing khòng gōo-tsa̍p-tshit ê im-tsiat;'
+            )
             句表.objects.create(
                 來源=文章,
                 音檔=basename(im),
