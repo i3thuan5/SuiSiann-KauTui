@@ -63,13 +63,12 @@ class 句表(models.Model):
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def 重對齊(self):
-        tuitse = self.kaldi_tuìtsê()
-        self.kaldi切音時間 = 換算切音所在(self.聲音檔().時間長度(), tuitse)
+        self.kaldi切音時間 = self.kaldi_tuìtsê()
         self.save()
-        return tuitse, self.kaldi切音時間
+        return self.kaldi切音時間
 
     def kaldi切音時間網址(self):
-        for thau, bue in self.kaldi切音時間:
+        for thau, bue in 換算切音所在(self.聲音檔().時間長度(), self.kaldi切音時間):
             yield '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue)
 
     def kaldi_tuìtsê(self):

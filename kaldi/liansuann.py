@@ -27,8 +27,8 @@ def tuìtsê(wavPath, taiBun):
     kiatko = []
     for tsua in sikan:
         ku = tsua.split()
-        ku[2] = str(float(ku[2]) * frame_subsampling_factor)
-        ku[3] = str(float(ku[3]) * frame_subsampling_factor)
+        ku[2] = float(ku[2]) * frame_subsampling_factor
+        ku[3] = float(ku[3]) * frame_subsampling_factor
         kiatko.append(ku)
         print(' '.join(ku))
     return kiatko
