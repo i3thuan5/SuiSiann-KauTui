@@ -12,7 +12,7 @@ from django.test.testcases import TestCase
 class 匯出Dataset試驗(TestCase):
     def test_資料照來源排(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
+            im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
 
@@ -26,7 +26,7 @@ class 匯出Dataset試驗(TestCase):
 
     def test_分號(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
+            im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
             漢 = '包括全羅三百四十六萬兩千三百六十七个音節佮漢羅五百五十六萬八千空五十七个音節；'
             lo = (
@@ -35,7 +35,7 @@ class 匯出Dataset試驗(TestCase):
             )
             句表.objects.create(
                 來源=文章,
-                音檔=basename(im),
+                音檔=im,
                 原始漢字=漢,
                 原始臺羅=lo,
                 漢字=漢,
@@ -53,7 +53,7 @@ class 匯出Dataset試驗(TestCase):
 
     def test_音檔名重編號(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
+            im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
             self.hue(文章, 'sui', im)
 
@@ -82,7 +82,7 @@ class 匯出Dataset試驗(TestCase):
 
     def test_對齊結果切出2筆(self):
         with TemporaryDirectory() as tsuliaugiap:
-            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
+            im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
             漢 = '包括全羅\n漢羅'
             lo = (
@@ -91,7 +91,7 @@ class 匯出Dataset試驗(TestCase):
             )
             句表.objects.create(
                 來源=文章,
-                音檔=basename(im),
+                音檔=im,
                 原始漢字=漢,
                 原始臺羅=lo,
                 漢字=漢,
