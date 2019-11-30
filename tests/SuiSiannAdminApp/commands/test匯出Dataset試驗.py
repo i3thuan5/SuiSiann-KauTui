@@ -3,7 +3,6 @@ from filecmp import cmp
 import json
 from os.path import join, basename, dirname
 from tempfile import TemporaryDirectory
-from unittest.case import skip
 
 from SuiSiannAdminApp.models import 句表, 文章表
 from django.core.management import call_command
