@@ -81,9 +81,30 @@ class 匯出Dataset試驗(TestCase):
                 cmp(im, join(kiatko, 'ImTong/SuiSiann_0001.wav'))
             )
 
-    @skip
-    def test_照對齊結果切(self):
-        raise NotImplementedError()
+    def test_對齊結果切出2筆(self):
+        with TemporaryDirectory() as tsuliaugiap:
+            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
+            文章 = 文章表.objects.create(文章名='33')
+            漢 = '包括全羅\n漢羅'
+            lo = (
+                'Pau-kuah tsuân-lô \n'
+                'Hàn-lô'
+            )
+            句表.objects.create(
+                來源=文章,
+                音檔=basename(im),
+                原始漢字=漢,
+                原始臺羅=lo,
+                漢字=漢,
+                臺羅=lo,
+                kaldi切音時間=[[0, 3], [5, 7]],
+            )
+
+            kiatko = join(tsuliaugiap, 'kiatko')
+            call_command('匯出Dataset', kiatko)
+            with open(join(kiatko, 'sui-siann.csv')) as tong:
+                tsitpit = list(DictReader(tong))
+                self.assertEqual(len(tsitpit), 2)
 
     def hue(self, 文章, ji, imtong):
         句表.objects.create(
