@@ -52,7 +52,6 @@ class Command(BaseCommand):
                         join(options['TsuLiauGiap'], wavtongmia)
                     )
                 else:
-                    y, sr = librosa.load(原始音檔)
                     for han, lo, (thau, bue) in zip(
                         句.漢字.rstrip().split('\n'),
                         句.羅馬字.rstrip().split('\n'),
@@ -66,5 +65,6 @@ class Command(BaseCommand):
                             '漢字': han,
                             '羅馬字': lo,
                         })
+                        y, sr = librosa.load(原始音檔,offset=thau, duration=bue-thau)
                         mia = join(options['TsuLiauGiap'], wavtongmia)
-                        librosa.output.write_wav(mia, y[thau:bue], sr)
+                        librosa.output.write_wav(mia, y, sr)
