@@ -18,7 +18,7 @@ class 匯出Dataset試驗(TestCase):
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
-            with open(join(kiatko, 'sui-siann.csv')) as tong:
+            with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['來源'], '33')
                 self.assertEqual(tsitpit['漢字'], 'sui')
@@ -45,7 +45,7 @@ class 匯出Dataset試驗(TestCase):
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
-            with open(join(kiatko, 'sui-siann.csv')) as tong:
+            with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['來源'], '33')
                 self.assertEqual(tsitpit['漢字'], 漢)
@@ -59,7 +59,7 @@ class 匯出Dataset試驗(TestCase):
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
-            with open(join(kiatko, 'sui-siann.csv')) as tong:
+            with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['音檔'], 'ImTong/SuiSiann_0001.wav')
 
@@ -101,7 +101,7 @@ class 匯出Dataset試驗(TestCase):
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
-            with open(join(kiatko, 'sui-siann.csv')) as tong:
+            with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))
                 self.assertEqual(len(tsitpit), 2)
 

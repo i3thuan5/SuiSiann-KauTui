@@ -1,7 +1,6 @@
-import http
 from http.client import HTTPConnection
 import json
-from urllib.parse import quote, urlencode
+from urllib.parse import urlencode
 
 
 'exp/chain/tdnn_1a_sp/frame_subsampling_factor'
@@ -33,6 +32,5 @@ def tuìtsê(wavPath, taiBun):
         ku = tsua.split()
         ku[2] = float(ku[2]) * frame_subsampling_factor
         ku[3] = float(ku[3]) * frame_subsampling_factor
-        kiatko.append(ku)
-        print(' '.join(ku))
+        kiatko.append(ku[2:3])
     return kiatko

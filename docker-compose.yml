@@ -25,7 +25,7 @@ services:
       - kaldis5:/kaldis5
     restart: always
   ji:
-    image: kaldi-tuitse_ji_lm_ji
+    image: kaldi-tuitse_ji_fst_decoding
     expose:
       - 5000
     volumes:
@@ -33,7 +33,7 @@ services:
       - kaldis5:/kaldis5
     restart: always
   sam:
-    image: kaldi-tuitse_sam_kiatko
+    image: kaldi-tuitse_sam_sikan
     expose:
       - 5000
     volumes:
