@@ -20,7 +20,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         makedirs(join(options['TsuLiauGiap'], 'ImTong'))
-        csvtongmia = join(options['TsuLiauGiap'], 'sui-siann.csv')
+        csvtongmia = join(options['TsuLiauGiap'], 'SuiSiann.csv')
 
         with open(csvtongmia, 'wt', encoding='utf-8') as tong:
             sia = DictWriter(tong, fieldnames=[
@@ -62,8 +62,8 @@ class Command(BaseCommand):
                         sia.writerow({
                             '音檔': wavtongmia,
                             '來源': 句.來源.文章名,
-                            '漢字': han,
-                            '羅馬字': lo,
+                            '漢字': han.rstrip(),
+                            '羅馬字': lo.rstrip(),
                         })
                         y, sr = librosa.load(原始音檔,offset=thau, duration=bue-thau)
                         mia = join(options['TsuLiauGiap'], wavtongmia)
