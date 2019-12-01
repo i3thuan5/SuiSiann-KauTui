@@ -29,8 +29,8 @@ def tuìtsê(wavPath, taiBun):
     print('sam', sikan)
     kiatko = []
     for ku in 敆字做句(sikan):
-        ku[2] = float(ku[2]) * frame_subsampling_factor
-        ku[3] = float(ku[3]) * frame_subsampling_factor
+        ku[2] = float(ku[2])
+        ku[3] = float(ku[3])
         kiatko.append((ku[2], ku[2] + ku[3]))
     return kiatko
 
