@@ -28,9 +28,40 @@ def tuìtsê(wavPath, taiBun):
     sikan = json.loads(sam_conn.getresponse().read())
     print('sam', sikan)
     kiatko = []
-    for tsua in sikan:
-        ku = tsua.split()
+    for ku in 敆字做句(sikan):
         ku[2] = float(ku[2]) * frame_subsampling_factor
         ku[3] = float(ku[3]) * frame_subsampling_factor
-        kiatko.append(ku[2:3])
+        kiatko.append((ku[2], ku[2] + ku[3]))
     return kiatko
+
+
+punkhui = '｜'
+
+
+def 敆字做句(kaldi結果):
+    kapho = []
+    tingkuid = None
+    tingku = None
+    kukhaisi = None
+    kukiatsok = None
+    for tsua in kaldi結果:
+        tongmia, channel, khaisi, tngtoo, lueiong = tsua.split()
+        kuid, ku, *_ji = lueiong.split(punkhui, 2)
+        if tingkuid != kuid:
+            if tingkuid is not None:
+                kapho.append([
+                    tongmia, channel,
+                    kukhaisi, '{:.3f}'.format(kukiatsok - float(kukhaisi)),
+                    '{}{}{}'.format(tingkuid, punkhui, tingku)
+                ])
+            tingkuid = kuid
+            tingku = ku
+            kukhaisi = khaisi
+        kukiatsok = float(khaisi) + float(tngtoo)
+    if tingkuid is not None:
+        kapho.append([
+            tongmia, channel,
+            kukhaisi, '{:.3f}'.format(kukiatsok - float(kukhaisi)),
+            '{}{}{}'.format(kuid, punkhui, ku)
+        ])
+    return kapho
