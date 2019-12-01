@@ -17,7 +17,7 @@ def tuìtsê(wavPath, taiBun):
         "Content-type": "application/x-www-form-urlencoded",
         "Accept": "text/plain"
     }
-    it_conn = HTTPConnection('tuitse-it', port=5000)
+    it_conn = HTTPConnection('it', port=5000)
     it_conn.request("POST", '/', 參數, headers)
     tmpPath = json.loads(it_conn.getresponse().read())
     print('it tmpPath', tmpPath)
