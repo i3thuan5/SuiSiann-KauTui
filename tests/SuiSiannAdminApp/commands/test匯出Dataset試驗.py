@@ -154,3 +154,35 @@ class Kap時間試驗(TestCase):
         punte = [['漢\n', 'Lô\n', (1.3, 2.5)], ['漢\n', 'Lô\n', (3.1, 3.5), ]]
         kiatko = [['漢 漢', 'Lô Lô', (1.29, 3.51)]]
         self.assertEqual(Command().kap時間(6.7, punte), kiatko)
+
+    def test_實際例(self):
+        punte = [
+            ('鳥啼聲含情帶意，\r', 'Tsiáu-thî-siann hâm tsîng tài ì,\r', [0.78, 3.51]),
+            ('美麗春光滿滿是，\r', 'bí-lē tshun-kong muá-muá sī,\r',
+             [4.26, 7.949999999999999]),
+            ('有情人形影不離，', 'ū-tsîng lâng hîng-iánn put lī,',
+             [7.95, 11.370000000000001]),
+            ('談情在河邊，\r', 'tâm tsîng tsāi hô-pinn,\r', [11.37, 14.25]),
+            ('好情意歡歡喜喜，\r', 'hó tsîng-ì huann-huann-hí-hí,\r',
+             [14.25, 18.33]),
+            ('笑容滿面好春天，', 'tshiò-iông muá-bīn hó tshun-thinn,',
+             [18.33, 22.08]),
+            ('無論是海角天邊，\r', 'bô-lūn sī hái-kak thinn-pinn,\r',
+             [22.08, 25.68]),
+            ('也不來分離。\r', 'iā put lâi hun-lī.\r', [25.68, 28.95]),
+            ('雙人是春風滿面，', 'Siang-lâng sī tshun-hong muá-bīn,',
+             [28.95, 32.25])
+        ]
+        kiatko = [
+            ['鳥啼聲含情帶意， 美麗春光滿滿是，', 'Tsiáu-thî-siann hâm tsîng tài ì, bí-lē tshun-kong muá-muá sī,',
+                (0.77, 7.959999999999999)],
+            ['有情人形影不離， 談情在河邊，',
+                'ū-tsîng lâng hîng-iánn put lī, tâm tsîng tsāi hô-pinn,', (7.94, 14.26)],
+            ['好情意歡歡喜喜， 笑容滿面好春天，',
+                'hó tsîng-ì huann-huann-hí-hí, tshiò-iông muá-bīn hó tshun-thinn,', (14.24, 22.09)],
+            ['無論是海角天邊， 也不來分離。', 'bô-lūn sī hái-kak thinn-pinn, iā put lâi hun-lī.',
+                (22.069999999999997, 28.96)],
+            ['雙人是春風滿面，', 'Siang-lâng sī tshun-hong muá-bīn,',
+                (28.939999999999998, 32.26)]
+        ]
+        self.assertEqual(Command().kap時間(32.26, punte), kiatko)
