@@ -2,20 +2,23 @@ from csv import DictWriter
 from os import makedirs
 from os.path import join, relpath
 from shutil import copy
-import librosa
 
 from SuiSiannAdminApp.models import 句表
 from django.conf import settings
 from django.core.management.base import BaseCommand
+import librosa
+from librosa.core.audio import get_duration
 
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
+from kaldi.lib.換算切音所在 import 換算切音所在
 
 
 class Command(BaseCommand):
     tongmia = 'ImTong/SuiSiann_{:04}.wav'
-    # https://gist.github.com/keithito/771cfc1a1ab69d1957914e377e65b6bd#file-segment-py-L148
+    # https://gist.github.com/keithito/771cfc1a1ab69d1957914e377e65b6bd#file-segment-py-L148-L149
     max_gap_duration = 0.75
+    threshold = 40.0
 
     def add_arguments(self, parser):
         parser.add_argument('TsuLiauGiap',)
@@ -54,11 +57,22 @@ class Command(BaseCommand):
                         join(options['TsuLiauGiap'], wavtongmia)
                     )
                 else:
-                    for han, lo, (thau, bue) in zip(
+                    longtsong = get_duration(原始音檔)
+                    sinsikan = []
+                    for thau, bue in 換算切音所在(longtsong, 句.kaldi切音時間):
+                        y, _sr = librosa.load(
+                            原始音檔, offset=thau, duration=bue - thau
+                        )
+                        _yt, index = librosa.effects.trim(
+                            y, top_db=self.threshold
+                        )
+                        sinsikan.append(index)
+                    tsuliau = zip(
                         句.漢字.rstrip().split('\n'),
                         句.羅馬字.rstrip().split('\n'),
-                        句.kaldi切音時間
-                    ):
+                        sinsikan
+                    )
+                    for han, lo, (thau, bue) in self.kap時間(longtsong, tsuliau):
                         wavtongmia = self.tongmia.format(kui)
                         kui += 1
                         sia.writerow({
