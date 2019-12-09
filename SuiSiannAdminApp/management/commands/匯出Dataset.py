@@ -15,7 +15,8 @@ from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 
 class Command(BaseCommand):
     tongmia = 'ImTong/SuiSiann_{:04}.wav'
-    # https://gist.github.com/keithito/771cfc1a1ab69d1957914e377e65b6bd#file-segment-py-L148-L149
+    # https://gist.github.com/keithito/771cfc1a1ab69d1957914e377e65b6bd#file-segment-py-L147-L149
+    max_duration = 10.0
     max_gap_duration = 0.75
     threshold = 40.0
 
@@ -82,7 +83,11 @@ class Command(BaseCommand):
         for han, lo, (thau, bue) in tsuliau:
             han = han.strip()
             lo = lo.strip()
-            if len(kap) > 0 and thau - kap[-1][2][1] <= self.max_gap_duration:
+            if (
+                len(kap) > 0
+                and thau - kap[-1][2][1] <= self.max_gap_duration
+                and bue - kap[-1][2][0] <= self.max_duration
+            ):
                 siongbue = kap.pop()
                 kap.append([
                     siongbue[0] + ' ' + han,
