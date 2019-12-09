@@ -9,6 +9,9 @@ from django.core.management import call_command
 from django.test.testcases import TestCase
 
 
+from SuiSiannAdminApp.management.commands.匯出Dataset import Command
+
+
 class 匯出Dataset試驗(TestCase):
     def test_資料照來源排(self):
         with TemporaryDirectory() as tsuliaugiap:
@@ -122,3 +125,22 @@ class 匯出Dataset試驗(TestCase):
             call_command('匯出全部音節', tongmia)
             with open(tongmia) as tong:
                 return json.load(tong)
+
+
+class Kap時間試驗(TestCase):
+    def test_時間加點01秒(self):
+        '參考LJSpeech有加0.005秒空--ê，到開始閣有0.005秒，攏總0.01秒'
+        punte = [['漢', 'Lô', (1.3, 2.5)], ['漢', 'Lô', (3.3, 3.5), ]]
+        kiatko = [['漢', 'Lô', (1.29, 2.51)], ['漢', 'Lô', (3.29, 3.51), ]]
+        self.assertEqual(Command().kap時間(5.0, punte), kiatko)
+
+    def test_時間加點01秒嘛袂使超過音檔(self):
+        punte = [['漢', 'Lô', (0.0, 2.7)]]
+        kiatko = [['漢', 'Lô', (0.0, 2.7)]]
+        self.assertEqual(Command().kap時間(2.7, punte), kiatko)
+
+    def test_時間差無零點75秒就kap做伙(self):
+        'https://gist.github.com/keithito/771cfc1a1ab69d1957914e377e65b6bd#file-segment-py-L148'
+        punte = [['漢', 'Lô', (1.3, 2.5)], ['漢', 'Lô', (3.1, 3.5), ]]
+        kiatko = [['漢 漢', 'Lô Lô', (1.29, 3.51)]]
+        self.assertEqual(Command().kap時間(6.7, punte), kiatko)

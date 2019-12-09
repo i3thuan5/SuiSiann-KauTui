@@ -14,6 +14,8 @@ from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 
 class Command(BaseCommand):
     tongmia = 'ImTong/SuiSiann_{:04}.wav'
+    # https://gist.github.com/keithito/771cfc1a1ab69d1957914e377e65b6bd#file-segment-py-L148
+    max_gap_duration = 0.75
 
     def add_arguments(self, parser):
         parser.add_argument('TsuLiauGiap',)
@@ -70,3 +72,26 @@ class Command(BaseCommand):
                         )
                         mia = join(options['TsuLiauGiap'], wavtongmia)
                         librosa.output.write_wav(mia, y, sr)
+
+    def kap時間(self, longtsong, tsuliau):
+        kap = []
+        for han, lo, (thau, bue) in tsuliau:
+            if len(kap) > 0 and thau - kap[-1][2][1] <= self.max_gap_duration:
+                siongbue = kap.pop()
+                kap.append([
+                    siongbue[0] + ' ' + han,
+                    siongbue[1] + ' ' + lo,
+                    (siongbue[2][0], bue)
+                ])
+            else:
+                kap.append([han, lo, (thau, bue)])
+        kiatko = []
+        for han, lo, (thau, bue) in kap:
+            thau -= 0.01
+            if thau < 0:
+                thau = 0
+            bue += 0.01
+            if bue > longtsong:
+                bue = longtsong
+            kiatko.append([han, lo, (thau, bue)])
+        return kiatko
