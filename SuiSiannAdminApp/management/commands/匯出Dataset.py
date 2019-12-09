@@ -80,6 +80,8 @@ class Command(BaseCommand):
     def kap時間(self, longtsong, tsuliau):
         kap = []
         for han, lo, (thau, bue) in tsuliau:
+            han = han.strip()
+            lo = lo.strip()
             if len(kap) > 0 and thau - kap[-1][2][1] <= self.max_gap_duration:
                 siongbue = kap.pop()
                 kap.append([

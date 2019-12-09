@@ -144,3 +144,13 @@ class Kap時間試驗(TestCase):
         punte = [['漢', 'Lô', (1.3, 2.5)], ['漢', 'Lô', (3.1, 3.5), ]]
         kiatko = [['漢 漢', 'Lô Lô', (1.29, 3.51)]]
         self.assertEqual(Command().kap時間(6.7, punte), kiatko)
+
+    def test_加起來超過10秒莫kap(self):
+        punte = [['漢', 'Lô', (1.3, 2.5)], ['漢', 'Lô', (3.1, 12.5), ]]
+        kiatko = [['漢', 'Lô', (1.29, 2.51)], ['漢', 'Lô', (3.29, 12.51), ]]
+        self.assertEqual(Command().kap時間(16.7, punte), kiatko)
+
+    def test_換逝提掉(self):
+        punte = [['漢\n', 'Lô\n', (1.3, 2.5)], ['漢\n', 'Lô\n', (3.1, 3.5), ]]
+        kiatko = [['漢 漢', 'Lô Lô', (1.29, 3.51)]]
+        self.assertEqual(Command().kap時間(6.7, punte), kiatko)
