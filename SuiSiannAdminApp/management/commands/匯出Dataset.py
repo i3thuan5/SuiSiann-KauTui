@@ -67,6 +67,8 @@ class Command(BaseCommand):
                             y, top_db=self.threshold
                         )
                         sinsikan.append(index)
+                    print('句.kaldi切音時間', 句.kaldi切音時間)
+                    print('sinsikan', sinsikan)
                     tsuliau = zip(
                         句.漢字.rstrip().split('\n'),
                         句.羅馬字.rstrip().split('\n'),
