@@ -57,7 +57,7 @@ class Command(BaseCommand):
                         join(options['TsuLiauGiap'], wavtongmia)
                     )
                 else:
-                    longtsong = get_duration(原始音檔)
+                    longtsong = get_duration(filename=原始音檔)
                     sinsikan = []
                     for thau, bue in 換算切音所在(longtsong, 句.kaldi切音時間):
                         y, _sr = librosa.load(
