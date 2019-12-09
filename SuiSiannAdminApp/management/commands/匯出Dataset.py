@@ -11,7 +11,6 @@ from librosa.core.audio import get_duration
 
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
-from kaldi.lib.換算切音所在 import 換算切音所在
 
 
 class Command(BaseCommand):
@@ -58,21 +57,10 @@ class Command(BaseCommand):
                     )
                 else:
                     longtsong = get_duration(filename=原始音檔)
-                    sinsikan = []
-                    for thau, bue in 換算切音所在(longtsong, 句.kaldi切音時間):
-                        y, _sr = librosa.load(
-                            原始音檔, offset=thau, duration=bue - thau
-                        )
-                        _yt, index = librosa.effects.trim(
-                            y, top_db=self.threshold
-                        )
-                        sinsikan.append(index)
-                    print('句.kaldi切音時間', 句.kaldi切音時間)
-                    print('sinsikan', sinsikan)
                     tsuliau = zip(
                         句.漢字.rstrip().split('\n'),
                         句.羅馬字.rstrip().split('\n'),
-                        sinsikan
+                        句.kaldi切音時間
                     )
                     for han, lo, (thau, bue) in self.kap時間(longtsong, tsuliau):
                         wavtongmia = self.tongmia.format(kui)

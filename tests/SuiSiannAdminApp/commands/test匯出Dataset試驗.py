@@ -99,7 +99,7 @@ class 匯出Dataset試驗(TestCase):
                 原始臺羅=lo,
                 漢字=漢,
                 臺羅=lo,
-                kaldi切音時間=[[0., 3.], [5., 7.]],
+                kaldi切音時間=[[0., 3.], [4., 7.]],
             )
 
             kiatko = join(tsuliaugiap, 'kiatko')
