@@ -65,6 +65,8 @@ class Command(BaseCommand):
                             '漢字': han.rstrip(),
                             '羅馬字': lo.rstrip(),
                         })
-                        y, sr = librosa.load(原始音檔,offset=thau, duration=bue-thau)
+                        y, sr = librosa.load(
+                            原始音檔, offset=thau, duration=bue - thau
+                        )
                         mia = join(options['TsuLiauGiap'], wavtongmia)
                         librosa.output.write_wav(mia, y, sr)
