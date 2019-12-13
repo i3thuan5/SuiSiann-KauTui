@@ -10,7 +10,7 @@ def 換算切音所在(總時間, kaldi結果):
     頂一中央 = 0.0
     for ind in range(1, kaldi結果數):
         # [head0, duration0], [head1, duration1], ...
-        頂句尾 = float(kaldi結果[ind - 1][0]) + float(kaldi結果[ind - 1][1])
+        頂句尾 = float(kaldi結果[ind - 1][1])
         句頭 = float(kaldi結果[ind][0])
         中央 = (句頭 + 頂句尾) / 2
         換算結果.append([頂一中央, 中央, ])
