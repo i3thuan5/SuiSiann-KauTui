@@ -10,6 +10,7 @@ from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 from kaldi.lib.換算切音所在 import 換算切音所在
+from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
 class 文章表(models.Model):
@@ -72,7 +73,10 @@ class 句表(models.Model):
             yield '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue)
 
     def kaldi_tuìtsê(self):
-        return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), self.臺羅.split('\n'))
+        lmj = []
+        for tsua in self.臺羅.split('\n'):
+            lmj.append(tsua.strip().strip(標點符號))
+        return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), lmj)
 
     def 聲音檔(self):
         return 聲音檔.對檔案讀(
