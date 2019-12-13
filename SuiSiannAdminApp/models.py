@@ -73,9 +73,10 @@ class 句表(models.Model):
             yield '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue)
 
     def kaldi_tuìtsê(self):
+        piautiam = ''.join(標點符號)
         lmj = []
         for tsua in self.臺羅.split('\n'):
-            lmj.append(tsua.strip().strip(標點符號))
+            lmj.append(tsua.strip().strip(piautiam))
         return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), lmj)
 
     def 聲音檔(self):
