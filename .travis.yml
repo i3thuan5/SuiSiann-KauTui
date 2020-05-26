@@ -1,4 +1,4 @@
-sudo: false
+sudo: true
 dist: bionic
 language: python
 python:
@@ -7,6 +7,8 @@ branches:
 #  only:
 #    - master
 install:
+- apt-get update
+- apt-get install libsndfile1
 - pip install 'django<2.2'
 - pip install -r requirements.txt
 - mkdir wavs
