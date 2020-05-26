@@ -6,3 +6,5 @@ venv/
 db.sqlite3*
 wavs
 Dockerfile
+0.*
+1.*
