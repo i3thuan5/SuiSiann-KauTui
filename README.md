@@ -40,11 +40,6 @@ Dropbox/母語/語料/TTS 語音合成錄製/錄音進度.pdf
 python manage.py 匯入csv csv/賣圓仔的神仙_hanlo.odt.csv
 ```
 
-## Autopep8 reformat
-```
-autopep8 -r --in-place --aggressive --exclude=venv,__pycache__,.git,csv ./
-```
-
 ## 開發
 ```
 bash 批次錄音稿odt轉csv.sh 
