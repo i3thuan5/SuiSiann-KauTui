@@ -1,5 +1,5 @@
 # Sui-Siann-Dataset
-臺語媠聲錄音檔 
+台語媠聲錄音檔 
 
 ## 進度
 Dropbox/母語/語料/TTS 語音合成錄製/錄音進度.pdf
