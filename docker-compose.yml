@@ -9,8 +9,6 @@ services:
     networks:
       - default
       - nginx-bridge
-    expose:
-      - 8000
     environment:
        VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
        LETSENCRYPT_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
