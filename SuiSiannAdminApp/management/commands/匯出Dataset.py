@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 import librosa
 from librosa.core.audio import get_duration
+import soundfile
 
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
@@ -76,7 +77,7 @@ class Command(BaseCommand):
                             原始音檔, offset=thau, duration=bue - thau
                         )
                         mia = join(options['TsuLiauGiap'], wavtongmia)
-                        librosa.output.write_wav(mia, y, sr)
+                        soundfile.write(mia, y, sr)
 
     def kap時間(self, longtsong, tsuliau):
         kap = []

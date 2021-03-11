@@ -2,18 +2,20 @@ sudo: true
 dist: bionic
 language: python
 python:
-- '3.6'
+- '3.8'
 branches:
-#  only:
-#    - master
+ only:
+   - master
+env:
+  matrix:
+  - TOX_ENV=test
+  - TOX_ENV=checkmigrations
+  - TOX_ENV=flake8
 install:
 - sudo apt-get update
 - sudo apt-get install libsndfile1
-- pip install 'django<2.2'
-- pip install -r requirements.txt
+- pip install tox
 - mkdir wavs
 - cp tests/SuiSiannAdminApp/commands/Oct\ 13\,\ 2018\ _243.wav wavs
 script:
-- python manage.py test
-- flake8 --exclude venv,__pychache__,.git,csv,wavs --max-line-length 160 ./
-#- find csv/ -type f -name '*.csv' -print0 | xargs -0 -n 1 python tool/檢查csv漢羅對齊.py
+- tox -e $TOX_ENV
