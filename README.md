@@ -1,5 +1,5 @@
-# Sui-Siann-Dataset
-臺語媠聲錄音檔 
+# SuiSiann-Dataset
+台語媠聲錄音檔 
 
 ## 進度
 Dropbox/母語/語料/TTS 語音合成錄製/錄音進度.pdf
@@ -38,11 +38,6 @@ Dropbox/母語/語料/TTS 語音合成錄製/錄音進度.pdf
 ## 將csv匯入django admin
 ```
 python manage.py 匯入csv csv/賣圓仔的神仙_hanlo.odt.csv
-```
-
-## Autopep8 reformat
-```
-autopep8 -r --in-place --aggressive --exclude=venv,__pycache__,.git,csv ./
 ```
 
 ## 開發
