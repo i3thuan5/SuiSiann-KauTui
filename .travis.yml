@@ -8,7 +8,7 @@ branches:
    - master
 env:
   matrix:
-  - TOX_ENV=behave
+  - TOX_ENV=test
   - TOX_ENV=checkmigrations
   - TOX_ENV=flake8
 install:
