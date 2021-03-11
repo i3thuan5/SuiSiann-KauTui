@@ -34,9 +34,11 @@ class Command(BaseCommand):
                 '來源',
                 '漢字',
                 '羅馬字',
+                '長短',
             ])
             sia.writeheader()
             kui = 1
+            bio = 0.0
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
@@ -52,6 +54,7 @@ class Command(BaseCommand):
                         '來源': 句.來源.文章名,
                         '漢字': 句.漢字,
                         '羅馬字': 句.羅馬字,
+                        '長短': get_duration(filename=原始音檔),
                     })
                     copy(
                         原始音檔,
@@ -67,17 +70,21 @@ class Command(BaseCommand):
                     for han, lo, (thau, bue) in self.kap時間(longtsong, tsuliau):
                         wavtongmia = self.tongmia.format(kui)
                         kui += 1
+                        ku_tngte = bue - thau
                         sia.writerow({
                             '音檔': wavtongmia,
                             '來源': 句.來源.文章名,
                             '漢字': han.rstrip(),
                             '羅馬字': lo.rstrip(),
+                            '長短': ku_tngte,
                         })
+                        bio += ku_tngte
                         y, sr = librosa.load(
-                            原始音檔, offset=thau, duration=bue - thau
+                            原始音檔, offset=thau, duration=ku_tngte
                         )
                         mia = join(options['TsuLiauGiap'], wavtongmia)
                         soundfile.write(mia, y, sr)
+                        print('粒積秒數', bio, file=self.stderr)
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
