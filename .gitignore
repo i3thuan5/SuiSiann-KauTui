@@ -8,3 +8,4 @@ wavs
 *.html
 /.DS_Store
 [0-9]*
+.settings/
