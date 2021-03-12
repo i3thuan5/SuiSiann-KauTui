@@ -86,10 +86,7 @@ class Command(BaseCommand):
                             ],
                             check=True,
                         )
-                        print('原始音檔', 原始音檔)
-                        print('(thau, bue)', (thau, bue))
                         print('粒積秒數', bio, file=self.stderr)
-                    break
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
