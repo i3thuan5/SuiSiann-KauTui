@@ -40,6 +40,15 @@ SERVER=ip
 rsync -av -e ssh TTS\ 語音合成錄製/ "ubuntu@$SERVER:./git/SuiSiann/TTS\ 語音合成錄製"
 ```
 
+## 包--起-來
+```
+PANPUN=0.3
+time docker-compose exec gunicorn python manage.py 匯出Dataset ./tsu-liāu/$PANPUN
+cd tsu-liāu/
+tar -cvf SuiSiann-$PANPUN.tar $PANPUN
+cd ../
+```
+
 ## 將csv匯入django admin
 ```
 python manage.py 匯入csv csv/賣圓仔的神仙_hanlo.odt.csv
