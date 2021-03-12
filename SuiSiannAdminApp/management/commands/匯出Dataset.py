@@ -53,7 +53,7 @@ class Command(BaseCommand):
                         '來源': 句.來源.文章名,
                         '漢字': 句.漢字,
                         '羅馬字': 句.羅馬字,
-                        '長短': get_duration(filename=原始音檔),
+                        '長短': '{:.2f}'.format(get_duration(filename=原始音檔)),
                     })
                     copy(
                         原始音檔,
@@ -75,7 +75,7 @@ class Command(BaseCommand):
                             '來源': 句.來源.文章名,
                             '漢字': han.rstrip(),
                             '羅馬字': lo.rstrip(),
-                            '長短': ku_tngte,
+                            '長短': '{:.2f}'.format(ku_tngte),
                         })
                         bio += ku_tngte
                         kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
