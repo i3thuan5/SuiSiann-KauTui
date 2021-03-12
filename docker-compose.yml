@@ -1,11 +1,10 @@
 version: '3.5'
 
 services:
-  admin:
-    build: .
-    volumes:
-      - "./tsu-liāu:/djangoAdmin/tsu-liāu"
-      - "./wavs:/djangoAdmin/wavs:ro"
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
     networks:
       - default
       - nginx-bridge
@@ -13,6 +12,16 @@ services:
        VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
        LETSENCRYPT_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
        LETSENCRYPT_EMAIL: "ithuan@xn--v0qr21b.xn--kpry57d"
+    restart: always
+  gunicorn:
+    build: .
+    volumes:
+      - "./tsu-liāu:/djangoAdmin/tsu-liāu"
+      - "./wavs:/djangoAdmin/wavs:ro"
+    networks:
+      default:
+        aliases:
+          - suisiann-kautui-autuan
     restart: always
   it:
     image: kaldi-tuitse_it

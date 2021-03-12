@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.7 AS tsiantuan
 MAINTAINER a8568730
 
 RUN apt-get update && apt-get install -y sox normalize-audio
