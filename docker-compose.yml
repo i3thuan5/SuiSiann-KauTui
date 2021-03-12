@@ -1,20 +1,27 @@
 version: '3.5'
 
 services:
-  admin:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    networks:
+      - default
+      - nginx-bridge
+    environment:
+       VIRTUAL_HOST: "suisiann-kautui.ithuan.tw"
+       LETSENCRYPT_HOST: "suisiann-kautui.ithuan.tw"
+       LETSENCRYPT_EMAIL: "ithuan@ithuan.tw"
+    restart: always
+  gunicorn:
     build: .
     volumes:
       - "./tsu-liāu:/djangoAdmin/tsu-liāu"
       - "./wavs:/djangoAdmin/wavs:ro"
     networks:
-      - default
-      - nginx-bridge
-    expose:
-      - 8000
-    environment:
-       VIRTUAL_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
-       LETSENCRYPT_HOST: "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"
-       LETSENCRYPT_EMAIL: "ithuan@xn--v0qr21b.xn--kpry57d"
+      default:
+        aliases:
+          - suisiann-kautui-autuan
     restart: always
   it:
     image: kaldi-tuitse_it

@@ -6,9 +6,8 @@ from shutil import copy
 from SuiSiannAdminApp.models import 句表
 from django.conf import settings
 from django.core.management.base import BaseCommand
-import librosa
 from librosa.core.audio import get_duration
-import soundfile
+from subprocess import run
 
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
@@ -34,9 +33,12 @@ class Command(BaseCommand):
                 '來源',
                 '漢字',
                 '羅馬字',
+                '長短',
             ])
             sia.writeheader()
             kui = 1
+            bio = 0.0
+            lts = 0.0
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
@@ -44,21 +46,24 @@ class Command(BaseCommand):
                     settings.MEDIA_ROOT,
                     relpath(音檔網址表[句.音檔], settings.MEDIA_URL)
                 )
+                longtsong = get_duration(filename=原始音檔)
+                lts += longtsong
                 if len(句.kaldi切音時間) == 0:
                     wavtongmia = self.tongmia.format(kui)
                     kui += 1
+                    bio += longtsong
                     sia.writerow({
                         '音檔': wavtongmia,
                         '來源': 句.來源.文章名,
                         '漢字': 句.漢字,
                         '羅馬字': 句.羅馬字,
+                        '長短': '{:.2f}'.format(longtsong),
                     })
                     copy(
                         原始音檔,
                         join(options['TsuLiauGiap'], wavtongmia)
                     )
                 else:
-                    longtsong = get_duration(filename=原始音檔)
                     tsuliau = zip(
                         句.漢字.rstrip().split('\n'),
                         句.羅馬字.rstrip().split('\n'),
@@ -67,17 +72,27 @@ class Command(BaseCommand):
                     for han, lo, (thau, bue) in self.kap時間(longtsong, tsuliau):
                         wavtongmia = self.tongmia.format(kui)
                         kui += 1
+                        ku_tngte = bue - thau
+                        bio += ku_tngte
                         sia.writerow({
                             '音檔': wavtongmia,
                             '來源': 句.來源.文章名,
                             '漢字': han.rstrip(),
                             '羅馬字': lo.rstrip(),
+                            '長短': '{:.2f}'.format(ku_tngte),
                         })
-                        y, sr = librosa.load(
-                            原始音檔, offset=thau, duration=bue - thau
+                        kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
+                        run(
+                            [
+                                'sox', 原始音檔, kiatko_mia,
+                                'trim', '{:.5f}'.format(thau), '{:.5f}'.format(ku_tngte),
+                            ],
+                            check=True,
                         )
-                        mia = join(options['TsuLiauGiap'], wavtongmia)
-                        soundfile.write(mia, y, sr)
+                print(
+                    '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
+                    file=self.stderr
+                )
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
