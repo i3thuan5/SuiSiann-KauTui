@@ -38,6 +38,7 @@ class Command(BaseCommand):
             sia.writeheader()
             kui = 1
             bio = 0.0
+            lts = 0.0
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
@@ -46,6 +47,7 @@ class Command(BaseCommand):
                     relpath(音檔網址表[句.音檔], settings.MEDIA_URL)
                 )
                 longtsong = get_duration(filename=原始音檔)
+                lts += longtsong
                 if len(句.kaldi切音時間) == 0:
                     wavtongmia = self.tongmia.format(kui)
                     kui += 1
@@ -86,7 +88,10 @@ class Command(BaseCommand):
                             ],
                             check=True,
                         )
-                        print('粒積秒數', bio, file=self.stderr)
+                        print(
+                            '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
+                            file=self.stderr
+                        )
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
