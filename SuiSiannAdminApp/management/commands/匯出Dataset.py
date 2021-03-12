@@ -45,6 +45,7 @@ class Command(BaseCommand):
                     settings.MEDIA_ROOT,
                     relpath(音檔網址表[句.音檔], settings.MEDIA_URL)
                 )
+                longtsong = get_duration(filename=原始音檔)
                 if len(句.kaldi切音時間) == 0:
                     wavtongmia = self.tongmia.format(kui)
                     kui += 1
@@ -53,14 +54,13 @@ class Command(BaseCommand):
                         '來源': 句.來源.文章名,
                         '漢字': 句.漢字,
                         '羅馬字': 句.羅馬字,
-                        '長短': '{:.2f}'.format(get_duration(filename=原始音檔)),
+                        '長短': '{:.2f}'.format(longtsong),
                     })
                     copy(
                         原始音檔,
                         join(options['TsuLiauGiap'], wavtongmia)
                     )
                 else:
-                    longtsong = get_duration(filename=原始音檔)
                     tsuliau = zip(
                         句.漢字.rstrip().split('\n'),
                         句.羅馬字.rstrip().split('\n'),
