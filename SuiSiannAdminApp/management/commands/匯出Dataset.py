@@ -51,6 +51,7 @@ class Command(BaseCommand):
                 if len(句.kaldi切音時間) == 0:
                     wavtongmia = self.tongmia.format(kui)
                     kui += 1
+                    bio += longtsong
                     sia.writerow({
                         '音檔': wavtongmia,
                         '來源': 句.來源.文章名,
@@ -72,6 +73,7 @@ class Command(BaseCommand):
                         wavtongmia = self.tongmia.format(kui)
                         kui += 1
                         ku_tngte = bue - thau
+                        bio += ku_tngte
                         sia.writerow({
                             '音檔': wavtongmia,
                             '來源': 句.來源.文章名,
@@ -79,7 +81,6 @@ class Command(BaseCommand):
                             '羅馬字': lo.rstrip(),
                             '長短': '{:.2f}'.format(ku_tngte),
                         })
-                        bio += ku_tngte
                         kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
                         run(
                             [
@@ -88,10 +89,10 @@ class Command(BaseCommand):
                             ],
                             check=True,
                         )
-                        print(
-                            '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
-                            file=self.stderr
-                        )
+                print(
+                    '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
+                    file=self.stderr
+                )
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
