@@ -13,9 +13,9 @@ COPY . .
 # 資料庫囥佇 ./tsu-liāu
 RUN sed -i "s/os.path.join(BASE_DIR, 'db.sqlite3')/os.path.join(BASE_DIR, 'tsu-liāu','db.sqlite3')/g"  ./SuiSiannAdmin/settings.py
 RUN cat ./SuiSiannAdmin/docker_tsuki.py >> ./SuiSiannAdmin/settings.py
+RUN python manage.py collectstatic
 
-EXPOSE 8000
-CMD gunicorn SuiSiannAdmin.wsgi \
-  -b 0.0.0.0:8000 \
-  --log-level debug
+FROM nginx:1-alpine
 
+COPY ./nginx/default.conf /etc/nginx/conf.d
+COPY --from=tsiantuan /static/ /user/share/nginx/html/static/
