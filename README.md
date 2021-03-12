@@ -34,6 +34,11 @@ Dropbox/母語/語料/TTS 語音合成錄製/錄音進度.pdf
 | 鐵路_hanlo.odt.csv           | o  | o  | o |o  | 
 | 電影院_hanlo.odt.csv        | o  | o  | o |o  | 
 
+## Kāng-pōo語料
+```
+SERVER=ip
+rsync -av -e ssh TTS\ 語音合成錄製/ "ubuntu@$SERVER:./git/SuiSiann/TTS\ 語音合成錄製"
+```
 
 ## 將csv匯入django admin
 ```
