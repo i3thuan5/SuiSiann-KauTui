@@ -6,9 +6,8 @@ from shutil import copy
 from SuiSiannAdminApp.models import 句表
 from django.conf import settings
 from django.core.management.base import BaseCommand
-import librosa
 from librosa.core.audio import get_duration
-import soundfile
+from subprocess import run
 
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
@@ -79,12 +78,18 @@ class Command(BaseCommand):
                             '長短': ku_tngte,
                         })
                         bio += ku_tngte
-                        y, sr = librosa.load(
-                            原始音檔, offset=thau, duration=ku_tngte
+                        kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
+                        run(
+                            [
+                                'sox', 原始音檔, kiatko_mia,
+                                'trim', '{:.5f}'.format(thau), '{:.5f}'.format(ku_tngte),
+                            ],
+                            check=True,
                         )
-                        mia = join(options['TsuLiauGiap'], wavtongmia)
-                        soundfile.write(mia, y, sr)
+                        print('原始音檔', 原始音檔)
+                        print('(thau, bue)', (thau, bue))
                         print('粒積秒數', bio, file=self.stderr)
+                    break
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
