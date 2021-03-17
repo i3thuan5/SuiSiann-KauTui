@@ -22,8 +22,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('TsuLiauGiap',)
+        parser.add_argument(
+            '--mai_imtong', action="store_true",
+            help='Mài輸出音檔，beh看統計niâ。',
+            )
 
     def handle(self, *args, **options):
+        ai_imtong = not options['mai_imtong']
         makedirs(join(options['TsuLiauGiap'], 'ImTong'))
         csvtongmia = join(options['TsuLiauGiap'], 'SuiSiann.csv')
 
@@ -39,6 +44,8 @@ class Command(BaseCommand):
             kui = 1
             bio = 0.0
             lts = 0.0
+            su_soo = 0
+            lmj = set()
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
@@ -60,6 +67,8 @@ class Command(BaseCommand):
                     kui += 1
                     ku_tngte = bue - thau
                     bio += ku_tngte
+                    句物件 = 拆文分析器.建立句物件(han, lo)
+                    su_soo += len(句物件.網出詞物件())
                     sia.writerow({
                         '音檔': wavtongmia,
                         '來源': 句.來源.文章名,
@@ -68,15 +77,19 @@ class Command(BaseCommand):
                         '長短': '{:.2f}'.format(ku_tngte),
                     })
                     kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
-                    run(
-                        [
-                            'sox', 原始音檔, kiatko_mia,
-                            'trim', '{:.5f}'.format(thau), '{:.5f}'.format(ku_tngte),
-                        ],
-                        check=True,
-                    )
+                    if ai_imtong:
+                        run(
+                            [
+                                'sox', 原始音檔, kiatko_mia,
+                                'trim', '{:.5f}'.format(thau), '{:.5f}'.format(ku_tngte),
+                            ],
+                            check=True,
+                        )
                     print(
-                        '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
+                        (
+                            '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}\n'
+                            '總詞數：{}'
+                        ).format(bio, lts, su_soo),
                         file=self.stderr
                     )
 
