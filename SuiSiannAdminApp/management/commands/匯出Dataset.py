@@ -49,50 +49,36 @@ class Command(BaseCommand):
                 longtsong = get_duration(filename=原始音檔)
                 lts += longtsong
                 if len(句.kaldi切音時間) == 0:
+                    raise ValueError('有音檔bô用kaldi切音！')
+                tsuliau = zip(
+                    句.漢字.rstrip().split('\n'),
+                    句.羅馬字.rstrip().split('\n'),
+                    句.kaldi切音時間
+                )
+                for han, lo, (thau, bue) in self.kap時間(longtsong, tsuliau):
                     wavtongmia = self.tongmia.format(kui)
                     kui += 1
-                    bio += longtsong
+                    ku_tngte = bue - thau
+                    bio += ku_tngte
                     sia.writerow({
                         '音檔': wavtongmia,
                         '來源': 句.來源.文章名,
-                        '漢字': 句.漢字,
-                        '羅馬字': 句.羅馬字,
-                        '長短': '{:.2f}'.format(longtsong),
+                        '漢字': han.rstrip(),
+                        '羅馬字': lo.rstrip(),
+                        '長短': '{:.2f}'.format(ku_tngte),
                     })
-                    copy(
-                        原始音檔,
-                        join(options['TsuLiauGiap'], wavtongmia)
+                    kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
+                    run(
+                        [
+                            'sox', 原始音檔, kiatko_mia,
+                            'trim', '{:.5f}'.format(thau), '{:.5f}'.format(ku_tngte),
+                        ],
+                        check=True,
                     )
-                else:
-                    tsuliau = zip(
-                        句.漢字.rstrip().split('\n'),
-                        句.羅馬字.rstrip().split('\n'),
-                        句.kaldi切音時間
+                    print(
+                        '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
+                        file=self.stderr
                     )
-                    for han, lo, (thau, bue) in self.kap時間(longtsong, tsuliau):
-                        wavtongmia = self.tongmia.format(kui)
-                        kui += 1
-                        ku_tngte = bue - thau
-                        bio += ku_tngte
-                        sia.writerow({
-                            '音檔': wavtongmia,
-                            '來源': 句.來源.文章名,
-                            '漢字': han.rstrip(),
-                            '羅馬字': lo.rstrip(),
-                            '長短': '{:.2f}'.format(ku_tngte),
-                        })
-                        kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
-                        run(
-                            [
-                                'sox', 原始音檔, kiatko_mia,
-                                'trim', '{:.5f}'.format(thau), '{:.5f}'.format(ku_tngte),
-                            ],
-                            check=True,
-                        )
-                print(
-                    '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}'.format(bio, lts),
-                    file=self.stderr
-                )
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
