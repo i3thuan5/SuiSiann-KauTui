@@ -1,7 +1,6 @@
 from csv import DictWriter
 from os import makedirs
 from os.path import join, relpath
-from shutil import copy
 
 from SuiSiannAdminApp.models import 句表
 from django.conf import settings
@@ -9,6 +8,7 @@ from django.core.management.base import BaseCommand
 from librosa.core.audio import get_duration
 from subprocess import run
 
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 
