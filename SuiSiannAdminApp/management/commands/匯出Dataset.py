@@ -76,10 +76,11 @@ class Command(BaseCommand):
                     su_soo += len(句物件.網出詞物件())
                     ji_soo += len(句物件.篩出字物件())
                     for 字物件 in 句物件.篩出字物件():
-                        if 字物件.音標敢著(臺灣閩南語羅馬字拼音):
+                        字物件.音 = 字物件.音.lstrip('-').lower()
+                        if not 字物件.敢是標點符號() and 字物件.音標敢著(臺灣閩南語羅馬字拼音):
                             lmj.add(字物件.看音())
                             siannun.add(
-                                字物件.轉音(臺灣閩南語羅馬字拼音, '轉調符')
+                                字物件.轉音(臺灣閩南語羅馬字拼音)
                                 .看音().rstrip('0987654321')
                             )
                     sia.writerow({
@@ -102,7 +103,7 @@ class Command(BaseCommand):
                         (
                             '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}\n'
                             '總詞數：{} 總字數：{}\n'
-                            '羅馬字種類：{} 聲韻種類：{}\n'
+                            '羅馬字種類（bô考慮輕聲）：{} 聲韻種類：{}\n'
                         ).format(bio, lts, su_soo, ji_soo, len(lmj), len(siannun)),
                         file=self.stderr
                     )
