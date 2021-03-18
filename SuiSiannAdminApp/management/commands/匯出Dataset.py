@@ -45,7 +45,9 @@ class Command(BaseCommand):
             bio = 0.0
             lts = 0.0
             su_soo = 0
+            ji_soo = 0
             lmj = set()
+            siannun = set()
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
@@ -69,6 +71,15 @@ class Command(BaseCommand):
                     bio += ku_tngte
                     句物件 = 拆文分析器.建立句物件(han, lo)
                     su_soo += len(句物件.網出詞物件())
+                    ji_soo += len(句物件.篩出字物件())
+                    for 字物件 in 句物件.篩出字物件():
+                        if 字物件.音標敢著(臺灣閩南語羅馬字拼音):
+                            lmj.add(字物件.看音())
+                            siannun.add(
+                                lmj.轉音(臺灣閩南語羅馬字拼音, '轉調符')
+                                .看音().rstrip('0987654321')
+                            )
+                        lmj.add(字物件.看音())
                     sia.writerow({
                         '音檔': wavtongmia,
                         '來源': 句.來源.文章名,
@@ -88,8 +99,9 @@ class Command(BaseCommand):
                     print(
                         (
                             '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}\n'
-                            '總詞數：{}'
-                        ).format(bio, lts, su_soo),
+                            '總詞數：{} 總字數：{}\n'
+                            '羅馬字種類：{} 聲韻種類：{}\n'
+                        ).format(bio, lts, su_soo, ji_soo, len(lmj), len(siannun)),
                         file=self.stderr
                     )
 
