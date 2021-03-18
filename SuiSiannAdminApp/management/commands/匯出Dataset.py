@@ -1,6 +1,7 @@
 from csv import DictWriter
 from os import makedirs
 from os.path import join, relpath
+import json
 
 from SuiSiannAdminApp.models import 句表
 from django.conf import settings
@@ -9,6 +10,7 @@ from librosa.core.audio import get_duration
 from subprocess import run
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
 from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 
@@ -31,6 +33,7 @@ class Command(BaseCommand):
         ai_imtong = not options['mai_imtong']
         makedirs(join(options['TsuLiauGiap'], 'ImTong'))
         csvtongmia = join(options['TsuLiauGiap'], 'SuiSiann.csv')
+        lmjtongmia = join(options['TsuLiauGiap'], 'lmj.json')
 
         with open(csvtongmia, 'wt', encoding='utf-8') as tong:
             sia = DictWriter(tong, fieldnames=[
@@ -76,10 +79,9 @@ class Command(BaseCommand):
                         if 字物件.音標敢著(臺灣閩南語羅馬字拼音):
                             lmj.add(字物件.看音())
                             siannun.add(
-                                lmj.轉音(臺灣閩南語羅馬字拼音, '轉調符')
+                                字物件.轉音(臺灣閩南語羅馬字拼音, '轉調符')
                                 .看音().rstrip('0987654321')
                             )
-                        lmj.add(字物件.看音())
                     sia.writerow({
                         '音檔': wavtongmia,
                         '來源': 句.來源.文章名,
@@ -104,6 +106,14 @@ class Command(BaseCommand):
                         ).format(bio, lts, su_soo, ji_soo, len(lmj), len(siannun)),
                         file=self.stderr
                     )
+        with open(lmjtongmia, 'w') as tong:
+            json.dump(
+                {'羅馬字': sorted(lmj), '聲韻': sorted(siannun)},
+                tong,
+                ensure_ascii=False,
+                sort_keys=True,
+                indent=2,
+            )
 
     def kap時間(self, longtsong, tsuliau):
         kap = []
