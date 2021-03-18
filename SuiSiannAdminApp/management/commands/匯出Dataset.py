@@ -103,7 +103,8 @@ class Command(BaseCommand):
                         (
                             '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}\n'
                             '總詞數：{} 總字數：{}\n'
-                            '羅馬字種類（bô考慮輕聲）：{} 聲韻種類：{}\n'
+                            '羅馬字種類（考慮書寫聲調，bô考慮輕聲、大小寫、變調類型）：{}\n'
+                            '聲韻種類（bô考慮聲調、輕聲、大小寫）：{}\n'
                         ).format(bio, lts, su_soo, ji_soo, len(lmj), len(siannun)),
                         file=self.stderr
                     )
