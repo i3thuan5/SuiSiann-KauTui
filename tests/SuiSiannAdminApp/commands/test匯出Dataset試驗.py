@@ -43,7 +43,7 @@ class 匯出Dataset試驗(TestCase):
                 原始臺羅=lo,
                 漢字=漢,
                 臺羅=lo,
-                kaldi切音時間=[],
+                kaldi切音時間=[(0.0, 7.0), ],
             )
 
             kiatko = join(tsuliaugiap, 'kiatko')
@@ -116,7 +116,7 @@ class 匯出Dataset試驗(TestCase):
             原始臺羅=ji,
             漢字=ji,
             臺羅=ji,
-            kaldi切音時間=[],
+            kaldi切音時間=[(0.0, 7.0), ],
         )
 
     def theh(self):
