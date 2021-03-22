@@ -66,23 +66,6 @@ class 匯出Dataset試驗(TestCase):
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['音檔'], 'ImTong/SuiSiann_0001.wav')
 
-    def test_音檔名有khoopi(self):
-        with TemporaryDirectory() as tsuliaugiap:
-            im = join(dirname(__file__), 'Oct 13, 2018 _243.wav')
-
-            文章 = 文章表.objects.create(文章名='33')
-            self.hue(文章, 'sui', im)
-
-            kiatko = join(tsuliaugiap, 'kiatko')
-            call_command('匯出Dataset', kiatko)
-            self.assertEqual(
-                open(im, 'rb').read(),
-                open(join(kiatko, 'ImTong/SuiSiann_0001.wav'), 'rb').read()
-            )
-            self.assertTrue(
-                cmp(im, join(kiatko, 'ImTong/SuiSiann_0001.wav'))
-            )
-
     def test_對齊結果切出2筆(self):
         with TemporaryDirectory() as tsuliaugiap:
             im = 'Oct 13, 2018 _243.wav'
