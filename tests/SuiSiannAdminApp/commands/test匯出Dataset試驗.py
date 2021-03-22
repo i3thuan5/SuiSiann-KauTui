@@ -1,7 +1,6 @@
 from csv import DictReader
-from filecmp import cmp
 import json
-from os.path import join, basename, dirname
+from os.path import join, basename
 from tempfile import TemporaryDirectory
 
 from SuiSiannAdminApp.models import 句表, 文章表
