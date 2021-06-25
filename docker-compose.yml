@@ -23,6 +23,13 @@ services:
         aliases:
           - suisiann-kautui-autuan
     restart: always
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: ithuan
+    volumes:
+      - "postgres_database:/var/lib/postgresql/data"
+    restart: always
   it:
     image: kaldi-tuitse_it
     expose:
@@ -49,6 +56,7 @@ services:
 
 volumes:
   kaldis5:
+  postgres_database:
 
 networks:
   nginx-bridge:
