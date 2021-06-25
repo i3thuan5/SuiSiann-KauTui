@@ -1,10 +1,9 @@
 odfpy
-django<2.2
+django
 tai5-uan5_gian5-gi2_kang1-ku7
-flake8
 kau3-tian2-iong7-ji7>=1.0.0
 diff_match_patch
 jsonfield
 gunicorn
 librosa==0.8.0
-psycopg2-binary<2.9
+psycopg2-binary
