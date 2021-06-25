@@ -7,3 +7,4 @@ diff_match_patch
 jsonfield
 gunicorn
 librosa==0.8.0
+psycopg2-binary
