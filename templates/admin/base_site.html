@@ -6,4 +6,4 @@
 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
 {% endblock %}
 
-{% block nav-global %}<a href="{% url 'sui2' %}" target="_blank">比較前後</a>{% endblock %}
+{% block nav-global %}<a href="{% url 'admin:diff' %}" target="_blank">比較前後</a>{% endblock %}
