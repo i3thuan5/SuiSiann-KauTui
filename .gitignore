@@ -111,7 +111,6 @@ whitenoise_staticfiles
 
 *db.sqlite3*
 wavs
-*.html
 /.DS_Store
 .settings/
 [0-9].[0-9]/
