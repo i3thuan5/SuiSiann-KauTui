@@ -60,3 +60,9 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
             path('admin/edit_diff/', DiffView.as_view(), name='diff'),
         ]
         return suisiann_urls + urls
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

@@ -1,6 +1,11 @@
 {% load i18n admin_urls %}
 
 {% block object-tools-items %}
+  <li>
+    <a href="{% url 'admin:diff' %}">
+      比較前後
+    </a>
+  </li>
   {% if has_add_permission %}
   <li>
     {% url cl.opts|admin_urlname:'add' as add_url %}
@@ -9,9 +14,4 @@
     </a>
   </li>
   {% endif %}
-  <li>
-    <a href="{% url 'admin:diff' %}" class="addlink">
-      比較前後
-    </a>
-  </li>
 {% endblock %}
