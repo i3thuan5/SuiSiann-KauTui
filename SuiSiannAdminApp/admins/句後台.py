@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.utils.timezone import now
+from django.urls import path
 from SuiSiannAdminApp.admins.對齊thai仔 import 對齊thai仔
 from SuiSiannAdminApp.admins.放音檔欄位 import 放音檔欄位
 from SuiSiannAdminApp.admins.句表單 import 句表單
 from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
 from SuiSiannAdminApp.admins.action重對齊 import 重對齊
 from SuiSiannAdminApp.admins.分句聽拍欄位 import 分句欄位
+from SuiSiannAdminApp.views.diffView import DiffView
 
 
 class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
@@ -51,3 +53,16 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     def tsuliau_rstrip(self, tinliat):
         for pit in tinliat:
             yield pit.rstrip()
+
+    def get_urls(self):
+        urls = super().get_urls()
+        suisiann_urls = [
+            path('admin/edit_diff/', DiffView.as_view(), name='diff'),
+        ]
+        return suisiann_urls + urls
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

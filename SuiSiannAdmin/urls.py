@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from SuiSiannAdminApp.views.diffView import DiffView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -22,7 +21,6 @@ from kaldi.view import kiamtsa, 傳音檔
 
 
 urlpatterns = [
-    path('admin/edit_diff/', DiffView.as_view(), name='sui2'),
     path('admin/', admin.site.urls),
     path('kaldi/<kuid>', kiamtsa),
     path(
