@@ -1,9 +1,13 @@
-odfpy
 django
+odfpy
+
 tai5-uan5_gian5-gi2_kang1-ku7
 kau3-tian2-iong7-ji7>=1.0.0
 diff_match_patch
-jsonfield
-gunicorn
+beautifulsoup4
+
 librosa==0.8.0
+jsonfield
+
+gunicorn
 psycopg2-binary

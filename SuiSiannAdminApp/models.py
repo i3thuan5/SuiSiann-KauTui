@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 from kaldi.liansuann import tuìtsê
 from jsonfield.fields import JSONField
+from bs4 import BeautifulSoup
 
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
@@ -56,11 +57,15 @@ class 句表(models.Model):
     def 原始羅馬字(self, value):
         self.原始臺羅 = value
 
+    @property
+    def 羅馬字文字(self):
+        return BeautifulSoup(self.臺羅, 'html.parser').get_text()
+
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
 
     def save(self, *args, **kwargs):
-        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.臺羅)
+        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字文字)
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def 重對齊(self):
