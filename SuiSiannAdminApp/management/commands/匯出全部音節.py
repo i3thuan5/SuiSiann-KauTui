@@ -18,7 +18,7 @@ class Command(BaseCommand):
         bo = set()
         for 句 in 句表.objects.all():
             for lmj in (
-                拆文分析器.建立句物件(句.臺羅, 句.臺羅)
+                拆文分析器.建立句物件(句.羅馬字, 句.羅馬字)
                 .轉音(臺灣閩南語羅馬字拼音)
                 .篩出字物件()
             ):

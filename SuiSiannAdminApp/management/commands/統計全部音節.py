@@ -17,7 +17,7 @@ class Command(BaseCommand):
         輸出名 = options['輸出json名']
         u = dict()
         for 句 in 句表.objects.all():
-            for lmj in 拆文分析器.建立句物件(句.臺羅).轉音(臺灣閩南語羅馬字拼音).篩出字物件():
+            for lmj in 拆文分析器.建立句物件(句.羅馬字).轉音(臺灣閩南語羅馬字拼音).篩出字物件():
                 if lmj.敢是標點符號():
                     continue
                 型 = lmj.型.rstrip('0987654321')

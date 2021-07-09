@@ -32,9 +32,9 @@ class 句表(models.Model):
     )
     音檔 = models.FileField(blank=True)
     原始漢字 = models.CharField(max_length=500)
-    原始臺羅 = models.CharField(max_length=2000)
+    原始羅馬字 = models.CharField(max_length=2000)
     漢字 = models.CharField(max_length=500)
-    臺羅 = models.CharField(max_length=2000)
+    羅馬字含口語調 = models.CharField(max_length=2000)
     修改時間 = models.DateTimeField(null=True)
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True,)
@@ -45,29 +45,13 @@ class 句表(models.Model):
 
     @property
     def 羅馬字(self):
-        return self.臺羅
-
-    @羅馬字.setter
-    def 羅馬字(self, value):
-        self.臺羅 = value
-
-    @property
-    def 原始羅馬字(self):
-        return self.原始臺羅
-
-    @原始羅馬字.setter
-    def 原始羅馬字(self, value):
-        self.原始臺羅 = value
-
-    @property
-    def 羅馬字文字(self):
-        return BeautifulSoup(self.臺羅, 'html.parser').get_text()
+        return BeautifulSoup(self.羅馬字含口語調, 'html.parser').get_text()
 
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
 
     def save(self, *args, **kwargs):
-        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字文字)
+        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def 重對齊(self):
@@ -82,7 +66,7 @@ class 句表(models.Model):
     def kaldi_tuìtsê(self):
         piautiam = ''.join(標點符號)
         lmj = []
-        for tsua in self.臺羅.split('\n'):
+        for tsua in self.羅馬字.split('\n'):
             lmj.append(tsua.strip().strip(piautiam))
         return tuìtsê(self.音檔所在, lmj)
 
