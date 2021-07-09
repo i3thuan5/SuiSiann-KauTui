@@ -4,7 +4,6 @@ from os.path import join
 import json
 
 from SuiSiannAdminApp.models import 句表
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from librosa.core.audio import get_duration
 from subprocess import run
