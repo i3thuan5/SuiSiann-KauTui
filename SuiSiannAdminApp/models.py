@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 from kaldi.liansuann import tuìtsê
 from jsonfield.fields import JSONField
+from tinymce.models import HTMLField
 
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
@@ -33,7 +34,7 @@ class 句表(models.Model):
     原始漢字 = models.CharField(max_length=500)
     原始臺羅 = models.CharField(max_length=2000)
     漢字 = models.CharField(max_length=500)
-    臺羅 = models.CharField(max_length=2000)
+    臺羅 = HTMLField()
     修改時間 = models.DateTimeField(null=True)
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True,)

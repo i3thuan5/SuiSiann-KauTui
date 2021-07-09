@@ -26,7 +26,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
         '音檔', '修改時間',
     )
     fields = (
-        '分句聽拍', '對齊狀態',
+        '分句聽拍', '臺羅', '對齊狀態',
         '重切音檔', '放原始全部音檔',
         '語料狀況', '備註',
         '音檔', '修改時間',
@@ -66,3 +66,9 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    class Media:
+        js = (
+            'tinymce/tinymce.min.js',
+            'js/lomaji.js',
+        )
