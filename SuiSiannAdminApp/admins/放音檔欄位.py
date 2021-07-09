@@ -1,6 +1,4 @@
-from django.conf import settings
 from django.utils.html import format_html, format_html_join
-from os.path import join
 
 
 class 放音檔欄位:
@@ -11,7 +9,7 @@ class 放音檔欄位:
     def 放原始全部音檔(self, obj):
         if obj.音檔:
             try:
-                音檔網址 = join(settings.MEDIA_URL, obj.音檔所在)
+                音檔網址 = obj.音檔網址
             except KeyError as e:
                 return e
             return format_html(self._音檔html, '全部', 音檔網址)

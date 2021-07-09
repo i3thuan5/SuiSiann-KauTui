@@ -87,13 +87,19 @@ class 句表(models.Model):
         return tuìtsê(self.音檔所在, lmj)
 
     def 聲音檔(self):
-        return 聲音檔.對檔案讀(
-            join(settings.MEDIA_ROOT, self.音檔所在)
-        )
+        return 聲音檔.對檔案讀(self.音檔檔案)
 
     @property
     def 音檔所在(self):
         return self.音檔所在表[self.音檔]
+
+    @property
+    def 音檔檔案(self):
+        return join(settings.MEDIA_ROOT, self.音檔所在)
+
+    @property
+    def 音檔網址(self):
+        return join(settings.MEDIA_URL, self.音檔所在)
 
     class Meta:
         verbose_name = "句表"

@@ -52,10 +52,7 @@ class Command(BaseCommand):
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
-                原始音檔 = join(
-                    settings.MEDIA_ROOT,
-                    句.音檔所在
-                )
+                原始音檔 = self.音檔檔案
                 longtsong = get_duration(filename=原始音檔)
                 lts += longtsong
                 if len(句.kaldi切音時間) == 0:
