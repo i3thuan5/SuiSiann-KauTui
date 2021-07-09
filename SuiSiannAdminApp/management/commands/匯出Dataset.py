@@ -12,8 +12,6 @@ from subprocess import run
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
-from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
-
 
 class Command(BaseCommand):
     tongmia = 'ImTong/SuiSiann_{:04}.wav'
@@ -56,7 +54,7 @@ class Command(BaseCommand):
             ):
                 原始音檔 = join(
                     settings.MEDIA_ROOT,
-                    relpath(音檔網址表[句.音檔], settings.MEDIA_URL)
+                    句.音檔所在
                 )
                 longtsong = get_duration(filename=原始音檔)
                 lts += longtsong
