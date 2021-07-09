@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include
 from django.urls import path
 from kaldi.view import kiamtsa, 傳音檔
 
@@ -28,5 +27,4 @@ urlpatterns = [
         r'音檔/<音檔編號>/<開始時間>/<結束時間>/audio.wav',
         傳音檔
     ),
-    path('tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

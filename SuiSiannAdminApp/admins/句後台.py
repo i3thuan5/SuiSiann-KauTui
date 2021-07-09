@@ -26,7 +26,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
         '音檔', '修改時間',
     )
     fields = (
-        '分句聽拍', '臺羅', '對齊狀態',
+        '分句聽拍', '對齊狀態',
         '重切音檔', '放原始全部音檔',
         '語料狀況', '備註',
         '音檔', '修改時間',
@@ -69,6 +69,6 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
 
     class Media:
         js = (
-            'tinymce/tinymce.min.js',
+            'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
             'js/lomaji.js',
         )

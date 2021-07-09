@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'SuiSiannAdminApp',
     '用字',
     'kaldi',
-    'tinymce',
 ]
 
 MIDDLEWARE = [
