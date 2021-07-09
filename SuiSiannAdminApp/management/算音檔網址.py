@@ -5,7 +5,7 @@ from django.conf import settings
 #
 # 存音檔名->音檔所在的對應表
 #
-def _算音檔所在():
+def 算音檔所在():
     print('算音檔網址...')
     目錄根 = settings.MEDIA_ROOT
     結果 = dict()
@@ -26,6 +26,3 @@ def _算音檔所在():
                     os.path.relpath(這馬層, 目錄根), name
                 )
     return 結果
-
-
-音檔所在表 = _算音檔所在()

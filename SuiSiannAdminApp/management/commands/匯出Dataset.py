@@ -1,6 +1,6 @@
 from csv import DictWriter
 from os import makedirs
-from os.path import join, relpath
+from os.path import join
 import json
 
 from SuiSiannAdminApp.models import 句表

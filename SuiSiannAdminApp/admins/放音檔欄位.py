@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils.html import format_html, format_html_join
+from os.path import join
 
 
 class 放音檔欄位:
