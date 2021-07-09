@@ -16,7 +16,6 @@ services:
   gunicorn:
     build: .
     volumes:
-      - "./tsu-liāu:/djangoAdmin/tsu-liāu"
       - "./wavs:/djangoAdmin/wavs:ro"
     networks:
       default:
@@ -30,32 +29,8 @@ services:
     volumes:
       - "postgres_database:/var/lib/postgresql/data"
     restart: always
-  it:
-    image: kaldi-tuitse_it
-    expose:
-      - 5000
-    volumes:
-      - './wavs/:/wav/:ro'
-      - kaldis5:/kaldis5
-    restart: always
-  ji:
-    image: kaldi-tuitse_ji_fst_decoding
-    expose:
-      - 5000
-    volumes:
-      - './wavs/:/wav/:ro'
-      - kaldis5:/kaldis5
-    restart: always
-  sam:
-    image: kaldi-tuitse_sam_sikan
-    expose:
-      - 5000
-    volumes:
-      - kaldis5:/kaldis5
-    restart: always
 
 volumes:
-  kaldis5:
   postgres_database:
 
 networks:
