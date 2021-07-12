@@ -9,7 +9,7 @@ services:
       - default
       - nginx-bridge
     volumes:
-      - "./wavs:/user/share/nginx/html/wavs:ro"
+      - "./wavs:/usr/share/nginx/html/wavs:ro"
     environment:
        VIRTUAL_HOST: "suisiann-kautui.ithuan.tw"
        LETSENCRYPT_HOST: "suisiann-kautui.ithuan.tw"

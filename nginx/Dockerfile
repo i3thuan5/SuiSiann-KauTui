@@ -15,4 +15,4 @@ RUN python manage.py collectstatic
 FROM nginx:1-alpine
 
 COPY ./nginx/default.conf /etc/nginx/conf.d
-COPY --from=tsiantuan /static/ /user/share/nginx/html/static/
+COPY --from=tsiantuan /static/ /usr/share/nginx/html/static/
