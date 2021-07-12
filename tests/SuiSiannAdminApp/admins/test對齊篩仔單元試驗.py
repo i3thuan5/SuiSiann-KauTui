@@ -37,9 +37,12 @@ class 對齊篩仔單元試驗(TestCase):
         self.結果 = [句二]
 
     def 新增句表(self, 漢字, 臺羅):
-        return 句表.objects.create(
+        句 = 句表.objects.create(
             原始漢字=漢字,
-            原始臺羅=臺羅,
+            原始羅馬字=臺羅,
             漢字=漢字,
-            臺羅=臺羅
+            羅馬字含口語調=臺羅
         )
+        句.full_clean()
+        句.save()
+        return 句

@@ -35,15 +35,17 @@ class 匯出Dataset試驗(TestCase):
                 'Pau-kuah tsuân-lô sann-pah sì-tsa̍p-la̍k-bān nn̄g-tshing sann-pah la̍k-tsa̍p-tshit ê im-tsiat kah '
                 'Hàn-lô gōo-pah gōo-tsa̍p-la̍k-bān peh-tshing khòng gōo-tsa̍p-tshit ê im-tsiat;'
             )
-            句表.objects.create(
+            ku = 句表.objects.create(
                 來源=文章,
                 音檔=im,
                 原始漢字=漢,
-                原始臺羅=lo,
+                原始羅馬字=lo,
                 漢字=漢,
-                臺羅=lo,
+                羅馬字含口語調=lo,
                 kaldi切音時間=[(0.0, 7.0), ],
             )
+            ku.full_clean()
+            ku.save()
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
@@ -74,15 +76,17 @@ class 匯出Dataset試驗(TestCase):
                 'Pau-kuah tsuân-lô \n'
                 'Hàn-lô'
             )
-            句表.objects.create(
+            ku = 句表.objects.create(
                 來源=文章,
                 音檔=im,
                 原始漢字=漢,
-                原始臺羅=lo,
+                原始羅馬字=lo,
                 漢字=漢,
-                臺羅=lo,
+                羅馬字含口語調=lo,
                 kaldi切音時間=[[0., 3.], [4., 7.]],
             )
+            ku.full_clean()
+            ku.save()
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
@@ -91,15 +95,17 @@ class 匯出Dataset試驗(TestCase):
                 self.assertEqual(len(tsitpit), 2)
 
     def hue(self, 文章, ji, imtong):
-        句表.objects.create(
+        ku = 句表.objects.create(
             來源=文章,
             音檔=basename(imtong),
             原始漢字=ji,
-            原始臺羅=ji,
+            原始羅馬字=ji,
             漢字=ji,
-            臺羅=ji,
+            羅馬字含口語調=ji,
             kaldi切音時間=[(0.0, 7.0), ],
         )
+        ku.full_clean()
+        ku.save()
 
     def theh(self):
         with TemporaryDirectory() as sootsai:

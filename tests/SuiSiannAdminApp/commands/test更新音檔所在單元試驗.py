@@ -20,9 +20,11 @@ class 更新音檔所在單元試驗(TestCase):
             音檔="Oct 8, 1.wav",
             漢字=整句漢字,
             原始漢字=整句漢字,
-            臺羅="a",
-            原始臺羅="a",
+            羅馬字含口語調="a",
+            原始羅馬字="a",
         )
+        這句.full_clean()
+        這句.save()
         更新音檔所在('1', '若以早我', 'Mar 16, 2019_1.wav')
         音檔所在 = 句表.objects.get(pk=這句.pk).音檔
         self.assertEqual(音檔所在, "Mar 16, 2019_1.wav")
