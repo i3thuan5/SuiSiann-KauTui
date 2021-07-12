@@ -52,12 +52,12 @@ tinymce.init({
 
   formats: Object.fromEntries(
     lui_kiatko.map(lui => [
-      sik(lui), {inline: 'span', classes: cssmia(lui)}
+      sik(lui), {classes: cssmia(lui), inline: 'span', exact: true}
     ])
   ),
   // formats: {
-  //   'sik-1': { inline: 'span', classes: 'lui-1' },
-  //   'sik-2': { inline: 'span', classes: 'lui-2' },
+  //   'sik-1': { inline: 'span', classes: 'lui-1', exact: true },
+  //   'sik-2': { inline: 'span', classes: 'lui-2', exact: true },
   // },
 
   style_formats: lui_kiatko.map(lui => (
