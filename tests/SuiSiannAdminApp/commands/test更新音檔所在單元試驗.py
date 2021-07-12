@@ -1,5 +1,5 @@
 from django.test.testcases import TestCase
-from SuiSiannAdminApp.models import 句表
+from SuiSiannAdminApp.models import 文章表, 句表
 from SuiSiannAdminApp.management.commands.更新音檔所在 import 更新音檔所在
 from unittest import mock
 from django.core.management import call_command
@@ -17,6 +17,7 @@ class 更新音檔所在單元試驗(TestCase):
     def test_改著一筆(self):
         整句漢字 = "若以早我真厚話，愛我起攔頭"
         這句 = 句表.objects.create(
+            來源=文章表.objects.create(文章名='33'),
             音檔="Oct 8, 1.wav",
             漢字=整句漢字,
             原始漢字=整句漢字,

@@ -30,7 +30,7 @@ class 句表(models.Model):
         文章表, editable=False,
         related_name='句', on_delete=models.PROTECT
     )
-    音檔 = models.FileField(editable=False, unique=True)
+    音檔 = models.FileField(editable=False)
     原始漢字 = models.TextField(editable=False)
     原始羅馬字 = models.TextField(editable=False)
     漢字 = models.TextField()
@@ -88,6 +88,11 @@ class 句表(models.Model):
     class Meta:
         verbose_name = "句表"
         verbose_name_plural = verbose_name
+        constraints = [
+            models.UniqueConstraint(
+                fields=['音檔'], condition=~models.Q(音檔=''), name='imtong_bokang'
+            ),
+        ]
 
 
 class 語料狀況表(models.Model):
