@@ -60,6 +60,10 @@ class 分句欄位():
         return format_html(''.join(pan), *kiatko)
 
     def 一區html(self, kui):
-        return '''<div>
+        return (
+            '''<div>
         <textarea cols=120 rows=3 name='han'>{}</textarea>
-        <textarea cols=120 rows=4 name='lo'>{}</textarea>''' + (self.音檔html * kui) + '</div>'
+        <textarea cols=120 rows=4 name='lo' class='lomaji'>{}</textarea>'''
+            + (self.音檔html * kui) +
+            '</div>'
+        )
