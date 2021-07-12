@@ -26,13 +26,13 @@ class 對齊篩仔單元試驗(TestCase):
 
     def test_一筆無對齊(self):
         self.網址 = "2"
-        句一 = self.新增句表("媠", "")
+        句一 = self.新增句表("媠", "suí-suí")
         self.新增句表("媠", "suí")
         self.結果 = [句一]
 
     def test_一筆對齊(self):
         self.網址 = "1"
-        self.新增句表("媠", "")
+        self.新增句表("媠", "suí-suí")
         句二 = self.新增句表("媠", "suí")
         self.結果 = [句二]
 
@@ -41,7 +41,7 @@ class 對齊篩仔單元試驗(TestCase):
             原始漢字=漢字,
             原始羅馬字=臺羅,
             漢字=漢字,
-            羅馬字含口語調=臺羅
+            羅馬字含口語調=臺羅,
         )
         句.full_clean()
         句.save()
