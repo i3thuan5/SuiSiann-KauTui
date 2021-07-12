@@ -28,9 +28,9 @@ class 文章表(models.Model):
 class 句表(models.Model):
     來源 = models.ForeignKey(
         文章表, editable=False,
-        related_name='句', on_delete=models.CASCADE
+        related_name='句', on_delete=models.PROTECT
     )
-    音檔 = models.FileField(blank=True)
+    音檔 = models.FileField(editable=False, unique=True)
     原始漢字 = models.TextField(editable=False)
     原始羅馬字 = models.TextField(editable=False)
     漢字 = models.TextField()
