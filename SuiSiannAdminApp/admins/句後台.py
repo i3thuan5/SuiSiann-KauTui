@@ -20,6 +20,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     search_fields = ['id', '漢字', '臺羅', '備註', ]
 
     # change view
+    save_on_top = True
     readonly_fields = (
         '分句聽拍', '對齊狀態',
         '重切音檔', '放原始全部音檔',
@@ -66,3 +67,9 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    class Media:
+        js = (
+            'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
+            'js/lomaji.js',
+        )
