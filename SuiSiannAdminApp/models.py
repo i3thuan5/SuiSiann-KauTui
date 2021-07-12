@@ -1,4 +1,4 @@
-from os.path import join, relpath
+from os.path import join
 
 from django.conf import settings
 from django.db import models
@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
-from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
+from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 from kaldi.lib.換算切音所在 import 換算切音所在
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
@@ -40,6 +40,8 @@ class 句表(models.Model):
     備註 = models.TextField(blank=True,)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
     kaldi切音時間 = JSONField(default=[])
+
+    音檔所在表 = 算音檔所在()
 
     @property
     def 羅馬字(self):
@@ -82,13 +84,22 @@ class 句表(models.Model):
         lmj = []
         for tsua in self.臺羅.split('\n'):
             lmj.append(tsua.strip().strip(piautiam))
-        return tuìtsê(relpath(音檔網址表[self.音檔], settings.MEDIA_URL), lmj)
+        return tuìtsê(self.音檔所在, lmj)
 
     def 聲音檔(self):
-        return 聲音檔.對檔案讀(
-            join(settings.MEDIA_ROOT, relpath(
-                音檔網址表[self.音檔], settings.MEDIA_URL))
-        )
+        return 聲音檔.對檔案讀(self.音檔檔案)
+
+    @property
+    def 音檔所在(self):
+        return self.音檔所在表[self.音檔]
+
+    @property
+    def 音檔檔案(self):
+        return join(settings.MEDIA_ROOT, self.音檔所在)
+
+    @property
+    def 音檔網址(self):
+        return join(settings.MEDIA_URL, self.音檔所在)
 
     class Meta:
         verbose_name = "句表"

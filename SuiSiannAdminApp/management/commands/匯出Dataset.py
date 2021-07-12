@@ -1,18 +1,15 @@
 from csv import DictWriter
 from os import makedirs
-from os.path import join, relpath
+from os.path import join
 import json
 
 from SuiSiannAdminApp.models import 句表
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from librosa.core.audio import get_duration
 from subprocess import run
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-
-from SuiSiannAdminApp.management.算音檔網址 import 音檔網址表
 
 
 class Command(BaseCommand):
@@ -54,10 +51,7 @@ class Command(BaseCommand):
             for 句 in (
                 句表.objects.order_by('來源_id', 'id').select_related('來源')
             ):
-                原始音檔 = join(
-                    settings.MEDIA_ROOT,
-                    relpath(音檔網址表[句.音檔], settings.MEDIA_URL)
-                )
+                原始音檔 = 句.音檔檔案
                 longtsong = get_duration(filename=原始音檔)
                 lts += longtsong
                 if len(句.kaldi切音時間) == 0:
