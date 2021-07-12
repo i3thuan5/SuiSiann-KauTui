@@ -16,8 +16,8 @@ class LuīTsuā(
     nested_admin.NestedStackedInline,
 ):
     model = Luī
-    fields = ['id', 'miâ', 'siktsuí']
-    extra = 0
+    fields = ['id', 'miâ', 'siktsuí', 'singāu']
+    extra = 1
     sortable_field_name = 'singāu'
 
 

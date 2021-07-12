@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'SuiSiannAdminApp',
     '用字',
     'kaldi',
+
+    'nested_admin',
     'phiaua',
 ]
 

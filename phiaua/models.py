@@ -20,6 +20,7 @@ class Luī(models.Model):
     )
     miâ = models.CharField(max_length=30, unique=True)
     siktsuí = models.CharField(max_length=10)
+    singāu = models.PositiveIntegerField()
 
     def __str__(self):
         return self.miâ
@@ -27,6 +28,12 @@ class Luī(models.Model):
     class Meta:
         verbose_name = "Luī"
         verbose_name_plural = verbose_name
+        constraints = [
+            models.UniqueConstraint(
+                fields=['khuán', 'miâ'],
+                name='khuán-luī',
+            ),
+        ]
 
 
 class Iūnn(models.Model):
@@ -35,7 +42,7 @@ class Iūnn(models.Model):
         related_name='iūnn',
         on_delete=models.CASCADE,
     )
-    css = models.CharField(max_length=30, unique=True)
+    css = models.CharField(max_length=30)
 
     class Meta:
         verbose_name = "Iūnn"
