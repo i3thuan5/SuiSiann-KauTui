@@ -129,3 +129,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'wavs')
 MEDIA_URL = '/wavs/'
+
+# TinyMCE ài--ê, tsiah tsai ū tsù-tsheh
+SECURE_REFERRER_POLICY = 'origin'
