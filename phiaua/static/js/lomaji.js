@@ -3,11 +3,6 @@ document.addEventListener('DOMContentLoaded', function(){
   .then(response => response.json())
   .then(data => {
     let lui_kiatko = data.suan;
-    [
-      { id:1, mia:'本調', siktsui:'red',},
-      { id:2, mia:'規則變調', siktsui:'green',},
-      { id:3, mia:'仔前變調', siktsui:'blue',},
-    ]
     // lui_kiatko=[
     //   { id:1, mia:'本調', siktsui:'red',},
     //   { id:2, mia:'規則變調', siktsui:'green',},
@@ -50,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
         )
       },
 
-      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ color: ${lui.siktsui}; \}`).join(' '),
+      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.khuan}: ${lui.siktsui}; \}`).join(' '),
       // content_style: 
       //   '.lui-1 { color: green; } ' +
       //   '.lui-2 { color: red; } ',
