@@ -3,6 +3,7 @@ from django.db import models
 
 class Khuán(models.Model):
     miâ = models.CharField(max_length=30, unique=True)
+    iūnn = models.CharField(max_length=30)
 
     def __str__(self):
         return self.miâ
@@ -34,16 +35,3 @@ class Luī(models.Model):
                 name='khuán-luī',
             ),
         ]
-
-
-class Iūnn(models.Model):
-    khuán = models.ForeignKey(
-        Khuán,
-        related_name='iūnn',
-        on_delete=models.CASCADE,
-    )
-    css = models.CharField(max_length=30)
-
-    class Meta:
-        verbose_name = "Iūnn"
-        verbose_name_plural = verbose_name

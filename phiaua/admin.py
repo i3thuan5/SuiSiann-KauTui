@@ -1,19 +1,11 @@
 from django.contrib import admin
-from phiaua.models import Khuán, Luī, Iūnn
+from phiaua.models import Khuán, Luī
 import nested_admin
-
-
-class IūnnTsuā(
-    nested_admin.NestedStackedInline,
-):
-    model = Iūnn
-    fields = ['id', 'css']
-    extra = 0
 
 
 class LuīTsuā(
     nested_admin.SortableHiddenMixin,
-    nested_admin.NestedStackedInline,
+    nested_admin.NestedTabularInline,
 ):
     model = Luī
     fields = ['id', 'miâ', 'siktsuí', 'singāu']
@@ -22,8 +14,7 @@ class LuīTsuā(
 
 
 @admin.register(Khuán)
-class KuánKhuán(admin.ModelAdmin):
-    list_display = ['id', 'miâ', ]
+class KuánKhuán(nested_admin.NestedModelAdmin):
+    list_display = ['id', 'miâ', 'iūnn', ]
     ordering = ['id', ]
-    list_per_page = 50
-    inlines = [IūnnTsuā, LuīTsuā, ]
+    inlines = [LuīTsuā, ]
