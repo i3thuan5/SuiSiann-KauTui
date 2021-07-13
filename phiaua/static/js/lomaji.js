@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
         )
       },
 
-      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.khuan}: ${lui.siktsui}; \}`).join(' '),
+      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.iunn}: ${lui.siktsui}; \}`).join(' '),
       // content_style: 
       //   '.lui-1 { color: green; } ' +
       //   '.lui-2 { color: red; } ',
