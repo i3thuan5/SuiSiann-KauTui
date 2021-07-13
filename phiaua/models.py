@@ -28,6 +28,7 @@ class Luī(models.Model):
         return self.miâ
 
     class Meta:
+        ordering = ['singāu']
         verbose_name = "Luī"
         verbose_name_plural = verbose_name
         constraints = [
