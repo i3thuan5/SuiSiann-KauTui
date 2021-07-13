@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     '用字',
     'kaldi',
 
-    'nested_admin',
     'phiaua',
+    'nested_admin',
+    'colorfield',
 ]
 
 MIDDLEWARE = [

@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 
 class Khuán(models.Model):
@@ -20,7 +21,7 @@ class Luī(models.Model):
         on_delete=models.PROTECT,
     )
     miâ = models.CharField(max_length=30, unique=True)
-    siktsuí = models.CharField(max_length=10)
+    siktsuí = ColorField()
     singāu = models.PositiveIntegerField()
 
     def __str__(self):
