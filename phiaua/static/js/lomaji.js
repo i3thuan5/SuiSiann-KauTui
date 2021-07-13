@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
       menubar: false,  
       toolbar: 'undo redo | styleselect | '  + liuatsua,
+      valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
+      valid_styles: {'*': ''},
       setup: function (editor) {
         editor.ui.registry.addContextToolbar('textselection', {
           predicate: function (node) {
