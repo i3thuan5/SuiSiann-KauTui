@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', function(){
   .then(data => {
     let lui_kiatko = data.suan;
     // lui_kiatko=[
-    //   { id:1, mia:'本調', siktsui:'red',},
-    //   { id:2, mia:'規則變調', siktsui:'green',},
+    //   { id:1, miâ:'本調', siktsuí:'red',},
+    //   { id:2, miâ:'規則變調', siktsuí:'green',},
     // ]
 
+    let luimia = lui => lui.miâ;
+    let luisik = lui => lui.siktsuí;
     let liuamia = lui => 'liua-' + lui.id;
     let cssmia = lui => 'lui-' + lui.id;
     let sik = lui => 'sik-' + lui.id;
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         lui_kiatko.forEach(lui =>
           editor.ui.registry.addToggleButton(liuamia(lui), {
-            text: lui.mia,
+            text: luimia(lui),
             onAction: function (_) {
               
               editor.execCommand('RemoveFormat');
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
         )
       },
 
-      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.iunn}: ${lui.siktsui}; \}`).join(' '),
+      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.iunn}: ${luisik(lui)}; \}`).join(' '),
       // content_style: 
       //   '.lui-1 { color: green; } ' +
       //   '.lui-2 { color: red; } ',
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // },
 
       style_formats: lui_kiatko.map(lui => (
-        { title: lui.mia, format: sik(lui) }
+        { title: luimia(lui), format: sik(lui) }
       )),
       // style_formats: [
       //   { title: '本調', format: 'sik-1' },

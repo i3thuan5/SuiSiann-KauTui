@@ -1,13 +1,10 @@
 from django.http import JsonResponse
+from phiaua.models import Khuán
 
 
 def khuan(request, khuan_id):
+    khuán = Khuán.objects.prefetch_related('luī').first()
     return JsonResponse({
-        'iunn': 'color',
-        'suan': [
-              {'id': 1, 'mia': '本調', 'siktsui': 'red'},
-              {'id': 2, 'mia': '規則變調', 'siktsui': 'green'},
-              {'id': 3, 'mia': '仔前變調', 'siktsui': 'blue'},
-              {'id': 4, 'mia': '仔前變調', 'siktsui': 'blue'},
-        ]
+        'iunn': khuán.iūnn,
+        'suan': list(khuán.luī.values('id', 'miâ', 'siktsuí')),
     })

@@ -9,7 +9,7 @@ class LuīTsuā(
 ):
     model = Luī
     fields = ['id', 'miâ', 'siktsuí', 'singāu']
-    extra = 1
+    extra = 0
     sortable_field_name = 'singāu'
 
 
