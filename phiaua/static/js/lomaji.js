@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let liuatsua = lui_kiatko.map(lui => liuamia(lui)).join(' ')
 
     tinymce.init({
-      selector: 'textarea.lomaji',
+      selector: 'textarea.phiaua',
 
       menubar: false,  
       toolbar: 'undo redo | styleselect | '  + liuatsua,
