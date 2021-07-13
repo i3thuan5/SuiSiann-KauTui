@@ -5,7 +5,6 @@ from SuiSiannAdminApp.admins.對齊thai仔 import 對齊thai仔
 from SuiSiannAdminApp.admins.放音檔欄位 import 放音檔欄位
 from SuiSiannAdminApp.admins.句表單 import 句表單
 from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
-from SuiSiannAdminApp.admins.action重對齊 import 重對齊
 from SuiSiannAdminApp.admins.分句聽拍欄位 import 分句欄位
 from SuiSiannAdminApp.views.diffView import DiffView
 
@@ -16,19 +15,19 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     list_filter = ['語料狀況', 對齊thai仔, '來源', ]
     ordering = ['修改時間', 'id', ]
     list_per_page = 10
-    actions = [漢字括號共提掉, 重對齊]
+    actions = [漢字括號共提掉]
     search_fields = ['id', '漢字', '羅馬字', '備註', ]
 
     # change view
     save_on_top = True
     readonly_fields = (
         '分句聽拍', '對齊狀態',
-        '重切音檔', '放原始全部音檔',
+        '放原始全部音檔',
         '音檔', '修改時間',
     )
     fields = (
         '分句聽拍', '對齊狀態',
-        '重切音檔', '放原始全部音檔',
+        '放原始全部音檔',
         '語料狀況', '備註',
         '音檔', '修改時間',
     )
