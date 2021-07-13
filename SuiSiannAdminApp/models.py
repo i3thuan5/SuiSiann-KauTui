@@ -27,47 +27,31 @@ class 文章表(models.Model):
 
 class 句表(models.Model):
     來源 = models.ForeignKey(
-        文章表, null=True,
-        related_name='句', on_delete=models.CASCADE
+        文章表, editable=False,
+        related_name='句', on_delete=models.PROTECT
     )
-    音檔 = models.FileField(blank=True)
-    原始漢字 = models.CharField(max_length=500)
-    原始臺羅 = models.CharField(max_length=2000)
-    漢字 = models.CharField(max_length=500)
-    臺羅 = models.CharField(max_length=2000)
-    修改時間 = models.DateTimeField(null=True)
+    音檔 = models.FileField(editable=False)
+    原始漢字 = models.TextField(editable=False)
+    原始羅馬字 = models.TextField(editable=False)
+    漢字 = models.TextField()
+    羅馬字含口語調 = models.TextField()
+    羅馬字 = models.TextField(editable=False)
+    修改時間 = models.DateTimeField(editable=False, null=True)
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
-    備註 = models.TextField(blank=True,)
+    備註 = models.TextField(blank=True)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
-    kaldi切音時間 = JSONField(default=[])
+    kaldi切音時間 = JSONField(editable=False, default=[])
 
     音檔所在表 = 算音檔所在()
 
-    @property
-    def 羅馬字(self):
-        return self.臺羅
-
-    @羅馬字.setter
-    def 羅馬字(self, value):
-        self.臺羅 = value
-
-    @property
-    def 原始羅馬字(self):
-        return self.原始臺羅
-
-    @原始羅馬字.setter
-    def 原始羅馬字(self, value):
-        self.原始臺羅 = value
-
-    @property
-    def 羅馬字文字(self):
-        return BeautifulSoup(self.臺羅, 'html.parser').get_text()
+    def clean(self):
+        self.羅馬字 = BeautifulSoup(self.羅馬字含口語調, 'html.parser').get_text()
 
     def __str__(self):
         return '{}{}'.format(self.pk, self.漢字)
 
     def save(self, *args, **kwargs):
-        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字文字)
+        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def 重對齊(self):
@@ -82,7 +66,7 @@ class 句表(models.Model):
     def kaldi_tuìtsê(self):
         piautiam = ''.join(標點符號)
         lmj = []
-        for tsua in self.臺羅.split('\n'):
+        for tsua in self.羅馬字.split('\n'):
             lmj.append(tsua.strip().strip(piautiam))
         return tuìtsê(self.音檔所在, lmj)
 
@@ -104,6 +88,11 @@ class 句表(models.Model):
     class Meta:
         verbose_name = "句表"
         verbose_name_plural = verbose_name
+        constraints = [
+            models.UniqueConstraint(
+                fields=['音檔'], condition=~models.Q(音檔=''), name='imtong_bokang'
+            ),
+        ]
 
 
 class 語料狀況表(models.Model):

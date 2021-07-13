@@ -6,7 +6,7 @@ kau3-tian2-iong7-ji7>=1.0.0
 diff_match_patch
 beautifulsoup4
 
-librosa==0.8.0
+librosa
 jsonfield
 
 gunicorn

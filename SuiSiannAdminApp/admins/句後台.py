@@ -12,12 +12,12 @@ from SuiSiannAdminApp.views.diffView import DiffView
 
 class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     # change list
-    list_display = ['id', '漢字', '臺羅', '狀況', '備註', '對齊狀態', '修改時間', ]
+    list_display = ['id', '漢字', '羅馬字', '狀況', '備註', '對齊狀態', '修改時間', ]
     list_filter = ['語料狀況', 對齊thai仔, '來源', ]
     ordering = ['修改時間', 'id', ]
     list_per_page = 10
     actions = [漢字括號共提掉, 重對齊]
-    search_fields = ['id', '漢字', '臺羅', '備註', ]
+    search_fields = ['id', '漢字', '羅馬字', '備註', ]
 
     # change view
     save_on_top = True

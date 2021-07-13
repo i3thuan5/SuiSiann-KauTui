@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.admin.sites import site
-from SuiSiannAdminApp.models import 句表
+from SuiSiannAdminApp.models import 文章表, 句表
 from SuiSiannAdminApp.admins.句後台 import 句後台
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
@@ -26,20 +26,25 @@ class 對齊篩仔單元試驗(TestCase):
 
     def test_一筆無對齊(self):
         self.網址 = "2"
-        句一 = self.新增句表("媠", "")
+        句一 = self.新增句表("媠", "suí-suí")
         self.新增句表("媠", "suí")
         self.結果 = [句一]
 
     def test_一筆對齊(self):
         self.網址 = "1"
-        self.新增句表("媠", "")
+        self.新增句表("媠", "suí-suí")
         句二 = self.新增句表("媠", "suí")
         self.結果 = [句二]
 
     def 新增句表(self, 漢字, 臺羅):
-        return 句表.objects.create(
+        來源, _sin = 文章表.objects.get_or_create(文章名='33')
+        句 = 句表.objects.create(
+            來源=來源,
             原始漢字=漢字,
-            原始臺羅=臺羅,
+            原始羅馬字=臺羅,
             漢字=漢字,
-            臺羅=臺羅
+            羅馬字含口語調=臺羅,
         )
+        句.full_clean()
+        句.save()
+        return 句

@@ -25,14 +25,16 @@ class 匯出全部音節試驗(TestCase):
         self.assertEqual(self.theh()['有聲調'], [])
 
     def hue(self, ji):
-        句表.objects.create(
+        ku = 句表.objects.create(
             來源=文章表.objects.create(文章名='33'),
             音檔=None,
             原始漢字=ji,
-            原始臺羅=ji,
+            原始羅馬字=ji,
             漢字=ji,
-            臺羅=ji,
+            羅馬字含口語調=ji,
         )
+        ku.full_clean()
+        ku.save()
 
     def theh(self):
         with TemporaryDirectory() as sootsai:
