@@ -64,7 +64,12 @@ document.addEventListener('DOMContentLoaded', function(){
         });
       },
 
-      content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.iunn}: ${luisik(lui)}; \}`).join(' '),
+      content_style: lui_kiatko.map(lui => (
+        `
+          .${cssmia(lui)} \{ ${data.iunn}: ${luisik(lui)}; \}
+          .${cssmia(lui)}::selection \{ color: white; background-color: ${luisik(lui)}; \}
+        `
+      )).join(' '),
       // content_style: 
       //   '.lui-1 { color: green; } ' +
       //   '.lui-2 { color: red; } ',
