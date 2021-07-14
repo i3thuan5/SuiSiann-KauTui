@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
       selector: 'textarea.phiaua',
 
       menubar: false,  
-      toolbar: 'undo redo | '  + liuatsua,
+      toolbar: 'siann | '  + liuatsua + ' | undo redo',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
       setup: function (editor) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
           predicate: function (node) {
             return !editor.selection.isCollapsed();
           },
-          items: liuatsua,
+          items: 'siann | '  + liuatsua,
           position: 'selection',
           scope: 'node'
         });
@@ -50,8 +50,18 @@ document.addEventListener('DOMContentLoaded', function(){
                 api.setActive(state);
               });
             }
-          })
-        })
+          });
+        });
+
+        editor.ui.registry.addButton('siann', {
+          icon: 'arrow-right',
+          onAction: function (_) {
+            let imtong = document.getElementsByTagName('audio')[0];
+            imtong.pause();
+            imtong.currentTime = 0;
+            imtong.play();
+          },
+        });
       },
 
       content_style: lui_kiatko.map(lui => `.${cssmia(lui)} \{ ${data.iunn}: ${luisik(lui)}; \}`).join(' '),
