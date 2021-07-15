@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function(){
           .${cssmia(lui)} \{ ${data.iunn}: ${luisik(lui)}; \}
           .${cssmia(lui)}::selection \{ color: white; background-color: ${luisik(lui)}; \}
         `
-      )).join(' '),
+      )).join(' ') + 'p::selection { color: white; background-color: black; }',
       // content_style: 
       //   '.lui-1 { color: green; } ' +
       //   '.lui-2 { color: red; } ',
