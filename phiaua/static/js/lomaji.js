@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
       menubar: false,  
       toolbar: 'siann | '  + liuatsua + ' | undo redo',
+      valid_elements: 'p,span[class]',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
       setup: function (editor) {
