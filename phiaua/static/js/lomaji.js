@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(){
       selector: 'textarea.phiaua',
 
       menubar: false,  
-      toolbar: 'siann | '  + liuatsua + ' | undo redo',
+      toolbar: 'siann tiongng-siann | '  + liuatsua + ' | undo redo',
       valid_elements: 'p,span[class]',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(){
           predicate: function (node) {
             return !editor.selection.isCollapsed();
           },
-          items: 'siann | '  + tueliuatsua,
+          items: 'tiongng-siann | '  + tueliuatsua,
           position: 'selection',
           scope: 'node'
         });
@@ -70,10 +70,39 @@ document.addEventListener('DOMContentLoaded', function(){
 
         editor.ui.registry.addButton('siann', {
           icon: 'arrow-right',
+          text: 'Tsóng放',
           onAction: function (_) {
             let imtong = document.getElementsByTagName('audio')[0];
             imtong.pause();
             imtong.currentTime = 0;
+            imtong.play();
+          },
+        });
+
+        editor.ui.registry.addButton('tiongng-siann', {
+          icon: 'arrow-right',
+          text: '對上尾標--ê',
+          onAction: function (_) {
+            const lueiong = editor.getBody().innerHTML;
+            const uphiaue = /.*<\/span>/g;
+            let kiatko = lueiong.match(uphiaue);
+            let tui;
+            if(!kiatko)
+              tui = '';
+            else
+              tui = kiatko[0]
+            // console.log(lueiong);
+            // console.log(tui);
+            const html_phiaua = /<.*?>/g;
+            let punte = lueiong.replace(html_phiaua, '').length;
+            let phiaukau = tui.replace(html_phiaua, '').length
+            let imtong = document.getElementsByTagName('audio')[0];
+            let bio = phiaukau/punte*imtong.duration - 2;
+            if(bio < 0)
+              bio = 0;
+            console.log(bio, phiaukau, punte);
+            imtong.pause();
+            imtong.currentTime = bio;
             imtong.play();
           },
         });
