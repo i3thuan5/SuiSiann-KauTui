@@ -5,11 +5,10 @@ from SuiSiannAdminApp.admins.對齊thai仔 import 對齊thai仔
 from SuiSiannAdminApp.admins.放音檔欄位 import 放音檔欄位
 from SuiSiannAdminApp.admins.句表單 import 句表單
 from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
-from SuiSiannAdminApp.admins.分句聽拍欄位 import 分句欄位
 from SuiSiannAdminApp.views.diffView import DiffView
 
 
-class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
+class 句後台(admin.ModelAdmin, 放音檔欄位):
     # change list
     list_display = ['id', '漢字', '羅馬字', '狀況', '備註', '對齊狀態', '修改時間', ]
     list_filter = ['語料狀況', 對齊thai仔, '來源', ]
@@ -21,12 +20,12 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     # change view
     save_on_top = True
     readonly_fields = (
-        '分句聽拍', '對齊狀態',
+        '對齊狀態',
         '放原始全部音檔',
         '音檔', '修改時間',
     )
     fields = (
-        '分句聽拍', '對齊狀態',
+        '漢字', '羅馬字含口語調', '對齊狀態',
         '放原始全部音檔',
         '語料狀況', '備註',
         '音檔', '修改時間',
@@ -44,16 +43,8 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
     # change view
     def save_model(self, request, obj, form, change):
         obj.修改時間 = now()
-        han = self.tsuliau_rstrip(request.POST.getlist('han'))
-        lo = self.tsuliau_rstrip(request.POST.getlist('lo'))
-        obj.漢字 = '\n'.join(han)
-        obj.羅馬字含口語調 = '\n'.join(lo)
 
         super(句後台, self).save_model(request, obj, form, change)
-
-    def tsuliau_rstrip(self, tinliat):
-        for pit in tinliat:
-            yield pit.rstrip()
 
     def get_urls(self):
         urls = super().get_urls()
