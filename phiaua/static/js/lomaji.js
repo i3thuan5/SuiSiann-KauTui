@@ -113,16 +113,13 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
-            const suan = editor.selection.getSel();
+            const suan = editor.selection.getRng();
             let thautsing_longtsong = (
-              thautsing_html(suan.anchorNode.parentNode.previousSibling)
-              + thautsing_html(suan.anchorNode.previousSibling)
+              thautsing_html(suan.startContainer.parentNode.previousSibling)
+              + thautsing_html(suan.startContainer.previousSibling)
+              + suan.startContainer.nodeValue.substr(0, suan.startOffset)
             );
             // console.log(suan);
-            // anchorOffset
-            // anchorNode
-            // focusNode
-            // focusOffset
             console.log(thautsing_longtsong);
           },
         });
