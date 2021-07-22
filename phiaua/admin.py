@@ -18,3 +18,9 @@ class KuánKhuán(nested_admin.NestedModelAdmin):
     list_display = ['id', 'miâ', 'iūnn', ]
     ordering = ['id', ]
     inlines = [LuīTsuā, ]
+
+
+admin.site.site_title = 'Suísiann'
+admin.site.site_header = 'Suísiann Dataset'
+admin.site.index_title = 'Kàu-tuì'
+admin.site.site_url = 'https://github.com/i3thuan5/SuiSiann-KauTui'

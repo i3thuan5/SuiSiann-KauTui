@@ -32,6 +32,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位, 分句欄位):
         '音檔', '修改時間',
     )
     form = 句表單
+    autocomplete_fields = ['語料狀況']
 
     # change list
     def 狀況(self, obj):
