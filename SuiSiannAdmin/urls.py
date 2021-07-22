@@ -25,7 +25,7 @@ urlpatterns = [
     path('kaldi/<kuid>', kiamtsa),
     path(
         r'音檔/<音檔編號>/<開始時間>/<結束時間>/audio.wav',
-        傳音檔
+        傳音檔, name='imtong',
     ),
     path('phiaua/', include('phiaua.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
