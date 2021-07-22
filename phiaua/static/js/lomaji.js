@@ -16,6 +16,15 @@ document.addEventListener('DOMContentLoaded', function(){
     let sik = lui => 'sik-' + lui.id;
     let liuatsua = lui_kiatko.map(lui => liuamia(lui)).join(' ')
     let tueliuatsua = lui_kiatko.map(lui => tueliuamia(lui)).join(' ')
+    let thautsing_html = function (node) {
+      if(node){
+        if(node.outerHTML) //span, p
+          return thautsing_html(node.previousSibling) + node.outerHTML;
+        else // text
+          return thautsing_html(node.previousSibling) + node.nodeValue;
+      }
+      return '';
+    };
 
     tinymce.init({
       selector: 'textarea.phiaua',
@@ -95,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function(){
             // console.log(tui);
             const html_phiaua = /<.*?>/g;
             let punte = lueiong.replace(html_phiaua, '').length;
-            let phiaukau = tui.replace(html_phiaua, '').length
+            let phiaukau = tui.replace(html_phiaua, '').length;
             let imtong = document.getElementsByTagName('audio')[0];
             let bio = phiaukau/punte*imtong.duration - 2;
             if(bio < 0)
@@ -104,6 +113,17 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
+            const suan = editor.selection.getSel();
+            let thautsing_longtsong = (
+              thautsing_html(suan.anchorNode.parentNode.previousSibling)
+              + thautsing_html(suan.anchorNode.previousSibling)
+            );
+            // console.log(suan);
+            // anchorOffset
+            // anchorNode
+            // focusNode
+            // focusOffset
+            console.log(thautsing_longtsong);
           },
         });
       },
