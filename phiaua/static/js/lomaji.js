@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(){
       selector: 'textarea.phiaua',
 
       menubar: false,  
-      toolbar: 'siann tiongng-siann | '  + liuatsua + ' | undo redo',
+      toolbar: 'tiongng-siann | '  + liuatsua + ' | undo redo | siann ',
       valid_elements: 'p,span[class]',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         editor.ui.registry.addButton('tiongng-siann', {
           icon: 'arrow-right',
-          text: '對上尾標--ê',
+          text: '對khioh--ê',
           onAction: function (_) {
             const lueiong = editor.getBody().innerHTML;
             const suan = editor.selection.getRng();
@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', function(){
               + thautsing_html(suan.startContainer.previousSibling)
               + suan.startContainer.nodeValue.substr(0, suan.startOffset)
             );
-            console.log(lueiong);
-            console.log(thautsing_longtsong);
+            // console.log(lueiong);
+            // console.log(thautsing_longtsong);
             const html_phiaua = /<.*?>/g;
             let punte = lueiong.replace(html_phiaua, '').length;
             let phiaukau = thautsing_longtsong.replace(html_phiaua, '').length;
