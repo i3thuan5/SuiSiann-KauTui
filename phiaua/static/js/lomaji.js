@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(){
       selector: 'textarea.phiaua',
 
       menubar: false,  
-      toolbar: 'tiongng-siann | '  + liuatsua + ' | undo redo | siann ',
+      toolbar: 'tiongng-siann | '  + liuatsua + ' | tiongng-siann ',
       valid_elements: 'p,span[class]',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function(){
           predicate: function (node) {
             return !editor.selection.isCollapsed();
           },
-          items: 'tiongng-siann | '  + tueliuatsua,
+          items: 'tiongng-siann | '  + tueliuatsua + ' | tiongng-siann ',
           position: 'selection',
           scope: 'node'
         });
