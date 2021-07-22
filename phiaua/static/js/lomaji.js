@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let bio = phiaukau/punte*imtong.duration - 2;
             if(bio < 0)
               bio = 0;
-            console.log(bio, phiaukau, punte);
+            // console.log(bio, phiaukau, punte);
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
