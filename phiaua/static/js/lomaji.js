@@ -93,18 +93,17 @@ document.addEventListener('DOMContentLoaded', function(){
           text: '對上尾標--ê',
           onAction: function (_) {
             const lueiong = editor.getBody().innerHTML;
-            const uphiaue = /.*<\/span>/g;
-            let kiatko = lueiong.match(uphiaue);
-            let tui;
-            if(!kiatko)
-              tui = '';
-            else
-              tui = kiatko[0]
-            // console.log(lueiong);
-            // console.log(tui);
+            const suan = editor.selection.getRng();
+            let thautsing_longtsong = (
+              thautsing_html(suan.startContainer.parentNode.previousSibling)
+              + thautsing_html(suan.startContainer.previousSibling)
+              + suan.startContainer.nodeValue.substr(0, suan.startOffset)
+            );
+            console.log(lueiong);
+            console.log(thautsing_longtsong);
             const html_phiaua = /<.*?>/g;
             let punte = lueiong.replace(html_phiaua, '').length;
-            let phiaukau = tui.replace(html_phiaua, '').length;
+            let phiaukau = thautsing_longtsong.replace(html_phiaua, '').length;
             let imtong = document.getElementsByTagName('audio')[0];
             let bio = phiaukau/punte*imtong.duration - 2;
             if(bio < 0)
@@ -113,14 +112,6 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
-            const suan = editor.selection.getRng();
-            let thautsing_longtsong = (
-              thautsing_html(suan.startContainer.parentNode.previousSibling)
-              + thautsing_html(suan.startContainer.previousSibling)
-              + suan.startContainer.nodeValue.substr(0, suan.startOffset)
-            );
-            // console.log(suan);
-            console.log(thautsing_longtsong);
           },
         });
       },
