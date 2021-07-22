@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         editor.ui.registry.addButton('tiongng-siann', {
           icon: 'arrow-right',
-          text: '對khioh--ê',
           onAction: function (_) {
             const lueiong = editor.getBody().innerHTML;
             const suan = editor.selection.getRng();
