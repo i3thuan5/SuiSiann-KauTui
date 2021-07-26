@@ -1,5 +1,8 @@
 # SuiSiann-Kautui
 台灣媠聲校對
+語料庫：https://suisiann-dataset.ithuan.tw/
+校對原則：https://hackmd.ithuan.tw/@fFPu4cAQSSC7Ln4qB2xJQg/ByxRAxcjCd
+
 
 ## 設定音檔
 ```bash
