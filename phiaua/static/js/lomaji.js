@@ -67,8 +67,16 @@ document.addEventListener('DOMContentLoaded', function(){
                 let suan = editor.selection.getRng();
                 let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
                 let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
+                console.log(suan.startContainer,suan.endContainer)
+                let pi;
+                if(suan.startContainer.nodeType == 1) {
+                  pi = suan.startContainer.innerText;
+                }
+                else {
+                  pi = suan.startContainer.nodeValue;
+                }
                 let tsing = (
-                  suan.startContainer.nodeValue
+                  pi
                   .substr(0, suan.startOffset)
                   .match(bue_lomaji)
                 );
@@ -80,43 +88,42 @@ document.addEventListener('DOMContentLoaded', function(){
                     )
                   )
                 }
-                if(suan.endOffset < suan.endContainer.nodeValue.length) {
+                let aukhu = suan.endContainer;
+                while(aukhu.nodeType == 1){
+                  aukhu = aukhu.lastChild;
+                }
+                let aupi = aukhu.nodeValue
+                if(suan.endOffset < aupi.length) {
                   let au = (
-                    suan.endContainer.nodeValue
+                    aupi
                       .substr(suan.endOffset)
                       .match(thau_lomaji)
                     )
                   if(au){
                     suan.setEnd(
-                      suan.endContainer,
+                      aukhu,
                       suan.endOffset + au[0].length
                     )
                   }
                 }
                 else {
-                  let aukhu = suan.endContainer.nextSibling;
+                  aukhu = suan.endContainer.nextSibling;
                   if(!aukhu)
                     aukhu = suan.endContainer.parentNode.nextSibling;
-                  let pi;
-                  if(aukhu.nodeType == 1) {
-                    pi = aukhu.innerText;
+                  if(aukhu){
+                    while(aukhu.nodeType == 1){
+                      aukhu = aukhu.lastChild;
+                    }
+                    console.log('suan.endContainer.parentNode',suan.endContainer.parentNode)
+                    let au = aukhu.nodeValue.match(thau_lomaji);
+                    if(au){
+                      let tngte = au[0].length;
+                      suan.setEnd(
+                        aukhu,
+                        tngte
+                      )
+                    }
                   }
-                  else {
-                    pi = aukhu.nodeValue;
-                  }
-                  let au = pi.match(thau_lomaji);
-                  let tngte = au[0].length;
-                  if(aukhu.nodeType == 1) {
-                    if(tngte > 1)
-                      tngte = 1;
-                  }
-                  if(au){
-                    suan.setEnd(
-                      aukhu,
-                      tngte
-                    )
-                  }
-
                 }
 
                 editor.selection.setRng(suan);
