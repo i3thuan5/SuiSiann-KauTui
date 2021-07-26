@@ -83,16 +83,45 @@ document.addEventListener('DOMContentLoaded', function(){
                     )
                   )
                 }
-                let au = (
-                  suan.endContainer.nodeValue
-                    .substr(suan.endOffset)
-                    .match(thau_lomaji)
-                  )
-                if(au){
-                  suan.setEnd(
-                    suan.endContainer,
-                    suan.endOffset + au[0].length
-                  )
+                if(suan.endOffset < suan.endContainer.nodeValue.length) {
+                  let au = (
+                    suan.endContainer.nodeValue
+                      .substr(suan.endOffset)
+                      .match(thau_lomaji)
+                    )
+                  if(au){
+                    suan.setEnd(
+                      suan.endContainer,
+                      suan.endOffset + au[0].length
+                    )
+                  }
+                }
+                else {
+                  let aukhu = suan.endContainer.nextSibling;
+                  if(!aukhu)
+                    aukhu = suan.endContainer.parentNode.nextSibling;
+                  console.log(aukhu.nodeType);
+                  let pi;
+                  if(aukhu.nodeType == 1) {
+                    pi = aukhu.innerText;
+                  }
+                  else {
+                    pi = aukhu.nodeValue;
+                  }
+                  let au = pi.match(thau_lomaji);
+                  let tngte = au[0].length;
+                  if(aukhu.nodeType == 1) {
+                    if(tngte > 1)
+                      tngte = 1;
+                  }
+                  console.log(aukhu, aukhu.nodeType, pi, au,au[0].length)
+                  if(au){
+                    suan.setEnd(
+                      aukhu,
+                      tngte
+                    )
+                  }
+
                 }
                 console.log(suan);
 
