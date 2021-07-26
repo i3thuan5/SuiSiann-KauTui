@@ -65,11 +65,8 @@ document.addEventListener('DOMContentLoaded', function(){
               const tshiau = editor.selection.isCollapsed();
               if(tshiau){
                 let suan = editor.selection.getRng();
-                console.log(suan, suan.startContainer.innerHTML);
                 let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
                 let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
-                console.log(suan.startContainer.textContent == '\ufeff', suan.startContainer,
-                suan.endContainer);
                 let tsing = (
                   suan.startContainer.nodeValue
                   .substr(0, suan.startOffset)
@@ -100,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function(){
                   let aukhu = suan.endContainer.nextSibling;
                   if(!aukhu)
                     aukhu = suan.endContainer.parentNode.nextSibling;
-                  console.log(aukhu.nodeType);
                   let pi;
                   if(aukhu.nodeType == 1) {
                     pi = aukhu.innerText;
@@ -114,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     if(tngte > 1)
                       tngte = 1;
                   }
-                  console.log(aukhu, aukhu.nodeType, pi, au,au[0].length)
                   if(au){
                     suan.setEnd(
                       aukhu,
@@ -123,16 +118,14 @@ document.addEventListener('DOMContentLoaded', function(){
                   }
 
                 }
-                console.log(suan);
 
                 editor.selection.setRng(suan);
               }
 
-              // let punte = editor.selection.getBookmark();
-              editor.execCommand('RemoveFormat');
-              editor.execCommand('FormatBlock', false, sik(lui));
-
-              // editor.selection.moveToBookmark(punte);
+              if(!editor.selection.isCollapsed()) {
+                editor.execCommand('RemoveFormat');
+                editor.execCommand('FormatBlock', false, sik(lui));
+              }
 
             },
             onSetup: function (api) {
