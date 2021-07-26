@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', function(){
           position: 'selection',
           scope: 'node'
         });
+        editor.ui.registry.addContextToolbar('text_tshih', {
+          predicate: function (node) {
+            return editor.selection.isCollapsed();
+          },
+          items: 'tiongng-siann',
+          position: 'selection',
+          scope: 'node'
+        });
 
         lui_kiatko.forEach(lui => {
           editor.ui.registry.addIcon(
