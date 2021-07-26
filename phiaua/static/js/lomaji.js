@@ -62,8 +62,49 @@ document.addEventListener('DOMContentLoaded', function(){
             icon: cssmia(lui),
             text: luimia(lui),
             onAction: function (_) {
+              const tshiau = editor.selection.isCollapsed();
+              if(tshiau){
+                let suan = editor.selection.getRng();
+                console.log(suan, suan.startContainer.innerHTML);
+                let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
+                let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
+                console.log(suan.startContainer.textContent == '\ufeff', suan.startContainer,
+                suan.endContainer);
+                let tsing = (
+                  suan.startContainer.nodeValue
+                  .substr(0, suan.startOffset)
+                  .match(bue_lomaji)
+                );
+                if(tsing){
+                  suan.setStart(
+                    suan.startContainer,
+                    suan.startOffset - (
+                      tsing.reverse()[0].length
+                    )
+                  )
+                }
+                let au = (
+                  suan.endContainer.nodeValue
+                    .substr(suan.endOffset)
+                    .match(thau_lomaji)
+                  )
+                if(au){
+                  suan.setEnd(
+                    suan.endContainer,
+                    suan.endOffset + au[0].length
+                  )
+                }
+                console.log(suan);
+
+                editor.selection.setRng(suan);
+              }
+
+              // let punte = editor.selection.getBookmark();
               editor.execCommand('RemoveFormat');
               editor.execCommand('FormatBlock', false, sik(lui));
+
+              // editor.selection.moveToBookmark(punte);
+
             },
             onSetup: function (api) {
               editor.formatter.formatChanged(sik(lui), function (state) {
