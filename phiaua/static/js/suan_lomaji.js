@@ -7,6 +7,7 @@ function suan_thaubue_lomaji(suan) {
 function suan_thautsing_lomaji(suan) {
   let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
   let thaukhu = suan.startContainer, offset=suan.startOffset;
+  console.log(suan.startContainer,suan.startOffset)
   if(suan.startOffset == 0) {
     if(thaukhu.previousSibling) {
       thaukhu = thaukhu.previousSibling;
@@ -19,9 +20,13 @@ function suan_thautsing_lomaji(suan) {
   }
   if(!thaukhu)
     return;
+  console.log('thaukhu',thaukhu,offset)
   while(thaukhu.nodeType == 1) {
-    if(offset)
-      thaukhu = thaukhu.children[offset];
+    console.log('thaukhu.childNodes', thaukhu.childNodes,offset)
+    if(offset){
+      thaukhu = thaukhu.childNodes[offset - 1];
+      offset = null;
+    }
     else
       thaukhu = thaukhu.lastChild;
   }
@@ -29,6 +34,7 @@ function suan_thautsing_lomaji(suan) {
     offset = thaukhu.nodeValue.length;
   let pi = thaukhu.nodeValue.substr(0, suan.startOffset)
   let tsing = pi.match(bue_lomaji);
+  console.log('tsing',tsing)
   if(tsing){
     suan.setStart(
       thaukhu,
