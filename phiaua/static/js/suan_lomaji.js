@@ -7,7 +7,7 @@ function suan_thaubue_lomaji(suan) {
 function suan_thautsing_lomaji(suan) {
   let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
   let thaukhu = suan.startContainer, offset=suan.startOffset;
-  console.log(suan.startContainer,suan.startOffset)
+  console.log('start',suan.startContainer,suan.startOffset)
   if(suan.startOffset == 0) {
     if(thaukhu.previousSibling) {
       thaukhu = thaukhu.previousSibling;
@@ -20,9 +20,8 @@ function suan_thautsing_lomaji(suan) {
   }
   if(!thaukhu)
     return;
-  console.log('thaukhu',thaukhu,offset)
   while(thaukhu.nodeType == 1) {
-    console.log('thaukhu.childNodes', thaukhu.childNodes,offset)
+    console.log('thaukhu.childNodes', thaukhu.childNodes,offset,thaukhu.innerHTML)
     if(offset){
       thaukhu = thaukhu.childNodes[offset - 1];
       offset = null;
@@ -47,41 +46,42 @@ function suan_thautsing_lomaji(suan) {
 
 function suan_aupiah_lomaji(suan) {
   let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
-  let aukhu = suan.endContainer;
-  while(aukhu.nodeType == 1){
-    aukhu = aukhu.lastChild;
-  }
-  let aupi = aukhu.nodeValue
-  if(suan.endOffset < aupi.length) {
-    let au = (
-      aupi
-        .substr(suan.endOffset)
-        .match(thau_lomaji)
-      )
-    if(au){
-      suan.setEnd(
-        aukhu,
-        suan.endOffset + au[0].length
-      )
+  let aukhu = suan.endContainer, offset=suan.endOffset;
+  console.log('end',suan.endContainer,suan.endOffset,aukhu.childNodes.length)
+  if(
+    (aukhu.nodeType == 1 && suan.endOffset == aukhu.childNodes.length)
+    || (aukhu.nodeType != 1 && suan.endOffset == aukhu.nodeValue.length)
+  ) {
+    if(aukhu.nextSibling) {
+      aukhu = aukhu.nextSibling;
+      offset = null;
+    }
+    else {
+      aukhu = aukhu.parentNode.nextSibling;
+      offset = null;
     }
   }
-  else {
-    aukhu = suan.endContainer.nextSibling;
-    if(!aukhu)
-      aukhu = suan.endContainer.parentNode.nextSibling;
-    if(aukhu){
-      while(aukhu.nodeType == 1){
-        aukhu = aukhu.lastChild;
-      }
-      console.log('suan.endContainer.parentNode',suan.endContainer.parentNode)
-      let au = aukhu.nodeValue.match(thau_lomaji);
-      if(au){
-        let tngte = au[0].length;
-        suan.setEnd(
-          aukhu,
-          tngte
-        )
-      }
+  if(!aukhu)
+    return;
+    console.log('aukhu.childNodes', aukhu,aukhu.childNodes,offset)
+  while(aukhu.nodeType == 1) {
+    console.log('aukhu.childNodes', aukhu.childNodes,offset)
+    if(offset){
+      aukhu = aukhu.childNodes[offset];
+      offset = null;
     }
+    else
+      aukhu = aukhu.firstChild;
+  }
+  if(!offset)
+    offset = 0;
+
+  let aupi = aukhu.nodeValue.substr(offset);
+  let au = aupi.match(thau_lomaji);
+  if(au){
+    suan.setEnd(
+      aukhu,
+      offset + au[0].length
+    )
   }
 }
