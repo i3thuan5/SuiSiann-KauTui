@@ -64,4 +64,5 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
         js = (
             'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
             'js/lomaji.js',
+            'js/suan_lomaji.js',
         )
