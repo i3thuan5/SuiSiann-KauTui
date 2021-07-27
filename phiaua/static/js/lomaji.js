@@ -73,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 editor.execCommand('RemoveFormat');
                 editor.execCommand('FormatBlock', false, sik(lui));
               }
+              else
+                editor.focus();
 
             },
             onSetup: function (api) {
@@ -103,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = 0;
             imtong.play();
+            editor.focus();
           },
         });
 
@@ -129,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
+
+            editor.focus();
           },
         });
       },
