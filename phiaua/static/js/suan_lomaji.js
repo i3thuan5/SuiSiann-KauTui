@@ -6,22 +6,33 @@ function suan_thaubue_lomaji(suan) {
 
 function suan_thautsing_lomaji(suan) {
   let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
-  let pi;
-  if(suan.startContainer.nodeType == 1) {
-    pi = suan.startContainer.innerText;
+  let thaukhu = suan.startContainer, offset=suan.startOffset;
+  if(suan.startOffset == 0) {
+    if(thaukhu.previousSibling) {
+      thaukhu = thaukhu.previousSibling;
+      offset = null;
+    }
+    else {
+      thaukhu = thaukhu.parentNode.previousSibling;
+      offset = null;
+    }
   }
-  else {
-    pi = suan.startContainer.nodeValue;
+  if(!thaukhu)
+    return;
+  while(thaukhu.nodeType == 1) {
+    if(offset)
+      thaukhu = thaukhu.children[offset];
+    else
+      thaukhu = thaukhu.lastChild;
   }
-  let tsing = (
-    pi
-    .substr(0, suan.startOffset)
-    .match(bue_lomaji)
-  );
+  if(!offset)
+    offset = thaukhu.nodeValue.length;
+  let pi = thaukhu.nodeValue.substr(0, suan.startOffset)
+  let tsing = pi.match(bue_lomaji);
   if(tsing){
     suan.setStart(
-      suan.startContainer,
-      suan.startOffset - (
+      thaukhu,
+      offset - (
         tsing.reverse()[0].length
       )
     )
