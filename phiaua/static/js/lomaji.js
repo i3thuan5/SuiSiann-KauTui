@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function(){
             onAction: function (_) {
               const tshiau = editor.selection.isCollapsed();
               if(tshiau){
-                const suan = suan_thaubue_lomaji(editor);
+                const suan = editor.selection.getRng();
+                suan_thaubue_lomaji(suan);
                 editor.selection.setRng(suan);
               }
 

@@ -1,8 +1,11 @@
-function suan_thaubue_lomaji(editor) {
-  let suan = editor.selection.getRng();
-  let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
-  let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
+function suan_thaubue_lomaji(suan) {
   console.log(suan.startContainer,suan.endContainer)
+  suan_thautsing_lomaji(suan);
+  suan_aupiah_lomaji(suan);
+}
+
+function suan_thautsing_lomaji(suan) {
+  let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
   let pi;
   if(suan.startContainer.nodeType == 1) {
     pi = suan.startContainer.innerText;
@@ -23,6 +26,10 @@ function suan_thaubue_lomaji(editor) {
       )
     )
   }
+}
+
+function suan_aupiah_lomaji(suan) {
+  let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
   let aukhu = suan.endContainer;
   while(aukhu.nodeType == 1){
     aukhu = aukhu.lastChild;
@@ -60,5 +67,4 @@ function suan_thaubue_lomaji(editor) {
       }
     }
   }
-  return suan;
 }
