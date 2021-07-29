@@ -16,12 +16,21 @@ document.addEventListener('DOMContentLoaded', function(){
     let sik = lui => 'sik-' + lui.id;
     let liuatsua = lui_kiatko.map(lui => liuamia(lui)).join(' ')
     let tueliuatsua = lui_kiatko.map(lui => tueliuamia(lui)).join(' ')
+    let thautsing_html = function (node) {
+      if(node){
+        if(node.outerHTML) //span, p
+          return thautsing_html(node.previousSibling) + node.outerHTML;
+        else // text
+          return thautsing_html(node.previousSibling) + node.nodeValue;
+      }
+      return '';
+    };
 
     tinymce.init({
       selector: 'textarea.phiaua',
 
       menubar: false,  
-      toolbar: 'siann | '  + liuatsua + ' | undo redo',
+      toolbar: 'tiongng-siann | '  + liuatsua + ' | tiongng-siann ',
       valid_elements: 'p,span[class]',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
@@ -30,7 +39,15 @@ document.addEventListener('DOMContentLoaded', function(){
           predicate: function (node) {
             return !editor.selection.isCollapsed();
           },
-          items: 'siann | '  + tueliuatsua,
+          items: 'tiongng-siann | '  + tueliuatsua + ' | tiongng-siann ',
+          position: 'selection',
+          scope: 'node'
+        });
+        editor.ui.registry.addContextToolbar('text_tshih', {
+          predicate: function (node) {
+            return editor.selection.isCollapsed();
+          },
+          items: 'tiongng-siann',
           position: 'selection',
           scope: 'node'
         });
@@ -70,10 +87,37 @@ document.addEventListener('DOMContentLoaded', function(){
 
         editor.ui.registry.addButton('siann', {
           icon: 'arrow-right',
+          text: 'Tsóng放',
           onAction: function (_) {
             let imtong = document.getElementsByTagName('audio')[0];
             imtong.pause();
             imtong.currentTime = 0;
+            imtong.play();
+          },
+        });
+
+        editor.ui.registry.addButton('tiongng-siann', {
+          icon: 'arrow-right',
+          onAction: function (_) {
+            const lueiong = editor.getBody().innerHTML;
+            const suan = editor.selection.getRng();
+            let thautsing_longtsong = (
+              thautsing_html(suan.startContainer.parentNode.previousSibling)
+              + thautsing_html(suan.startContainer.previousSibling)
+              + suan.startContainer.nodeValue.substr(0, suan.startOffset)
+            );
+            // console.log(lueiong);
+            // console.log(thautsing_longtsong);
+            const html_phiaua = /<.*?>/g;
+            let punte = lueiong.replace(html_phiaua, '').length;
+            let phiaukau = thautsing_longtsong.replace(html_phiaua, '').length;
+            let imtong = document.getElementsByTagName('audio')[0];
+            let bio = phiaukau/punte*imtong.duration - 2;
+            if(bio < 0)
+              bio = 0;
+            // console.log(bio, phiaukau, punte);
+            imtong.pause();
+            imtong.currentTime = bio;
             imtong.play();
           },
         });

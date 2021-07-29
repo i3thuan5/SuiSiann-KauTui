@@ -2,6 +2,7 @@ from os.path import join
 
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from kaldi.liansuann import tuìtsê
 from jsonfield.fields import JSONField
 from bs4 import BeautifulSoup
@@ -61,7 +62,7 @@ class 句表(models.Model):
 
     def kaldi切音時間網址(self):
         for thau, bue in 換算切音所在(self.聲音檔().時間長度(), self.kaldi切音時間):
-            yield '/音檔/{}/{}/{}/audio.wav'.format(self.id, thau, bue)
+            yield reverse('imtong', args=(self.id, thau, bue))
 
     def kaldi_tuìtsê(self):
         piautiam = ''.join(標點符號)
@@ -83,7 +84,7 @@ class 句表(models.Model):
 
     @property
     def 音檔網址(self):
-        return join(settings.MEDIA_URL, self.音檔所在)
+        return reverse('imtong', args=(self.id, 0, self.聲音檔().時間長度()))
 
     class Meta:
         verbose_name = "句表"
