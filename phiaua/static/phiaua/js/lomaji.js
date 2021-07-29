@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function(){
     let liuamia = lui => 'liua-' + lui.id;
     let cssmia = lui => 'lui-' + lui.id;
     let sik = lui => 'sik-' + lui.id;
-    let liuatsua = lui_kiatko.map(lui => liuamia(lui)).join(' ')
     let thautsing_html = function (node) {
       if(node){
         if(node.outerHTML) //span, p
@@ -28,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function(){
       selector: 'textarea.phiaua',
 
       menubar: false,  
-      toolbar: 'tiongng-siann | '  + liuatsua,
+      toolbar: [
+        'tiongng-siann | '  + lui_kiatko.slice(0, 3).map(lui => liuamia(lui)).join(' '),
+        'tong-siann | '  + lui_kiatko.slice(3).map(lui => liuamia(lui)).join(' '),
+      ],
       valid_elements: 'p,span[class]',
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
@@ -100,6 +102,16 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
+
+            editor.focus();
+          },
+        });
+
+        editor.ui.registry.addButton('tong-siann', {
+          icon: 'arrow-left',
+          onAction: function (_) {
+            let imtong = document.getElementsByTagName('audio')[0];
+            imtong.pause();
 
             editor.focus();
           },
