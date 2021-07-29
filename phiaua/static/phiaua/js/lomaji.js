@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let punte = lueiong.replace(html_phiaua, '').length;
             let phiaukau = thautsing_longtsong.replace(html_phiaua, '').length;
             let imtong = document.getElementsByTagName('audio')[0];
-            let bio = phiaukau/punte*imtong.duration - 2;
+            let bio = phiaukau/punte*imtong.duration - 1;
             if(bio < 0)
               bio = 0;
             // console.log(bio, phiaukau, punte);
