@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function(){
       valid_classes: lui_kiatko.map(lui => cssmia(lui)).join(' '),
       valid_styles: {'*': ''},
       setup: function (editor) {
+        editor.ui.registry.addIcon(
+          'tong',
+          `<svg width="24" height="24"><rect height="16" id="Rectangle" width="5" x="4" y="4"/><rect height="16" id="Rectangle" width="5" x="12" y="4"/></svg>`
+        );
         lui_kiatko.forEach(lui => {
           editor.ui.registry.addIcon(
             cssmia(lui),
@@ -108,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
         });
 
         editor.ui.registry.addButton('tong-siann', {
-          icon: 'arrow-left',
+          icon: 'tong',
           onAction: function (_) {
             let imtong = document.getElementsByTagName('audio')[0];
             imtong.pause();
