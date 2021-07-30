@@ -21,7 +21,7 @@ from kaldi.view import kiamtsa, 傳音檔
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('kuan/', admin.site.urls),
     path('kaldi/<kuid>', kiamtsa),
     path(
         r'音檔/<音檔編號>/<開始時間>/<結束時間>/audio.wav',
