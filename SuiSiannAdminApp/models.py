@@ -47,13 +47,10 @@ class 句表(models.Model):
 
     def clean(self):
         self.羅馬字 = BeautifulSoup(self.羅馬字含口語調, 'html.parser').get_text()
+        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
 
     def __str__(self):
-        return '{}{}'.format(self.pk, self.漢字)
-
-    def save(self, *args, **kwargs):
-        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
-        super().save(*args, **kwargs)  # Call the "real" save() method.
+        return '{} {}'.format(self.pk, self.漢字)
 
     def 重對齊(self):
         self.kaldi切音時間 = self.kaldi_tuìtsê()
