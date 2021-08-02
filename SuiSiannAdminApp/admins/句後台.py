@@ -10,7 +10,11 @@ from SuiSiannAdminApp.views.diffView import DiffView
 
 class 句後台(admin.ModelAdmin, 放音檔欄位):
     # change list
-    list_display = ['id', '漢字', '羅馬字', '狀況', '備註', '對齊狀態', '修改時間', ]
+    list_display = [
+        'id', '漢字', '羅馬字',
+        '狀況', '備註', '對齊狀態',
+        '修改時間', '修改人',
+    ]
     list_filter = ['語料狀況', 對齊thai仔, '來源', ]
     ordering = ['id', ]
     list_per_page = 10
@@ -44,6 +48,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
     # change view
     def save_model(self, request, obj, form, change):
         obj.修改時間 = now()
+        obj.修改人 = request.user
 
         super(句後台, self).save_model(request, obj, form, change)
 

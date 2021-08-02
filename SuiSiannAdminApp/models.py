@@ -1,6 +1,7 @@
 from os.path import join
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from kaldi.liansuann import tuìtsê
@@ -38,6 +39,10 @@ class 句表(models.Model):
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
     修改時間 = models.DateTimeField(editable=False, null=True)
+    修改人 = models.ForeignKey(
+        User, editable=False, null=True,
+        on_delete=models.PROTECT,
+    )
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
