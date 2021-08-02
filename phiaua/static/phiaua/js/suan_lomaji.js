@@ -5,7 +5,7 @@ function suan_thaubue_lomaji(suan) {
 }
 
 function suan_thautsing_lomaji(suan) {
-  let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~]+$/g;
+  let bue_lomaji = /[^ -\.,;:?!"'\(\)“”‘’~─]+$/g;
   let thaukhu = suan.startContainer, offset=suan.startOffset;
   console.log('start',suan.startContainer,suan.startOffset)
   if(suan.startOffset == 0) {
@@ -45,7 +45,7 @@ function suan_thautsing_lomaji(suan) {
 }
 
 function suan_aupiah_lomaji(suan) {
-  let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~]+/g;
+  let thau_lomaji = /^[^ -\.,;:?!"'\(\)“”‘’~─]+/g;
   let aukhu = suan.endContainer, offset=suan.endOffset;
   console.log('end',suan.endContainer,suan.endOffset,aukhu.childNodes.length)
   if(
