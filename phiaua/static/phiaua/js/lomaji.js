@@ -62,8 +62,20 @@ document.addEventListener('DOMContentLoaded', function(){
             icon: cssmia(lui),
             text: luimia(lui),
             onAction: function (_) {
-              editor.execCommand('RemoveFormat');
-              editor.execCommand('FormatBlock', false, sik(lui));
+              const tshiau = editor.selection.isCollapsed();
+              if(tshiau){
+                const suan = editor.selection.getRng();
+                suan_thaubue_lomaji(suan);
+                editor.selection.setRng(suan);
+              }
+
+              if(!editor.selection.isCollapsed()) {
+                editor.execCommand('RemoveFormat');
+                editor.execCommand('FormatBlock', false, sik(lui));
+              }
+              else
+                editor.focus();
+
             },
             onSetup: function (api) {
               editor.formatter.formatChanged(sik(lui), function (state) {
@@ -93,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = 0;
             imtong.play();
+            editor.focus();
           },
         });
 
@@ -119,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function(){
             imtong.pause();
             imtong.currentTime = bio;
             imtong.play();
+
+            editor.focus();
           },
         });
       },
