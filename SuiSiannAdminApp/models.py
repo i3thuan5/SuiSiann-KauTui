@@ -1,6 +1,7 @@
 from os.path import join
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from kaldi.liansuann import tuìtsê
@@ -38,6 +39,10 @@ class 句表(models.Model):
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
     修改時間 = models.DateTimeField(editable=False, null=True)
+    修改人 = models.ForeignKey(
+        User, editable=False, null=True,
+        on_delete=models.PROTECT,
+    )
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
     備註 = models.TextField(blank=True)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
@@ -47,13 +52,10 @@ class 句表(models.Model):
 
     def clean(self):
         self.羅馬字 = BeautifulSoup(self.羅馬字含口語調, 'html.parser').get_text()
+        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
 
     def __str__(self):
-        return '{}{}'.format(self.pk, self.漢字)
-
-    def save(self, *args, **kwargs):
-        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
-        super().save(*args, **kwargs)  # Call the "real" save() method.
+        return '{} {}'.format(self.pk, self.漢字)
 
     def 重對齊(self):
         self.kaldi切音時間 = self.kaldi_tuìtsê()
