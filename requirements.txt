@@ -15,3 +15,6 @@ jsonfield
 
 gunicorn
 psycopg2-binary
+
+behave
+behave-django
