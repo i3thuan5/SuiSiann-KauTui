@@ -7,11 +7,10 @@ from django.urls import reverse
 from kaldi.liansuann import tuìtsê
 from jsonfield.fields import JSONField
 from bs4 import BeautifulSoup
-from kesi.butkian.kongiong import si_lomaji
-
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
+from phiaua.clean import clean_html
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 from kaldi.lib.換算切音所在 import 換算切音所在
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
@@ -51,37 +50,8 @@ class 句表(models.Model):
 
     音檔所在表 = 算音檔所在()
 
-    @staticmethod
-    def clean_html(khaugi_html):
-        parser = BeautifulSoup(khaugi_html, 'html.parser')
-        p = parser.find('p')
-        sin_html = BeautifulSoup('<p></p>', 'html.parser')
-        for i, phiau in enumerate(p.contents):
-            phiau_tag = phiau.extract()
-            # 這个content是純文字
-            if phiau_tag.name is None:
-                sin_html.p.append(phiau_tag)
-            else:
-                lui = phiau_tag['class']
-                tag = None
-                for jiguan in phiau_tag.string:
-                    if si_lomaji(jiguan):
-                        if tag is None:
-                            tag = sin_html.new_tag('span', attrs={'class': lui})
-                            tag.string = ''
-                        tag.string += jiguan
-                    else:
-                        if tag is not None:
-                            sin_html.p.append(tag)
-                        sin_html.p.append(jiguan)
-                        tag = sin_html.new_tag('span', attrs={'class': lui})
-                        tag.string = ''
-                if tag.string:
-                    sin_html.p.append(tag)
-
-        return sin_html
-
     def clean(self):
+        self.羅馬字含口語調 = clean_html(self.羅馬字含口語調)
         self.羅馬字 = BeautifulSoup(self.羅馬字含口語調, 'html.parser').get_text()
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
 

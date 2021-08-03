@@ -6,3 +6,8 @@ Feature: 口語調標記
 Scenario: 一个詞做伙標，ài拆開
     When 輸入 <p><span class="lui-1">Hit-lō</span></p>
     Then khiām做 <p><span class="lui-1">Hit</span>-<span class="lui-1">lō</span></p>
+
+
+Scenario: 包著標點，ài提掉
+    When 輸入 <p><span class="lui-1">Hit-lō...</span></p>
+    Then khiām做 <p><span class="lui-1">Hit</span>-<span class="lui-1">lō</span>...</p>
