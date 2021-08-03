@@ -126,7 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Siat-tīng tsò 14.5 kang, khah bē tsò-tsò-leh ting-tshut.
+# Siat-tīng tsò 14.5 kang, khah bē tsò-tsò--leh ting-tshut.
 SESSION_COOKIE_AGE = 1252800
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'wavs')
