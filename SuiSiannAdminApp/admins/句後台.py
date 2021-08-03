@@ -12,7 +12,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
     # change list
     list_display = ['id', '漢字', '羅馬字', '狀況', '備註', '對齊狀態', '修改時間', ]
     list_filter = ['語料狀況', 對齊thai仔, '來源', ]
-    ordering = ['修改時間', 'id', ]
+    ordering = ['id', ]
     list_per_page = 10
     actions = [漢字括號共提掉]
     search_fields = ['id', '漢字', '羅馬字', '備註', ]
@@ -21,15 +21,15 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
     save_on_top = True
     readonly_fields = (
         '對齊狀態',
-        '放原始全部音檔',
-        '音檔', '修改時間',
+        '放送', '音檔所在',
+        '修改時間',
     )
     fields = (
         '漢字', '羅馬字含口語調',
-        '放原始全部音檔',
+        '放送',
         '對齊狀態',
         '語料狀況', '備註',
-        '音檔', '修改時間',
+        '音檔所在', '修改時間',
     )
     form = 句表單
     autocomplete_fields = ['語料狀況']
