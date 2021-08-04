@@ -5,8 +5,7 @@ from bs4 import BeautifulSoup
 def clean_html(khaugi_html):
     parser = BeautifulSoup(khaugi_html, 'html.parser')
     sin_html = BeautifulSoup('<p></p>', 'html.parser')
-    for i, phiau in enumerate(parser.p.contents):
-        phiau_tag = phiau
+    for i, phiau_tag in enumerate(parser.p.contents):
         # 這个content是純文字
         if phiau_tag.name is None:
             sin_html.p.append(phiau_tag.string)
