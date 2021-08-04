@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["localhost", "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"]
 # Application definition
 
 INSTALLED_APPS = [
+    'behave_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
