@@ -27,7 +27,6 @@ class 匯出Dataset試驗(TestCase):
                 self.assertEqual(tsitpit['來源'], '33')
                 self.assertEqual(tsitpit['漢字'], 'sui')
                 self.assertEqual(tsitpit['羅馬字'], 'sui')
-                self.assertEqual(tsitpit['口語調'], 'sui')
 
     def test_分號(self):
         with TemporaryDirectory() as tsuliaugiap:
