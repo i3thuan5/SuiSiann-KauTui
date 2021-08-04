@@ -10,6 +10,7 @@ env:
   matrix:
   - TOX_ENV=test
   - TOX_ENV=checkmigrations
+  - TOX_ENV=behave
   - TOX_ENV=flake8
 install:
 - sudo apt-get update
