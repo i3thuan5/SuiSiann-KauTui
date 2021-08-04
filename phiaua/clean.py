@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 def clean_html(khaugi_html):
     parser = BeautifulSoup(khaugi_html, 'html.parser')
     sin_html = BeautifulSoup('<p></p>', 'html.parser')
+    # 猶未標口語調ê純文字
+    if not parser.p:
+        return khaugi_html
+
     for i, phiau_tag in enumerate(parser.p.contents):
         # 這个content是純文字
         if phiau_tag.name is None:
