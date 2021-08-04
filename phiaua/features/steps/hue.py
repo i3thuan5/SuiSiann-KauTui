@@ -1,4 +1,5 @@
 from behave import given, then
+from phiaua.hue import hue_tacotron
 
 @given('口語調類型')
 def 口語調類型(context):
@@ -10,6 +11,6 @@ def 口語調類型(context):
 @then('口語調 {html} ê 格式是 {tacotron}')
 def tacotron格式(context, html, tacotron):
     context.test.assertEqual(
-        hue_tacotron(html, context.lui),
+        hue_tacotron(context.lui, html),
         tacotron
     )
