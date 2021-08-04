@@ -1,6 +1,7 @@
 from behave import given, then
 from phiaua.hue import hue_tacotron
 
+
 @given('口語調類型')
 def 口語調類型(context):
     context.lui = {}
