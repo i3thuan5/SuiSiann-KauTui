@@ -4,13 +4,12 @@ from bs4 import BeautifulSoup
 
 def clean_html(khaugi_html):
     parser = BeautifulSoup(khaugi_html, 'html.parser')
-    p = parser.find('p')
     sin_html = BeautifulSoup('<p></p>', 'html.parser')
-    for i, phiau in enumerate(p.contents):
-        phiau_tag = phiau.extract()
+    for i, phiau in enumerate(parser.p.contents):
+        phiau_tag = phiau
         # 這个content是純文字
         if phiau_tag.name is None:
-            sin_html.p.append(phiau_tag)
+            sin_html.p.append(phiau_tag.string)
         else:
             lui = phiau_tag['class']
             tag = None
@@ -22,10 +21,10 @@ def clean_html(khaugi_html):
                     tag.string += jiguan
                 else:
                     if tag is not None:
-                        sin_html.p.append(tag.extract())
+                        sin_html.p.append(tag)
                         tag = None
                     sin_html.p.append(jiguan)
             if tag is not None:
-                sin_html.p.append(tag.extract())
+                sin_html.p.append(tag)
 
     return sin_html
