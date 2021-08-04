@@ -17,7 +17,7 @@ class 匯出Dataset試驗(TestCase):
             im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
             self.hue(
-                文章, '媠', '<p><span class="lui-1">Suí</span></p>', im
+                文章, '媠。', '<p><span class="lui-1">Suí</span>.</p>', im
             )
 
             kiatko = join(tsuliaugiap, 'kiatko')
@@ -25,9 +25,9 @@ class 匯出Dataset試驗(TestCase):
             with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['來源'], '33')
-                self.assertEqual(tsitpit['漢字'], 'sui')
-                self.assertEqual(tsitpit['羅馬字'], 'sui')
-                self.assertEqual(tsitpit['口語調'], 'sui')
+                self.assertEqual(tsitpit['漢字'], '媠。')
+                self.assertEqual(tsitpit['羅馬字'], 'Suí.')
+                self.assertEqual(tsitpit['口語調'], 'Suí本.')
 
     def test_分號(self):
         with TemporaryDirectory() as tsuliaugiap:
