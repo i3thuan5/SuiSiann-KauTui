@@ -2,9 +2,14 @@ from behave import given, then
 
 @given('口語調類型')
 def 口語調類型(context):
-    raise NotImplementedError(u'STEP: Given 類型')
+    context.lui = {}
+    for tsua in context.table:
+        context.lui['lui-{}'.format(tsua['id'])] = tsua['代']
 
 
 @then('口語調 {html} ê 格式是 {tacotron}')
-def tacotron格式(context):
-    raise NotImplementedError(u'STEP: Given 類型')
+def tacotron格式(context, html, tacotron):
+    context.test.assertEqual(
+        hue_tacotron(html, context.lui),
+        tacotron
+    )
