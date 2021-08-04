@@ -8,7 +8,7 @@ def clean_html(khaugi_html):
     for i, phiau_tag in enumerate(parser.p.contents):
         # 這个content是純文字
         if phiau_tag.name is None:
-            sin_html.p.append(phiau_tag.string)
+            sin_html.p.append(str(phiau_tag))
         else:
             lui = phiau_tag['class']
             tag = None
