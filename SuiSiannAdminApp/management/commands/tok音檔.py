@@ -24,4 +24,9 @@ class Command(BaseCommand):
                 wav, top_db=options['threshold_db'],
                 frame_length=1024, hop_length=256,
             )
-            print(parts)
+            siunn_làng = False
+            for tsing, au in zip(parts[:-1], parts[1:]):
+                if au[0] - tsing[1] > options['max_gap_duration']:
+                    siunn_làng = True
+            if siunn_làng:
+                print(parts)
