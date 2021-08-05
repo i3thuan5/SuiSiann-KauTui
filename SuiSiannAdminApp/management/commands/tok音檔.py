@@ -20,10 +20,15 @@ class Command(BaseCommand):
         longtsong = 0
         esaih = set()
         besaih = set()
+        buntsong = {}
         bun = {}
         for 句 in 句表.objects.select_related('來源').all():
             if len(句.kaldi切音時間) <= 1:
                 continue
+            try:
+                buntsong[句.來源] += 1
+            except:
+                buntsong[句.來源] = 1
             wav, sample_rate = librosa.load(句.音檔檔案, sr=None)
             parts = librosa.effects.split(
                 wav, top_db=options['threshold_db'],
@@ -50,11 +55,12 @@ class Command(BaseCommand):
                 # return
                 esaih.add(句.id)
                 try:
-                    bun[句.來源]+=1
+                    bun[句.來源] += 1
                 except:
-                    bun[句.來源]=1
+                    bun[句.來源] = 1
             else:
                 besaih.add(句.id)
                 print(句.id)
         print(longtsong, 2168 in besaih, 2168 in esaih)
+        print('bun', len(buntsong), buntsong)
         print('bun', len(bun), bun)
