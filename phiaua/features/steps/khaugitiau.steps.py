@@ -18,7 +18,7 @@ def khiām做(context, kiatko):
 def 有一句(context, hanji, khaugitiau):
     sin_html = clean_html(khaugitiau)
     lomaji = sin_html.get_text()
-    context.tuitse = 檢查對齊狀態(hanji, lomaji, khaugitiau)
+    context.tuitse = 檢查對齊狀態(hanji, lomaji, sin_html)
 
 
 @then(u'顯示錯誤 {tshogoo}')
