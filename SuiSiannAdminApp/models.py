@@ -6,7 +6,6 @@ from django.db import models
 from django.urls import reverse
 from kaldi.liansuann import tuìtsê
 from jsonfield.fields import JSONField
-from bs4 import BeautifulSoup
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
