@@ -51,8 +51,9 @@ class 句表(models.Model):
     音檔所在表 = 算音檔所在()
 
     def clean(self):
-        self.羅馬字含口語調 = clean_html(self.羅馬字含口語調)
-        self.羅馬字 = BeautifulSoup(self.羅馬字含口語調, 'html.parser').get_text()
+        sin_html = clean_html(self.羅馬字含口語調)
+        self.羅馬字含口語調 = str(sin_html)
+        self.羅馬字 = sin_html.get_text()
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
 
     def __str__(self):
