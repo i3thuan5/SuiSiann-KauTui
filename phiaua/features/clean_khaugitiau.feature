@@ -30,3 +30,12 @@ Scenario Outline:
     Examples: 一个字拆做兩个標仔，hōo對齊資訊處理
     | sujip | kiatko |
     | <p><span class="lui-1">Hi</span><span class="lui-2">t-lō</span></p> | <p><span class="lui-1">Hi</span><span class="lui-2">t</span>-<span class="lui-2">lō</span></p> |
+
+
+Scenario Outline:
+    When 有一句 <hanji> <lomaji>
+    Then 顯示錯誤 <tshogoo>
+
+    Examples: 一个字拆做兩个標仔，顯示標記錯誤
+    | hanji | lomaji | tshogoo |
+    | 彼號 | <p><span class="lui-1">Hi</span><span class="lui-2">t-lō</span></p> | hit 標記錯誤 |
