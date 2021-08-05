@@ -1,6 +1,6 @@
 from django.test.testcases import TestCase
 from SuiSiannAdminApp.models import 文章表, 句表
-from SuiSiannAdminApp.management.commands.對漢字更新音檔所在 import 對漢字更新音檔所在
+from SuiSiannAdminApp.management.commands.更新音檔所在 import 對漢字更新音檔所在
 
 
 class 對漢字更新音檔所在單元試驗(TestCase):
