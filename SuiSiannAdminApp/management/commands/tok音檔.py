@@ -15,6 +15,8 @@ class Command(BaseCommand):
         parser.add_argument('--threshold_db', type=float, default=40.0, help='In decibels below max')
 
     def handle(self, *args, **options):
+        max_gap_duration = options['max_gap_duration']
+        gap_thè = max_gap_duration * 0.2
         longtsong = 0
         for 句 in 句表.objects.all():
             if len(句.kaldi切音時間) <= 1:
@@ -22,15 +24,25 @@ class Command(BaseCommand):
             wav, sample_rate = librosa.load(句.音檔檔案, sr=None)
             parts = librosa.effects.split(
                 wav, top_db=options['threshold_db'],
-                frame_length=1024, hop_length=256,
+                frame_length=2048, hop_length=512,
             )
             siunn_làng = False
+            tsitma = 0
+            tok = []
             for tsing, au in zip(parts[:-1], parts[1:]):
-                if (au[0] - tsing[1]) / sample_rate > options['max_gap_duration']:
+                if (au[0] - tsing[1]) / sample_rate > max_gap_duration:
                     siunn_làng = True
+                    tok.append((
+                        tsitma,
+                        au[0] / sample_rate - gap_thè
+                    ))
+                    tsitma = tsing[1] / sample_rate + gap_thè
             if siunn_làng:
+                tok.append((tsitma, len(wav) / sample_rate))
                 longtsong += 1
-                print(句.id, 句.kaldi切音時間, sample_rate)
+                print(句.id, sample_rate)
+                # print(句.kaldi切音時間)
                 # print(parts)
+                print(tok)
                 # return
         print(longtsong)
