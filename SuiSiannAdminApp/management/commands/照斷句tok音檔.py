@@ -24,21 +24,31 @@ class Command(BaseCommand):
         for 句 in 句表.objects.all():
             if len(句.kaldi切音時間) <= 1:
                 continue
+            wav, sample_rate = librosa.load(
+                句.音檔檔案, sr=None,
+            )
+            punte_usiann = []
+            for thau, bue in librosa.effects.split(
+                wav, top_db=options['threshold_db'],
+                frame_length=2048, hop_length=512,
+            ):
+                punte_usiann.append(
+                    (thau / sample_rate, bue / sample_rate)
+                )
+
             usiann = []
             for thau, bue in 句.kaldi切音時間:
-                wav, sample_rate = librosa.load(
-                    句.音檔檔案, sr=None,
-                    offset=thau, duration=bue - thau
+                khi = 0
+                suah = 句.kaldi切音時間[-1][-1]
+                for pun_thau, pun_bue in punte_usiann:
+                    if pun_bue <= thau:
+                        khi = pun_bue
+                    if pun_thau >= bue:
+                        suah = pun_thau
+                        break
+                usiann.append(
+                    (khi, suah)
                 )
-                parts = librosa.effects.split(
-                    wav, top_db=options['threshold_db'],
-                    frame_length=2048, hop_length=512,
-                )
-                # print('parts', parts)
-                usiann.append((
-                    thau + parts[0][0] / sample_rate,
-                    thau + parts[-1][1] / sample_rate
-                ))
             tok = []
             for tsing, kati, au in zip_longest(
                 [None] + usiann[:-1], usiann, usiann[1:]
@@ -58,14 +68,15 @@ class Command(BaseCommand):
                     besaih.append(句.id)
                 else:
                     esaih.append(句.id)
-                    # print(句.kaldi切音時間)
                     # print(usiann)
                     # raise RuntimeError('!!')
                 tok.append((thau, bue))
             if 句.id == 1737:
                 print(句.id)
-                print(usiann)
-                print(tok)
+                print('句.kaldi切音時間', 句.kaldi切音時間)
+                print('punte_usiann', punte_usiann)
+                print('usiann', usiann)
+                print('tok', tok)
 
             longtsong += 1
         print(longtsong, len(besaih), len(esaih))
