@@ -1,6 +1,8 @@
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 用字.models import 用字表
+from kesi.butkian.kongiong import si_lomaji
+
 
 
 def 檢查對齊狀態(hanji, lomaji, khaugitiau=''):
@@ -30,7 +32,17 @@ def 檢查對齊狀態(hanji, lomaji, khaugitiau=''):
         tsite_si_span = phiau_tag.name == 'span'
         if ting1e_si_span and tsite_si_span:
             tshogoo_ji += ting1e_text
-        elif tshogoo_ji:
+        elif not tsite_si_span:
+            for jiguan in phiau_tag.string:
+                tshogoo_ji += ting1e_text
+                if si_lomaji(jiguan):
+                    ting1e_text = jiguan
+                else:
+                    tshogoo.append(tshogoo_ji)
+                    tshogoo_ji = ''
+                    ting1e_text = ''
+            continue
+        elif tsite_si_span and tshogoo_ji:
             tshogoo_ji += ting1e_text
             tshogoo.append(tshogoo_ji)
             tshogoo_ji = ''

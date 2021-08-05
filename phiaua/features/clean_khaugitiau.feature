@@ -39,3 +39,7 @@ Scenario Outline:
     Examples: 一个字拆做兩个標仔，顯示標記錯誤
     | hanji | lomaji | tshogoo |
     | 彼號 | <p><span class="lui-1">Hi</span><span class="lui-2">t-l</span><span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
+
+    Examples: 一个字kan-na標一半，顯示標記錯誤
+    | hanji | lomaji | tshogoo |
+    | 彼號 | <p><span class="lui-1">Hi</span>t-l<span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
