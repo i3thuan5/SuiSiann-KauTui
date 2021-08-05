@@ -16,15 +16,17 @@ class 匯出Dataset試驗(TestCase):
         with TemporaryDirectory() as tsuliaugiap:
             im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
-            self.hue(文章, 'sui', im)
+            self.hue(
+                文章, '媠', '<p><span class="lui-1">Suí</span></p>', im
+            )
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
             with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['來源'], '33')
-                self.assertEqual(tsitpit['漢字'], 'sui')
-                self.assertEqual(tsitpit['羅馬字'], 'sui')
+                self.assertEqual(tsitpit['漢字'], '媠')
+                self.assertEqual(tsitpit['羅馬字'], 'Suí')
 
     def test_分號(self):
         with TemporaryDirectory() as tsuliaugiap:
@@ -59,7 +61,9 @@ class 匯出Dataset試驗(TestCase):
         with TemporaryDirectory() as tsuliaugiap:
             im = 'Oct 13, 2018 _243.wav'
             文章 = 文章表.objects.create(文章名='33')
-            self.hue(文章, 'sui', im)
+            self.hue(
+                文章, '媠', '<p><span class="lui-1">Suí</span></p>', im
+            )
 
             kiatko = join(tsuliaugiap, 'kiatko')
             call_command('匯出Dataset', kiatko)
@@ -94,14 +98,14 @@ class 匯出Dataset試驗(TestCase):
                 tsitpit = list(DictReader(tong))
                 self.assertEqual(len(tsitpit), 2)
 
-    def hue(self, 文章, ji, imtong):
+    def hue(self, 文章, han, khaugi, imtong):
         ku = 句表.objects.create(
             來源=文章,
             音檔=basename(imtong),
-            原始漢字=ji,
-            原始羅馬字=ji,
-            漢字=ji,
-            羅馬字含口語調=ji,
+            原始漢字=han,
+            原始羅馬字=khaugi,
+            漢字=han,
+            羅馬字含口語調=khaugi,
             kaldi切音時間=[(0.0, 7.0), ],
         )
         ku.full_clean()
