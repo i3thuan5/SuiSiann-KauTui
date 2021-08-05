@@ -18,7 +18,10 @@ class Command(BaseCommand):
         max_gap_duration = options['max_gap_duration']
         gap_thè = max_gap_duration * 0.2
         longtsong = 0
-        for 句 in 句表.objects.all():
+        esaih = set()
+        besaih = set()
+        bun = {}
+        for 句 in 句表.objects.select_related('來源').all():
             if len(句.kaldi切音時間) <= 1:
                 continue
             wav, sample_rate = librosa.load(句.音檔檔案, sr=None)
@@ -40,9 +43,18 @@ class Command(BaseCommand):
             if siunn_làng:
                 tok.append((tsitma, len(wav) / sample_rate))
                 longtsong += 1
-                print(句.id, sample_rate)
+                # print(句.id, sample_rate)
                 # print(句.kaldi切音時間)
                 # print(parts)
-                print(tok)
+                # print(tok)
                 # return
-        print(longtsong)
+                esaih.add(句.id)
+                try:
+                    bun[句.來源]+=1
+                except:
+                    bun[句.來源]=1
+            else:
+                besaih.add(句.id)
+                print(句.id)
+        print(longtsong, 2168 in besaih, 2168 in esaih)
+        print('bun', len(bun), bun)
