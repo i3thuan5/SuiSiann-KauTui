@@ -7,11 +7,17 @@ from SuiSiannAdminApp.models import 句表, 文章表
 from django.core.management import call_command
 from django.test.testcases import TestCase
 
-
-from SuiSiannAdminApp.management.commands.匯出Dataset import Command
+from phiaua.models import Khuán
 
 
 class 匯出Dataset試驗(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        khuán = Khuán.objects.create(miâ='口語調', iūnn='color')
+        khuán.luī.create(miâ='本調', siktsuí='#ff0000', singāu=0)
+        khuán.luī.create(miâ='規則變調', siktsuí='#ff0000', singāu=1)
+
     def test_資料照來源排(self):
         with TemporaryDirectory() as tsuliaugiap:
             im = 'Oct 13, 2018 _243.wav'
