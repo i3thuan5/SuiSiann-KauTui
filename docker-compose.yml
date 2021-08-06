@@ -9,7 +9,7 @@ services:
       - default
       - nginx-bridge
     volumes:
-      - "./wavs:/usr/share/nginx/html/wavs:ro"
+      - "./liokim:/usr/share/nginx/html/liokim:ro"
     environment:
        VIRTUAL_HOST: "suisiann-kautui.ithuan.tw"
        LETSENCRYPT_HOST: "suisiann-kautui.ithuan.tw"
@@ -18,7 +18,7 @@ services:
   gunicorn:
     build: .
     volumes:
-      - "./wavs:/djangoAdmin/wavs:ro"
+      - "./liokim:/djangoAdmin/liokim:ro"
     networks:
       default:
         aliases:

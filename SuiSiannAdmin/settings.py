@@ -130,8 +130,11 @@ STATIC_URL = '/static/'
 # Siat-tīng tsò 14.5 kang, khah bē tsò-tsò--leh ting-tshut.
 SESSION_COOKIE_AGE = 1252800
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'wavs')
-MEDIA_URL = '/wavs/'
+LIOKIM_ROOT = os.path.join(BASE_DIR, 'liokim')
+LIOKIM_URL = '/liokim/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # TinyMCE ài--ê, tsiah tsai ū tsù-tsheh
 SECURE_REFERRER_POLICY = 'origin'
