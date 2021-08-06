@@ -4,7 +4,6 @@ from 用字.models import 用字表
 from kesi.butkian.kongiong import si_lomaji
 
 
-
 def 檢查對齊狀態(hanji, lomaji, khaugitiau=''):
     try:
         句物件 = 拆文分析器.對齊句物件(hanji, lomaji)
