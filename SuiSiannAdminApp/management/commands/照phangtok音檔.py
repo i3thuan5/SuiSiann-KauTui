@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 continue
             try:
                 buntsong[句.來源] += 1
-            except:
+            except KeyError:
                 buntsong[句.來源] = 1
             wav, sample_rate = librosa.load(句.音檔檔案, sr=None)
             parts = librosa.effects.split(
@@ -56,7 +56,7 @@ class Command(BaseCommand):
                 esaih.add(句.id)
                 try:
                     bun[句.來源] += 1
-                except:
+                except KeyError:
                     bun[句.來源] = 1
             else:
                 besaih.add(句.id)
