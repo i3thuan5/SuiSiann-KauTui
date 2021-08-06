@@ -16,7 +16,7 @@ install:
 - sudo apt-get update
 - sudo apt-get install -y libsndfile1 sox normalize-audio
 - pip install tox
-- mkdir wavs
-- cp tests/SuiSiannAdminApp/commands/Oct\ 13\,\ 2018\ _243.wav wavs
+- mkdir liokim
+- cp tests/SuiSiannAdminApp/commands/Oct\ 13\,\ 2018\ _243.wav liokim
 script:
 - tox -e $TOX_ENV
