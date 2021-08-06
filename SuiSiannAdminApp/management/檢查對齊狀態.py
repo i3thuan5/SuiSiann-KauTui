@@ -34,11 +34,13 @@ def 檢查對齊狀態(hanji, lomaji, khaugitiau=''):
             tshogoo_ji += ting1e_text
         elif not tsite_si_span:
             for jiguan in phiau_tag.string:
-                tshogoo_ji += ting1e_text
                 if si_lomaji(jiguan):
+                    tshogoo_ji += ting1e_text
                     ting1e_text = jiguan
                 else:
-                    tshogoo.append(tshogoo_ji)
+                    if tshogoo_ji:
+                        tshogoo_ji += ting1e_text
+                        tshogoo.append(tshogoo_ji)
                     tshogoo_ji = ''
                     ting1e_text = ''
             continue

@@ -43,3 +43,12 @@ Scenario Outline:
     Examples: 一个字kan-na標一半，顯示標記錯誤
     | hanji | lomaji | tshogoo |
     | 彼號 | <p><span class="lui-1">Hi</span>t-l<span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
+
+
+Scenario Outline:
+    When 有一句 <hanji> <lomaji>
+    Then 無顯示錯誤
+
+    Examples: 標記正確
+    | hanji | lomaji |
+    | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
