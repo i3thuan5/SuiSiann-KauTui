@@ -65,7 +65,8 @@ class Command(BaseCommand):
             lmj = set()
             siannun = set()
             for kui, 句 in enumerate(
-                句表.objects.order_by('來源_id', 'id').select_related('來源')
+                句表.objects.order_by('來源_id', 'id').select_related('來源'),
+                start=1,
             ):
                 if len(句.kaldi切音時間) > 1:
                     print('有音檔á-bē tok開！')
