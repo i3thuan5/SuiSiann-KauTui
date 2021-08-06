@@ -103,13 +103,13 @@ venv.bak/
 .mypy_cache/
 .project
 .pydevproject
-db.sqlite3*
 .*swp
 whitenoise_staticfiles
 
 *ret
 
 *db.sqlite3*
+liokim
 wavs
 /.DS_Store
 .settings/
