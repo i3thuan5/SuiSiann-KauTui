@@ -78,6 +78,7 @@ class Command(BaseCommand):
                     continue
                 原始音檔 = 句.音檔檔案
                 ku_tngte = get_duration(filename=原始音檔)
+                bio += ku_tngte
                 lts += ku_tngte
                 su_soo += len(句物件.網出詞物件())
                 ji_soo += len(句物件.篩出字物件())
