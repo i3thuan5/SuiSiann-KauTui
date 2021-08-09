@@ -30,3 +30,35 @@ Scenario Outline:
     Examples: 一个字拆做兩个標仔，hōo對齊資訊處理
     | sujip | kiatko |
     | <p><span class="lui-1">Hi</span><span class="lui-2">t-lō</span></p> | <p><span class="lui-1">Hi</span><span class="lui-2">t</span>-<span class="lui-2">lō</span></p> |
+
+
+    Examples: 空ê span直接提掉
+    | sujip | kiatko |
+    | <p><span class="lui-1">Hit</span><span class="lui-2"></span>-<span class="lui-3">lō</span></p> | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
+
+
+    Examples: 無class ê span提掉
+    | sujip | kiatko |
+    | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span><span class="lui-1">─</span><span>─</span></p> | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span>──</p> |
+
+
+Scenario Outline:
+    When 有一句 <hanji> <lomaji>
+    Then 顯示錯誤 <tshogoo>
+
+    Examples: 一个字拆做兩个標仔，顯示標記錯誤
+    | hanji | lomaji | tshogoo |
+    | 彼號 | <p><span class="lui-1">Hi</span><span class="lui-2">t-l</span><span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
+
+    Examples: 一个字kan-na標一半，顯示標記錯誤
+    | hanji | lomaji | tshogoo |
+    | 彼號 | <p><span class="lui-1">Hi</span>t-l<span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
+
+
+Scenario Outline:
+    When 有一句 <hanji> <lomaji>
+    Then 無顯示錯誤
+
+    Examples: 標記正確
+    | hanji | lomaji |
+    | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
