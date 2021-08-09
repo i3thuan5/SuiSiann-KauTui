@@ -37,7 +37,7 @@ Scenario Outline:
     | <p><span class="lui-1">Hit</span><span class="lui-2"></span>-<span class="lui-3">lō</span></p> | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
 
 
-    Examples: 無class ê span
+    Examples: 無class ê span提掉
     | sujip | kiatko |
     | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span><span class="lui-1">─</span><span>─</span></p> | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span>──</p> |
 

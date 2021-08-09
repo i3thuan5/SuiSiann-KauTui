@@ -19,9 +19,9 @@ def clean_html(羅馬字含口語調):
             except KeyError:
                 sin_html.p.append(phiau_tag.string)
                 continue
-            sin_tag = None
             if phiau_tag.string is None:
                 continue
+            sin_tag = None
             for jiguan in phiau_tag.string:
                 if si_lomaji(jiguan):
                     if sin_tag is None:
