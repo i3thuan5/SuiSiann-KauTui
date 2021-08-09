@@ -53,7 +53,7 @@ class 句表(models.Model):
         sin_html = clean_html(self.羅馬字含口語調)
         self.羅馬字含口語調 = str(sin_html)
         self.羅馬字 = sin_html.get_text()
-        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字)
+        self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字, sin_html)
 
     def __str__(self):
         return '{} {}'.format(self.pk, self.漢字)
