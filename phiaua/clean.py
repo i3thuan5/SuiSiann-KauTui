@@ -14,8 +14,14 @@ def clean_html(羅馬字含口語調):
         if phiau_tag.name is None:
             sin_html.p.append(str(phiau_tag))
         else:
-            lui = phiau_tag['class']
+            try:
+                lui = phiau_tag['class']
+            except KeyError:
+                sin_html.p.append(phiau_tag.string)
+                continue
             sin_tag = None
+            if phiau_tag.string is None:
+                continue
             for jiguan in phiau_tag.string:
                 if si_lomaji(jiguan):
                     if sin_tag is None:
