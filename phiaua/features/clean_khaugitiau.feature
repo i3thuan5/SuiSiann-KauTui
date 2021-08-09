@@ -32,6 +32,16 @@ Scenario Outline:
     | <p><span class="lui-1">Hi</span><span class="lui-2">t-lō</span></p> | <p><span class="lui-1">Hi</span><span class="lui-2">t</span>-<span class="lui-2">lō</span></p> |
 
 
+    Examples: 空ê span直接提掉
+    | sujip | kiatko |
+    | <p><span class="lui-1">Hit</span><span class="lui-2"></span>-<span class="lui-3">lō</span></p> | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
+
+
+    Examples: 無class ê span
+    | sujip | kiatko |
+    | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span><span class="lui-1">─</span><span>─</span></p> | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span>──</p> |
+
+
 Scenario Outline:
     When 有一句 <hanji> <lomaji>
     Then 顯示錯誤 <tshogoo>
