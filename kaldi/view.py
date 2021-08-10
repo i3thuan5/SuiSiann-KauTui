@@ -4,7 +4,8 @@ from subprocess import Popen, PIPE
 from tempfile import TemporaryDirectory
 
 from SuiSiannAdminApp.models import 句表
-from django.http.response import JsonResponse, HttpResponse
+from django.http.response import JsonResponse
+from ranged_response import RangedFileResponse
 
 
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
@@ -37,7 +38,8 @@ def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
                 資料 = 檔案.read()
     except RuntimeError:
         資料 = 語句音檔.wav格式資料()
-    return HttpResponse(
+    return RangedFileResponse(
+        request,
         資料,
         content_type="audio/wav"
     )
