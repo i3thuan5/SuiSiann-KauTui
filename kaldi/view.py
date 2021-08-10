@@ -28,7 +28,9 @@ def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
             檔名 = join(資料夾, 'audio.wav')
             with open(檔名, 'wb') as 檔案:
                 指令 = Popen([
-                    'sox', '-', 檔名,
+                    'sox', '-',
+                    '-b', '24',
+                    檔名,
                     'remix', '1',
                     'silence', '1', '0.01', '-40db', 'reverse',
                     'silence', '1', '0.01', '-40db', 'reverse',
