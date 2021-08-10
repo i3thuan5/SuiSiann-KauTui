@@ -1,10 +1,12 @@
+import io
 
 from os.path import join
 from subprocess import Popen, PIPE
 from tempfile import TemporaryDirectory
 
 from SuiSiannAdminApp.models import 句表
-from django.http.response import JsonResponse, HttpResponse
+from django.http.response import JsonResponse
+from ranged_response import RangedFileResponse
 
 
 from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
@@ -26,7 +28,9 @@ def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
             檔名 = join(資料夾, 'audio.wav')
             with open(檔名, 'wb') as 檔案:
                 指令 = Popen([
-                    'sox', '-', 檔名,
+                    'sox', '-',
+                    '-b', '24',
+                    檔名,
                     'remix', '1',
                     'silence', '1', '0.01', '-40db', 'reverse',
                     'silence', '1', '0.01', '-40db', 'reverse',
@@ -37,7 +41,8 @@ def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
                 資料 = 檔案.read()
     except RuntimeError:
         資料 = 語句音檔.wav格式資料()
-    return HttpResponse(
-        資料,
+    return RangedFileResponse(
+        request,
+        io.BytesIO(資料),
         content_type="audio/wav"
     )
