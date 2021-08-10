@@ -14,7 +14,7 @@ class Command(BaseCommand):
             if len(mih.kaldi切音時間) > 1:
                 longtsong += 1
                 mih.羅馬字含口語調 = '<p>{}</p>'.format(
-                    '</p><p>'.join(mih.羅馬字含口語調.split('\n'))
+                    '<br/>'.join(mih.羅馬字含口語調.split('\n'))
                 )
                 mih.save()
         print('Lóng-tsóng {} kù.'.format(longtsong))
