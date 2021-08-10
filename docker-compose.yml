@@ -19,6 +19,7 @@ services:
     build: .
     volumes:
       - "./liokim:/djangoAdmin/liokim:ro"
+      - "./hue:/djangoAdmin/hue"
     networks:
       default:
         aliases:
