@@ -1,3 +1,4 @@
+import io
 
 from os.path import join
 from subprocess import Popen, PIPE
@@ -40,6 +41,6 @@ def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
         資料 = 語句音檔.wav格式資料()
     return RangedFileResponse(
         request,
-        資料,
+        io.BytesIO(資料),
         content_type="audio/wav"
     )
