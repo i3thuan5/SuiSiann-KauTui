@@ -10,6 +10,7 @@ django-nested-admin
 beautifulsoup4
 django-colorfield
 
+django-ranged-response
 librosa
 jsonfield
 
