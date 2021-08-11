@@ -1,10 +1,10 @@
 from django.test.testcases import TestCase
-from kaldi.lib.換算切音所在 import 換算切音所在
+from kaldi.lib import tshiâu斷句時間
 
 
-class 換算切音所在單元試驗(TestCase):
+class tshiâu斷句時間單元試驗(TestCase):
     def tearDown(self):
-        執行 = 換算切音所在(self.總時間, self.librosa結果, self.kaldi結果)
+        執行 = tshiâu斷句時間(self.總時間, self.librosa結果, self.kaldi結果)
         self.assertEqual(len(執行), len(self.預期))
         for 一執行, 一預期 in zip(執行, self.預期):
             for 一所在, 一數字 in zip(一執行, 一預期):

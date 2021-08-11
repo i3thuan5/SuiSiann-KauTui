@@ -11,7 +11,6 @@ from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
 from phiaua.clean import clean_html
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
-from kaldi.lib.換算切音所在 import 換算切音所在
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
