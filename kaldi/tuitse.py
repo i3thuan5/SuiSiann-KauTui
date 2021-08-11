@@ -1,8 +1,9 @@
 import librosa
 from django.conf import settings
+from kaldiliau import tuitse
 
 
-threshold_db = getattr(settings, 'THRESHOLD_DB' ,default=40.0)
+threshold_db = getattr(settings, 'THRESHOLD_DB', default=40.0)
 
 
 def tngku(lomaji, imtong):
@@ -19,11 +20,12 @@ def tngku(lomaji, imtong):
             (thau / sample_rate, bue / sample_rate)
         )
     kaldi_kiatko = []
+    for ku in tuitse(imtong, lomaji):
+        kaldi_kiatko.append(ku['khaisi'], ku['kiatsok'])
 
     return tshiâu斷句時間(
         len(wav) / sample_rate, librosa_kiatko, kaldi_kiatko
     )
-
 
 
 def tshiâu斷句時間(總時間, librosa結果, kaldi結果):
