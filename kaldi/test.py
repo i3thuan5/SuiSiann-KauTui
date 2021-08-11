@@ -1,5 +1,5 @@
 from django.test.testcases import TestCase
-from kaldi.lib import tshiâu斷句時間
+from kaldi.tuitse import tshiâu斷句時間
 
 
 class tshiâu斷句時間單元試驗(TestCase):
