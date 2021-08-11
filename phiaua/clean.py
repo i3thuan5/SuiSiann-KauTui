@@ -12,6 +12,9 @@ def clean_html(羅馬字含口語調):
     for ku_html_p in ku_html.find_all('p'):
         sin_html_p = sin_html.new_tag('p')
         for phiau_tag in ku_html_p.contents:
+            if phiau_tag.string is None:
+                continue
+
             # 這个content是純文字
             if phiau_tag.name is None:
                 sin_html_p.append(str(phiau_tag))
@@ -20,8 +23,6 @@ def clean_html(羅馬字含口語調):
                     lui = phiau_tag['class']
                 except KeyError:
                     sin_html_p.append(phiau_tag.string)
-                    continue
-                if phiau_tag.string is None:
                     continue
                 sin_tag = None
                 for jiguan in phiau_tag.string:
