@@ -42,6 +42,11 @@ Scenario Outline:
     | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span><span class="lui-1">─</span><span>─</span></p> | <p><span class="lui-1">tōng</span>-<span class="lui-2">sû</span>──</p> |
 
 
+    Examples: 輸入ê <p> ài完全保留
+    | sujip | kiatko |
+    | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p><p><span class="lui-1">Guá</span>...</p> | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p><p><span class="lui-1">Guá</span>...</p> |
+
+
 Scenario Outline:
     When 有一句 <hanji> <lomaji>
     Then 顯示錯誤 <tshogoo>
