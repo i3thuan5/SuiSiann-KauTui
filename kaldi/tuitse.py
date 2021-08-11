@@ -1,3 +1,29 @@
+import librosa
+from django.conf import settings
+
+
+threshold_db = getattr(settings, 'THRESHOLD_DB' ,default=40.0)
+
+
+def tngku(lomaji, imtong):
+
+    wav, sample_rate = librosa.load(
+        imtong, sr=None,
+    )
+    librosa_kiatko = []
+    for thau, bue in librosa.effects.split(
+        wav, top_db=threshold_db,
+        frame_length=2048, hop_length=512,
+    ):
+        librosa_kiatko.append(
+            (thau / sample_rate, bue / sample_rate)
+        )
+    kaldi_kiatko = []
+
+    return tshiâu斷句時間(
+        len(wav) / sample_rate, librosa_kiatko, kaldi_kiatko
+    )
+
 
 
 def tshiâu斷句時間(總時間, librosa結果, kaldi結果):

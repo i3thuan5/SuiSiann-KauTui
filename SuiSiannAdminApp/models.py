@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from kaldi.liansuann import tuìtsê
+from kaldi.tuitse import tngku
 from jsonfield.fields import JSONField
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
@@ -57,21 +57,18 @@ class 句表(models.Model):
     def __str__(self):
         return '{} {}'.format(self.pk, self.漢字)
 
-    def 重對齊(self):
-        self.kaldi切音時間 = self.kaldi_tuìtsê()
+    def 重斷句(self):
+        piautiam = ''.join(標點符號)
+        lomaji = []
+        for tsua in self.羅馬字.split('\n'):
+            lomaji.append(tsua.strip().strip(piautiam))
+        self.kaldi切音時間 = tngku(lomaji, self.音檔所在)
         self.save()
         return self.kaldi切音時間
 
     def kaldi切音時間網址(self):
-        for thau, bue in 換算切音所在(self.聲音檔().時間長度(), self.kaldi切音時間):
+        for thau, bue in self.斷句時間:
             yield reverse('imtong', args=(self.id, thau, bue))
-
-    def kaldi_tuìtsê(self):
-        piautiam = ''.join(標點符號)
-        lmj = []
-        for tsua in self.羅馬字.split('\n'):
-            lmj.append(tsua.strip().strip(piautiam))
-        return tuìtsê(self.音檔所在, lmj)
 
     def 聲音檔(self):
         return 聲音檔.對檔案讀(self.音檔檔案)
