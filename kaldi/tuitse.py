@@ -6,10 +6,10 @@ from kaldiliau import tuitse
 threshold_db = getattr(settings, 'THRESHOLD_DB', 40.0)
 
 
-def tngku(lomaji, imtong):
+def tngku(lomaji, imtong_sittse, imtong_siongtui):
 
     wav, sample_rate = librosa.load(
-        imtong, sr=None,
+        imtong_sittse, sr=None,
     )
     librosa_kiatko = []
     for thau, bue in librosa.effects.split(
@@ -20,8 +20,10 @@ def tngku(lomaji, imtong):
             (thau / sample_rate, bue / sample_rate)
         )
     kaldi_kiatko = []
-    for ku in tuitse(imtong, lomaji):
-        kaldi_kiatko.append(ku['khaisi'], ku['kiatsok'])
+    for ku in tuitse(imtong_siongtui, lomaji):
+        kaldi_kiatko.append(
+            (ku['khaisi'], ku['kiatsok'])
+        )
 
     return tshiâu斷句時間(
         len(wav) / sample_rate, librosa_kiatko, kaldi_kiatko

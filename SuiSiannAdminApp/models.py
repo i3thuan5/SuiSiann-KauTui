@@ -62,7 +62,7 @@ class 句表(models.Model):
         lomaji = []
         for tsua in self.羅馬字.split('\n'):
             lomaji.append(tsua.strip().strip(piautiam))
-        self.kaldi切音時間 = tngku(lomaji, self.音檔所在)
+        self.kaldi切音時間 = tngku(lomaji, self.音檔檔案, self.音檔所在)
         self.save()
         return self.kaldi切音時間
 
