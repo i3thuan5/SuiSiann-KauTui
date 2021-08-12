@@ -32,7 +32,8 @@ def 無顯示錯誤(context):
 
 @then(u'純文字羅馬字khiām做 {lomaji}')
 def step_impl(context, lomaji):
+    print(context.sin_html)
     context.test.assertEqual(
         get_lomaji(context.sin_html),
-        lomaji
+        lomaji.replace('\\n', '\n')
     )
