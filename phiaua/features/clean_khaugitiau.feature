@@ -67,3 +67,12 @@ Scenario Outline:
     Examples: 標記正確
     | hanji | lomaji |
     | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
+
+
+Scenario Outline: 
+    When 輸入 <sujip>
+    Then 純文字羅馬字khiām做 <lomaji>
+
+    Examples: 輸入ê <p> tī純文字mā ài保留
+    | sujip | lomaji |
+    | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p><p><span class="lui-1">Guá</span>...</p> | Hit-lō\nGuá... |

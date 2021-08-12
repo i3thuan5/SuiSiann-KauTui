@@ -1,5 +1,5 @@
 from behave import when, then
-from phiaua.clean import clean_html
+from phiaua.clean import clean_html, get_lomaji
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 
@@ -28,3 +28,11 @@ def 顯示錯誤(context, tshogoo):
 @then(u'無顯示錯誤')
 def 無顯示錯誤(context):
     context.test.assertEqual(context.tuitse, '')
+
+
+@then(u'純文字羅馬字khiām做 {lomaji}')
+def step_impl(context, lomaji):
+    context.test.assertEqual(
+        get_lomaji(context.sin_html),
+        lomaji
+    )
