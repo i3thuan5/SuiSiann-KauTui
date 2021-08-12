@@ -3,7 +3,7 @@ from django.conf import settings
 from kaldiliau import tuitse
 
 
-threshold_db = getattr(settings, 'THRESHOLD_DB', default=40.0)
+threshold_db = getattr(settings, 'THRESHOLD_DB', 40.0)
 
 
 def tngku(lomaji, imtong):
