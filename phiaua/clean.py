@@ -44,4 +44,7 @@ def clean_html(羅馬字含口語調):
 
 
 def get_lomaji(khaugitiau_tshiua):
-    return '\n'.join(map(lambda x: x.get_text(), khaugitiau_tshiua.find_all('p')))
+    tshue = khaugitiau_tshiua.find_all('p')
+    if tshue:
+        return '\n'.join(map(lambda x: x.get_text(), tshue))
+    return khaugitiau_tshiua.get_text()
