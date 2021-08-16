@@ -9,7 +9,7 @@ from jsonfield.fields import JSONField
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
-from phiaua.clean import clean_html
+from phiaua.clean import clean_html, get_lomaji
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 from kaldi.lib.換算切音所在 import 換算切音所在
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
@@ -52,7 +52,7 @@ class 句表(models.Model):
     def clean(self):
         sin_html = clean_html(self.羅馬字含口語調)
         self.羅馬字含口語調 = str(sin_html)
-        self.羅馬字 = sin_html.get_text()
+        self.羅馬字 = get_lomaji(sin_html)
         self.對齊狀態 = 檢查對齊狀態(self.漢字, self.羅馬字, sin_html)
 
     def __str__(self):
