@@ -3,10 +3,10 @@ Feature: 口語調標記
     2. 空白、連字符、輕聲符mài標
 
 
-Scenario Outline: 
+Scenario Outline: Tshiâu html
     When 輸入 <sujip>
     Then khiām做 <kiatko>
-    
+
     Examples: 詞kah詞中央ê空白
     | sujip | kiatko |
     | <p><span class="lui-1">Hit</span> <span class="lui-2">lō</span></p> |  <p><span class="lui-1">Hit</span> <span class="lui-2">lō</span></p> |
@@ -47,7 +47,7 @@ Scenario Outline:
     | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p><p><span class="lui-1">Guá</span>...</p> | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p><p><span class="lui-1">Guá</span>...</p> |
 
 
-Scenario Outline:
+Scenario Outline: Kiám html
     When 有一句 <hanji> <lomaji>
     Then 顯示錯誤 <tshogoo>
 
@@ -60,10 +60,23 @@ Scenario Outline:
     | 彼號 | <p><span class="lui-1">Hi</span>t-l<span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
 
 
-Scenario Outline:
+Scenario Outline: Kiám html hó-sè.
     When 有一句 <hanji> <lomaji>
     Then 無顯示錯誤
 
     Examples: 標記正確
     | hanji | lomaji |
     | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
+
+
+Scenario Outline: Html tsuán-tsò Tâi-bûn
+    When 輸入 <sujip>
+    Then 純文字羅馬字khiām做 <lomaji>
+
+    Examples: 輸入ê <p> tī純文字mā ài保留
+    | sujip | lomaji |
+    | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p><p><span class="lui-1">Guá</span>...</p> | Hit-lō\nGuá... |
+
+    Examples: 純文字mā正常
+    | sujip     | lomaji    |
+    | Hit-lō... | Hit-lō... |
