@@ -7,7 +7,6 @@ threshold_db = getattr(settings, 'THRESHOLD_DB', 40.0)
 
 
 def tngku(lomaji, imtong_sittse, imtong_siongtui):
-
     wav, sample_rate = librosa.load(
         imtong_sittse, sr=None,
     )
