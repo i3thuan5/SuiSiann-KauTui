@@ -32,8 +32,8 @@ def 傳音檔(request, 音檔編號, 開始時間, 結束時間):
                     '-b', '24',
                     檔名,
                     'remix', '1',
-                    'silence', '1', '0.01', '-40db', 'reverse',
-                    'silence', '1', '0.01', '-40db', 'reverse',
+                    # 'silence', '1', '0.01', '-40db', 'reverse',
+                    # 'silence', '1', '0.01', '-40db', 'reverse',
                 ], stdin=PIPE)
                 指令.communicate(input=語句音檔.wav格式資料())
             程式腳本._走指令(['normalize-audio', 檔名])
