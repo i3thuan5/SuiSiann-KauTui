@@ -19,8 +19,8 @@ class 放音檔欄位:
             return ''
 
     _waveform_html = '''<div>
-                <div id='waveform' data-src='{}' data-tok='{}'>wave</div>
                 <button id='hongsang'>play</button>
+                <div id='waveform' data-src='{}' data-tok='{}'>wave</div>
                 </div>'''
 
     def 海湧(self, obj):

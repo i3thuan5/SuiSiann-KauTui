@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         color: 'hsla(400, 100%, 30%, 0.5)'
     }))
     console.log(regions)
-    let wavesurfer = WaveSurfer.create({
+    window.wavesurfer = WaveSurfer.create({
         container: document.querySelector('#waveform'),
         waveColor: '#A8DBA8',
         progressColor: '#3B8686',
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	]
     	});
     
-    wavesurfer.load(container.data('src'));
+    window.wavesurfer.load(container.data('src'));
 
     // Play button
     let button = document.querySelector('#hongsang');
