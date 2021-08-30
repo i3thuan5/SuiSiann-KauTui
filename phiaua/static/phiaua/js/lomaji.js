@@ -75,10 +75,15 @@ document.addEventListener('DOMContentLoaded', function(){
           icon: 'arrow-right',
           text: 'Tsóng放',
           onAction: function (_) {
-            let imtong = document.getElementsByTagName('audio')[0];
-            imtong.pause();
-            imtong.currentTime = 0;
-            imtong.play();
+            if(window.wavesurfer){
+              window.wavesurfer.play(0);
+            }
+            else {
+              let imtong = document.getElementsByTagName('audio')[0];
+              imtong.pause();
+              imtong.currentTime = 0;
+              imtong.play();
+            }
             editor.focus();
           },
         });
@@ -98,15 +103,22 @@ document.addEventListener('DOMContentLoaded', function(){
             const html_phiaua = /<.*?>/g;
             let punte = lueiong.replace(html_phiaua, '').length;
             let phiaukau = thautsing_longtsong.replace(html_phiaua, '').length;
-            let imtong = document.getElementsByTagName('audio')[0];
-            let bio = phiaukau/punte*imtong.duration - 1;
-            if(bio < 0)
-              bio = 0;
             // console.log(bio, phiaukau, punte);
-            imtong.pause();
-            imtong.currentTime = bio;
-            imtong.play();
-
+            if(window.wavesurfer){
+              let bio = phiaukau/punte*window.wavesurfer.getDuration() - 1;
+              if(bio < 0)
+                bio = 0;
+              window.wavesurfer.play(bio);
+            }
+            else{
+              let imtong = document.getElementsByTagName('audio')[0];
+              let bio = phiaukau/punte*imtong.duration - 1;
+              if(bio < 0)
+                bio = 0;
+              imtong.pause();
+              imtong.currentTime = bio;
+              imtong.play();
+            }
             editor.focus();
           },
         });
@@ -114,8 +126,13 @@ document.addEventListener('DOMContentLoaded', function(){
         editor.ui.registry.addButton('tong-siann', {
           icon: 'tong',
           onAction: function (_) {
-            let imtong = document.getElementsByTagName('audio')[0];
-            imtong.pause();
+            if(window.wavesurfer){
+              window.wavesurfer.pause();
+            }
+            else {
+              let imtong = document.getElementsByTagName('audio')[0];
+              imtong.pause();
+            }
 
             editor.focus();
           },

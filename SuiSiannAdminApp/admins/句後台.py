@@ -25,12 +25,12 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
     save_on_top = True
     readonly_fields = (
         '對齊狀態',
-        '放送', '音檔所在',
+        '海湧', '音檔所在',
         '修改時間',
     )
     fields = (
         '漢字', '羅馬字含口語調',
-        '放送',
+        '海湧',
         '對齊狀態',
         '語料狀況', '備註',
         '音檔所在', '修改時間',
@@ -70,4 +70,7 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
             'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
             'phiaua/js/lomaji.js',
             'phiaua/js/suan_lomaji.js',
+            'https://unpkg.com/wavesurfer.js',
+            'https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js',
+            'kaldi/js/waveform.js',
         )
