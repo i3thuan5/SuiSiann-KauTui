@@ -13,6 +13,7 @@ django-colorfield
 
 django-ranged-response
 librosa
+numpy<1.21
 jsonfield
 
 gunicorn
