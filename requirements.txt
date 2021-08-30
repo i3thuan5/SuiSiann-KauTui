@@ -4,6 +4,7 @@ odfpy
 tai5-uan5_gian5-gi2_kang1-ku7
 kau3-tian2-iong7-ji7>=2.2.0
 diff_match_patch
+kaldiliau>=0.1.1
 
 ## phiaua
 django-nested-admin

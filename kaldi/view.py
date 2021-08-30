@@ -13,7 +13,7 @@ from 臺灣言語工具.系統整合.程式腳本 import 程式腳本
 
 
 def kiamtsa(request, kuid):
-    kaldi切音時間 = 句表.objects.get(id=kuid).重對齊()
+    kaldi切音時間 = 句表.objects.get(id=kuid).重斷句()
     return JsonResponse({
         'Tsîng-hîng': 'Hó--ah~',
         'kaldi切音時間': kaldi切音時間,

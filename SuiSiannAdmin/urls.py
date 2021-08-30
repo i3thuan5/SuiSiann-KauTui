@@ -22,7 +22,7 @@ from kaldi.view import kiamtsa, 傳音檔
 
 urlpatterns = [
     path('kuan/', admin.site.urls),
-    path('kaldi/<kuid>', kiamtsa),
+    path('tngku/<kuid>', kiamtsa, name='tngku'),
     path(
         r'音檔/<音檔編號>/<開始時間>/<結束時間>/audio.wav',
         傳音檔, name='imtong',

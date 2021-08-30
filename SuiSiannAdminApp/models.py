@@ -4,14 +4,15 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from kaldi.liansuann import tuìtsê
+from kaldi.tuitse import tngku
 from jsonfield.fields import JSONField
+
+from kesi import Ku
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
 from phiaua.clean import clean_html, get_lomaji
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
-from kaldi.lib.換算切音所在 import 換算切音所在
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
@@ -58,21 +59,21 @@ class 句表(models.Model):
     def __str__(self):
         return '{} {}'.format(self.pk, self.漢字)
 
-    def 重對齊(self):
-        self.kaldi切音時間 = self.kaldi_tuìtsê()
+    def 重斷句(self):
+        lomaji = []
+        for tsua in self.羅馬字.split('\n'):
+            su_tsua = []
+            for su in Ku(tsua):
+                if su.lomaji not in 標點符號:
+                    su_tsua.append(su.lomaji)
+            lomaji.append(' '.join(su_tsua))
+        self.kaldi切音時間 = tngku(lomaji, self.音檔檔案, self.音檔所在)
         self.save()
         return self.kaldi切音時間
 
     def kaldi切音時間網址(self):
-        for thau, bue in 換算切音所在(self.聲音檔().時間長度(), self.kaldi切音時間):
+        for thau, bue in self.斷句時間:
             yield reverse('imtong', args=(self.id, thau, bue))
-
-    def kaldi_tuìtsê(self):
-        piautiam = ''.join(標點符號)
-        lmj = []
-        for tsua in self.羅馬字.split('\n'):
-            lmj.append(tsua.strip().strip(piautiam))
-        return tuìtsê(self.音檔所在, lmj)
 
     def 聲音檔(self):
         return 聲音檔.對檔案讀(self.音檔檔案)
