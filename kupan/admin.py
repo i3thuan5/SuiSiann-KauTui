@@ -20,11 +20,11 @@ class LekuAdmin(PhiauAModelAdmin):
     save_on_top = True
     readonly_fields = (
         '對齊狀態',
-        '海湧',
+        '放送',
     )
     fields = (
         '漢字', '羅馬字含口語調',
-        '海湧',
+        '放送',
         '音檔',
         '對齊狀態',
         'tó一款句辦', '校對狀況', '備註',
