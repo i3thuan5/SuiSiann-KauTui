@@ -1,8 +1,9 @@
 import json
 from django.utils.html import format_html
+from django.contrib import admin
 
 
-class 放音檔欄位:
+class PhiauAModelAdmin(admin.ModelAdmin):
     _音檔html = '''<div><audio controls>
                 <source src='{}'>
                 Your browser does not support the audio element.</audio>
@@ -36,3 +37,13 @@ class 放音檔欄位:
             )
         else:
             return ''
+
+    class Media:
+        js = (
+            'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
+            'phiaua/js/lomaji.js',
+            'phiaua/js/suan_lomaji.js',
+            'https://unpkg.com/wavesurfer.js',
+            'https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js',
+            'kaldi/js/waveform.js',
+        )

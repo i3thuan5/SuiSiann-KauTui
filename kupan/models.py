@@ -4,8 +4,8 @@ from phiaua.clean import clean_html, get_lomaji
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 
-class Le(models.Model):
-    音檔 = models.FileField(editable=False)
+class Lē(models.Model):
+    音檔 = models.FileField(blank=True)
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
@@ -37,13 +37,21 @@ class Le(models.Model):
         return self.音檔.url
 
     class Meta:
-        verbose_name = "Le"
+        verbose_name = "Lē"
         verbose_name_plural = verbose_name
 
 
 class Khuán(models.Model):
     miâ = models.CharField(unique=True, max_length=50)
 
+    class Meta:
+        verbose_name = "Khuán"
+        verbose_name_plural = verbose_name
+
 
 class Tsònghóng(models.Model):
     miâ = models.CharField(unique=True, max_length=50)
+
+    class Meta:
+        verbose_name = "Tsònghóng"
+        verbose_name_plural = verbose_name
