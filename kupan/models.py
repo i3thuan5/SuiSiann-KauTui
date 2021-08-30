@@ -15,8 +15,9 @@ class Le(models.Model):
         on_delete=models.PROTECT,
     )
     對齊狀態 = models.CharField(blank=True, max_length=200, default="-")
-    備註 = models.TextField(blank=True)
     tó一款句辦 = models.ManyToManyField('Khuán', blank=True)
+    校對狀況 = models.ManyToManyField('Tsònghóng', blank=True)
+    備註 = models.TextField(blank=True)
 
     def clean(self):
         sin_html = clean_html(self.羅馬字含口語調)
@@ -41,4 +42,8 @@ class Le(models.Model):
 
 
 class Khuán(models.Model):
+    miâ = models.CharField(unique=True, max_length=50)
+
+
+class Tsònghóng(models.Model):
     miâ = models.CharField(unique=True, max_length=50)
