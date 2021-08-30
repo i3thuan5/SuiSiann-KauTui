@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'phiaua',
     'nested_admin',
     'colorfield',
+
+    'kupan',
 ]
 
 MIDDLEWARE = [

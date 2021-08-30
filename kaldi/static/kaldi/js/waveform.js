@@ -1,8 +1,11 @@
 // Init & load audio file
 document.addEventListener('DOMContentLoaded', function() {
     let container = django.jQuery("#waveform");
+    let tok = container.data('tok');
     console.log(container.data('tok'))
-    let regions = container.data('tok').map((sikan)=>({
+    if(!tok)
+        return;
+    let regions = tok.map((sikan)=>({
         start: sikan[0],
         end: sikan[1],
         loop: false,

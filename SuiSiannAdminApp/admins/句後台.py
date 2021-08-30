@@ -1,14 +1,13 @@
-from django.contrib import admin
 from django.utils.timezone import now
 from django.urls import path
+from phiaua.admin.options import PhiauAModelAdmin
 from SuiSiannAdminApp.admins.對齊thai仔 import 對齊thai仔
-from SuiSiannAdminApp.admins.放音檔欄位 import 放音檔欄位
 from SuiSiannAdminApp.admins.句表單 import 句表單
 from SuiSiannAdminApp.admins.action正規化漢字 import 漢字括號共提掉
 from SuiSiannAdminApp.views.diffView import DiffView
 
 
-class 句後台(admin.ModelAdmin, 放音檔欄位):
+class 句後台(PhiauAModelAdmin):
     # change list
     list_display = [
         'id', '漢字', '羅馬字',
@@ -64,13 +63,3 @@ class 句後台(admin.ModelAdmin, 放音檔欄位):
 
     def has_delete_permission(self, request, obj=None):
         return False
-
-    class Media:
-        js = (
-            'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
-            'phiaua/js/lomaji.js',
-            'phiaua/js/suan_lomaji.js',
-            'https://unpkg.com/wavesurfer.js',
-            'https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js',
-            'kaldi/js/waveform.js',
-        )
