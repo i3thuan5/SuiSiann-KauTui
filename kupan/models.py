@@ -44,6 +44,9 @@ class Lē(models.Model):
 class Khuán(models.Model):
     miâ = models.CharField(unique=True, max_length=50)
 
+    def __str__(self):
+        return '{} {}'.format(self.id, self.miâ)
+
     class Meta:
         verbose_name = "Khuán"
         verbose_name_plural = verbose_name
@@ -51,6 +54,9 @@ class Khuán(models.Model):
 
 class Tsònghóng(models.Model):
     miâ = models.CharField(unique=True, max_length=50)
+
+    def __str__(self):
+        return '{} {}'.format(self.id, self.miâ)
 
     class Meta:
         verbose_name = "Tsònghóng"
