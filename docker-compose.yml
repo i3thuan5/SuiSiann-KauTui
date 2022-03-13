@@ -10,6 +10,7 @@ services:
       - nginx-bridge
     volumes:
       - "./liokim:/usr/share/nginx/html/liokim:ro"
+      - "./media:/usr/share/nginx/html/media:ro"
     environment:
        VIRTUAL_HOST: "suisiann-kautui.ithuan.tw"
        LETSENCRYPT_HOST: "suisiann-kautui.ithuan.tw"
@@ -19,6 +20,7 @@ services:
     build: .
     volumes:
       - "./liokim:/djangoAdmin/liokim:ro"
+      - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
     networks:
       default:
