@@ -9,5 +9,5 @@ admin.site.register(句表, 句後台)
 
 
 @admin.register(語料狀況表)
-class 句後台(admin.ModelAdmin):
+class 語料狀況後台(admin.ModelAdmin):
     search_fields = ['id', '狀況']
