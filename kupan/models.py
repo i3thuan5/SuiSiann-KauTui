@@ -48,6 +48,7 @@ class Khuán(models.Model):
         return '{} {}'.format(self.id, self.miâ)
 
     class Meta:
+        ordering = ['-id']
         verbose_name = "Khuán"
         verbose_name_plural = verbose_name
 
