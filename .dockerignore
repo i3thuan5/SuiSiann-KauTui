@@ -1,6 +1,6 @@
 .project
 .pydevproject
-*__pycache__/
+*/__pycache__/
 venv/
 *db.sqlite3
 db.sqlite3*
@@ -12,4 +12,5 @@ tsu-liāu/
 /media/
 *.sql.gz
 /hue
+docker-compose.yml
 
