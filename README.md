@@ -9,6 +9,16 @@
 ln -s '.../Dropbox/語料/TTS 語音合成錄製' wavs
 ```
 
+## Dependencies
+
+`sudo apt-get install normalize-audio sox`
+
+若是出現錯誤訊息：
+```
+FileNotFoundError: 檔案無存在，抑是指令參數愛用陣列的形式！！指令：['normalize-audio', '/tmp/tmpq_h7677d/audio.wav']
+```
+就是表示無tàu著需要ê套件。
+
 ## Pī-hūn
 ```
 docker-compose exec -T postgres pg_dump -U postgres | gzip > 20210514.sql.gz
