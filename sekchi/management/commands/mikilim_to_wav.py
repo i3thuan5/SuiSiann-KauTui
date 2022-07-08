@@ -22,11 +22,10 @@ class Command(BaseCommand):
             part, number = matched.group(1, 2)
             nikiliman.append((file, part, number))
 
-        for i in sorted(
+        for 音檔, part, 編號 in sorted(
                 nikiliman,
                 key=lambda element: (element[1], int(element[2]))
             ):
-            音檔, part, 編號 = i
             with open(音檔, mode='rb') as f:
                 myfile = File(f)
                 obj = Sekchi.objects.create(音檔=myfile, part=part, 編號=編號)
