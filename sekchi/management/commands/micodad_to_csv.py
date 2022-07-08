@@ -31,3 +31,4 @@ class Command(BaseCommand):
             print(i.part, i.編號)
             i.漢字 = which_part[i.part][i.編號]
             print(i.漢字)
+            i.save()
