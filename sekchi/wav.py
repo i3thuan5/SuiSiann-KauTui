@@ -3,10 +3,6 @@ import sys
 import re
 
 
-def element_1_2(element):
-    return (element[1], int(element[2]))
-
-
 def mikilim_to_wav(path):
     nikiliman = []
     for file in Path(path).glob('**/*'):
@@ -17,7 +13,10 @@ def mikilim_to_wav(path):
         part, number = matched.group(1, 2)
         nikiliman.append((file, part, number))
 
-    for i in sorted(nikiliman, key=element_1_2):
+    for i in sorted(
+            nikiliman,
+            key=lambda element: (element[1], int(element[2]))
+        ):
         print(i)
 
 
