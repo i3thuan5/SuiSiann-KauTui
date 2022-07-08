@@ -15,20 +15,10 @@ def micodad(path):
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        part1_dict = micodad('sekchi/csv/part1.csv')
-        part2_dict = micodad('sekchi/csv/part2.csv')
-        part3_dict = micodad('sekchi/csv/part3.csv')
-        part4_dict = micodad('sekchi/csv/part4.csv')
-
         which_part = {
-            '1': part1_dict,
-            '2': part2_dict,
-            '3': part3_dict,
-            '4': part4_dict,
+            str(n): micodad(f'sekchi/csv/part{n}.csv') for n in range(1, 5)
         }
 
         for i in Sekchi.objects.all():
-            print(i.part, i.編號)
             i.漢字 = which_part[i.part][i.編號]
-            print(i.漢字)
             i.save()
