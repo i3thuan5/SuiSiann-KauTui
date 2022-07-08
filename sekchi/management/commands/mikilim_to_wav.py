@@ -1,8 +1,7 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.core.files import File
 from sekchi.models import Sekchi
 from pathlib import Path
-import sys
 import re
 
 
@@ -23,9 +22,9 @@ class Command(BaseCommand):
             nikiliman.append((file, part, number))
 
         for 音檔, part, 編號 in sorted(
-                nikiliman,
-                key=lambda element: (element[1], int(element[2]))
-            ):
+                    nikiliman,
+                    key=lambda element: (element[1], int(element[2]))
+                ):
             with open(音檔, mode='rb') as f:
                 myfile = File(f)
-                obj = Sekchi.objects.create(音檔=myfile, part=part, 編號=編號)
+                Sekchi.objects.create(音檔=myfile, part=part, 編號=編號)
