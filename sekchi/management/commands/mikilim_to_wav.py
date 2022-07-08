@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-# from polls.models import Question as Poll
+from django.core.files import File
+from sekchi.models import Sekchi
 from pathlib import Path
 import sys
 import re
@@ -25,4 +26,8 @@ class Command(BaseCommand):
                 nikiliman,
                 key=lambda element: (element[1], int(element[2]))
             ):
-            print(i)
+            音檔, part, 編號 = i
+            f = open(音檔, mode='rb')
+            myfile = File(f)
+            obj = Sekchi.objects.create(音檔=myfile, part=part, 編號=編號)
+            f.close()
