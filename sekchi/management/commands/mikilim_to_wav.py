@@ -27,7 +27,6 @@ class Command(BaseCommand):
                 key=lambda element: (element[1], int(element[2]))
             ):
             音檔, part, 編號 = i
-            f = open(音檔, mode='rb')
-            myfile = File(f)
-            obj = Sekchi.objects.create(音檔=myfile, part=part, 編號=編號)
-            f.close()
+            with open(音檔, mode='rb') as f:
+                myfile = File(f)
+                obj = Sekchi.objects.create(音檔=myfile, part=part, 編號=編號)
