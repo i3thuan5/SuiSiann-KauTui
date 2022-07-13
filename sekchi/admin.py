@@ -32,4 +32,4 @@ class SekchiAdmin(PhiauAModelAdmin):
         return format_html(音檔html, obj.音檔.url)
 
     def 對齊(self, obj):
-        return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字含口語調))
+        return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字))

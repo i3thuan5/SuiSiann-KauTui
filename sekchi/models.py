@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phiaua.clean import clean_html, get_lomaji
 
 
 # Create your models here.
@@ -19,3 +20,8 @@ class Sekchi(models.Model):
     class Meta:
         verbose_name = "汐止腔語料"
         verbose_name_plural = verbose_name
+
+    def clean(self):
+        sin_html = clean_html(self.羅馬字含口語調)
+        self.羅馬字含口語調 = str(sin_html)
+        self.羅馬字 = get_lomaji(sin_html)
