@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 from sekchi.models import Sekchi
 from django.utils.html import format_html
@@ -5,9 +6,18 @@ from tuitse import kiamtsa
 from tuitse.html import tuitse_html
 
 
+class SekchiForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["羅馬字含口語調"].widget = forms.widgets.Textarea(
+        attrs={'class': 'phiaua'})
+
+
 # Register your models here.
 @admin.register(Sekchi)
 class SekchiAdmin(admin.ModelAdmin):
+    form = SekchiForm
     list_display = ('漢字', 'part', '編號', '修改時間')
     fields = ('音檔檔案', '漢字', '羅馬字含口語調', '對齊', 'part', '編號', '修改時間')
     readonly_fields = ('音檔檔案', '對齊', 'part', '編號', '修改時間')
@@ -27,3 +37,8 @@ class SekchiAdmin(admin.ModelAdmin):
         css = {
             'all': ('sekchi/css/tuitse.css',)
         }
+        js = (
+            'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
+            'phiaua/js/lomaji.js',
+            'phiaua/js/suan_lomaji.js',
+        )
