@@ -22,3 +22,8 @@ class SekchiAdmin(admin.ModelAdmin):
 
     def 對齊(self, obj):
         return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字含口語調))
+
+    class Media:
+        css = {
+            'all': ('sekchi/css/tuitse.css',)
+        }
