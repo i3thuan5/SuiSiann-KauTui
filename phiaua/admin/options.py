@@ -40,7 +40,7 @@ class PhiauAModelAdmin(admin.ModelAdmin):
 
     class Media:
         css = {
-            'all': ('sekchi/css/tuitse.css',)
+            'all': ('phiaua/css/tuitse.css',)
         }
         js = (
             'https://cdn.tiny.cloud/1/7r771z07171zzo2b460fzfdmi25680770i1u6nf3mz6uh1fs/tinymce/5/tinymce.min.js',
