@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from sekchi.models import Sekchi
-from pathlib import Path
 import csv
+
 
 def micodad(path):
     with open(path, mode='r') as f:
@@ -11,6 +11,7 @@ def micodad(path):
         for row in reader:
             part_dict[row['編號']] = row['漢字']
         return part_dict
+
 
 class Command(BaseCommand):
 

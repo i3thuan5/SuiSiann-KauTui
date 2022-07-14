@@ -12,7 +12,8 @@ class SekchiForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["羅馬字含口語調"].widget = forms.widgets.Textarea(
-        attrs={'class': 'phiaua'})
+            attrs={'class': 'phiaua'}
+        )
 
 
 # Register your models here.
