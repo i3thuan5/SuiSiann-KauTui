@@ -16,9 +16,9 @@ def micodad(path):
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        which_part = {
-            str(n): micodad(f'sekchi/csv/part{n}.csv') for n in range(1, 5)
-        }
+        which_part = {}
+        for n in range(1, 5):
+            which_part[str(n)] = micodad(f'sekchi/csv/part{n}.csv')
 
         for i in Sekchi.objects.all():
             i.漢字 = which_part[i.part][i.編號]
