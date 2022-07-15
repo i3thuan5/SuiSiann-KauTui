@@ -8,8 +8,6 @@ COPY requirements.txt .
 RUN pip install -r ./requirements.txt
 COPY . .
 
-RUN cat ./SuiSiannAdmin/docker_tsuki.py >> ./SuiSiannAdmin/settings.py
-
 EXPOSE 8000
 CMD gunicorn SuiSiannAdmin.wsgi \
   -b 0.0.0.0:8000 \

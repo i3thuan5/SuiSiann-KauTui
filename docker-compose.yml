@@ -29,7 +29,8 @@ services:
           - suisiann-kautui-autuan
     restart: always
     environment:
-      VIRTUAL_HOST: ${VIRTUAL_HOST:-sujiphuat.ithuan.tw}
+      - DJANGO_SETTINGS_MODULE=SuiSiannAdmin.settings-tsiunnsuann
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
   postgres:
     image: postgres:13
     environment:
