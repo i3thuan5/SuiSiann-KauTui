@@ -28,5 +28,5 @@ urlpatterns = [
         傳音檔, name='imtong',
     ),
     path('phiaua/', include('phiaua.urls')),
-] + static(settings.LIOKIM_URL, document_root=settings.LIOKIM_ROOT) \
+] + static(settings.SUISIANN_URL, document_root=settings.SUISIANN_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

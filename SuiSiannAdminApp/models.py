@@ -84,7 +84,7 @@ class 句表(models.Model):
 
     @property
     def 音檔檔案(self):
-        return join(settings.LIOKIM_ROOT, self.音檔所在)
+        return join(settings.SUISIANN_ROOT, self.音檔所在)
 
     @property
     def 音檔網址(self):

@@ -133,8 +133,8 @@ STATIC_URL = '/static/'
 # Siat-tīng tsò 14.5 kang, khah bē tsò-tsò--leh ting-tshut.
 SESSION_COOKIE_AGE = 1252800
 
-LIOKIM_ROOT = '/台灣媠聲'
-LIOKIM_URL = '/suisiann/'
+SUISIANN_ROOT = '/台灣媠聲'
+SUISIANN_URL = '/suisiann/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
