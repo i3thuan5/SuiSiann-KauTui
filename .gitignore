@@ -109,8 +109,6 @@ whitenoise_staticfiles
 *ret
 
 *db.sqlite3*
-liokim
-wavs
 /.DS_Store
 .settings/
 [0-9].[0-9]/
@@ -119,3 +117,5 @@ media/
 hue/
 *sql.gz
 
+台灣媠聲
+汐止媠聲
