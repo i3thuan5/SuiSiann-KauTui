@@ -19,7 +19,7 @@ services:
   gunicorn:
     build: .
     volumes:
-      - "./liokim:/djangoAdmin/liokim:ro"
+      - "./台灣媠聲:/台灣媠聲:ro"
       - "./汐止媠聲:/djangoAdmin/汐止媠聲:ro"
       - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
