@@ -1,6 +1,6 @@
 ALLOWED_HOSTS = ['*']
 
-DEBUG = F
+DEBUG = False
 
 STATIC_ROOT = '/static/'
 
