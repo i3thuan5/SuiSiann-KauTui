@@ -12,14 +12,15 @@ services:
       - "./liokim:/usr/share/nginx/html/liokim:ro"
       - "./media:/usr/share/nginx/html/media:ro"
     environment:
-       - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
-       - LETSENCRYPT_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
-       - LETSENCRYPT_EMAIL="ithuan@ithuan.tw"
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
+      - LETSENCRYPT_EMAIL=ithuan@ithuan.tw
     restart: always
   gunicorn:
     build: .
     volumes:
       - "./liokim:/djangoAdmin/liokim:ro"
+      - "./汐止媠聲:/djangoAdmin/汐止媠聲:ro"
       - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
     networks:

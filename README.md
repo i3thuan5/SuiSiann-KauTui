@@ -6,7 +6,7 @@
 
 ## 設定音檔
 ```bash
-ln -s '.../Dropbox/語料/TTS 語音合成錄製' wavs
+ln -s '.../Dropbox/語料/TTS 語音合成錄製' liokim
 ```
 
 ## Dependencies
