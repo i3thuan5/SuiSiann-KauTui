@@ -9,7 +9,7 @@ services:
       - default
       - nginx-bridge
     volumes:
-      - "./liokim:/usr/share/nginx/html/liokim:ro"
+      - "./台灣媠聲:/usr/share/nginx/html/suisiann:ro"
       - "./media:/usr/share/nginx/html/media:ro"
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}

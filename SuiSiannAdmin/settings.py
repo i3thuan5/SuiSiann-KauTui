@@ -134,7 +134,7 @@ STATIC_URL = '/static/'
 SESSION_COOKIE_AGE = 1252800
 
 LIOKIM_ROOT = '/台灣媠聲'
-LIOKIM_URL = '/liokim/'
+LIOKIM_URL = '/suisiann/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
