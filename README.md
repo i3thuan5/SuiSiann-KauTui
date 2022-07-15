@@ -20,6 +20,22 @@ FileNotFoundError: 檔案無存在，抑是指令參數愛用陣列的形式！�
 ```
 就是表示無tàu著需要ê套件。
 
+
+## 更新套件版本
+
+1. 手動更新autuan/requirements.in。
+2. Tàu [Pip-tools](https://github.com/jazzband/pip-tools) Python管理套件版本套件.
+```
+pip install pip-tools
+```
+3. `pip-compile`自動更新套件版本。
+```bash
+# 有必要--ê才更新
+pip-compile
+# 盡量更新
+pip-compile --upgrade
+````
+
 ## Pī-hūn
 ```
 docker-compose exec -T postgres pg_dump -U postgres | gzip > 20210514.sql.gz
