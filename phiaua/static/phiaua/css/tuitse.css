@@ -1,0 +1,11 @@
+ruby .fail {
+   color: red;
+}
+
+ruby rt {
+	font-size: 16px;
+}
+
+ruby {
+	margin: 0 2px 0 2px;
+}

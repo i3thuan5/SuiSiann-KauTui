@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'colorfield',
 
     'kupan',
+    'sekchi',
 ]
 
 MIDDLEWARE = [
