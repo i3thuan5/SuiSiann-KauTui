@@ -7,8 +7,9 @@ from phiaua.clean import clean_html, get_lomaji
 # Create your models here.
 class Sekchi(models.Model):
     音檔所在 = models.FilePathField(
-        path=settings.SIKTSI_ROOT,
         match='.*.wav',
+        unique=True,
+        path=settings.SIKTSI_ROOT,
         recursive=True,
         allow_files=True,
         allow_folders=False,

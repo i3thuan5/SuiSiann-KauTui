@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from sekchi.models import Sekchi
 from pathlib import Path
+from sys import stderr
 import re
 
 
@@ -27,8 +28,14 @@ class Command(BaseCommand):
                 print(file.name)
                 continue
 
+        miha = []
         for 音檔檔名, part, 編號 in sorted(
             nikiliman,
             key=lambda element: (element[1], int(element[2]))
         ):
-            Sekchi.objects.create(音檔所在=音檔檔名, part=part, 編號=編號)
+            miha.append(
+                Sekchi(音檔所在=音檔檔名, part=part, 編號=編號)
+            )
+        print('攏總{}條，tng-tih匯入'.format(len(miha)), file=stderr)
+        Sekchi.objects.bulk_create(miha)
+        print('好勢', file=stderr)
