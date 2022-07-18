@@ -53,7 +53,7 @@ class SekchiAdmin(PhiauAModelAdmin):
                 Your browser does not support the audio element.</audio>
                 </div>
                 '''
-        return format_html(音檔html, obj.音檔所在)
+        return format_html(音檔html, obj.音檔網址())
 
     def 對齊(self, obj):
         return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字))

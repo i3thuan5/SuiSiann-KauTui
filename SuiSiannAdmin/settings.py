@@ -137,7 +137,7 @@ SUISIANN_ROOT = os.path.join(BASE_DIR, '台灣媠聲')
 SUISIANN_URL = '/suisiann/'
 
 SIKTSI_ROOT = os.path.join(BASE_DIR, '汐止媠聲')
-SUISIANN_URL = '/siktsi/'
+SIKTSI_URL = '/siktsi/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

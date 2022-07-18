@@ -2,15 +2,20 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from phiaua.clean import clean_html, get_lomaji
+from os.path import relpath
+from urllib.parse import urljoin
 
 
-# Create your models here.
 class Sekchi(models.Model):
     音檔所在 = models.FilePathField(
         match='.*.wav',
         unique=True,
         path=settings.SIKTSI_ROOT,
-        recursive=True,
+        # recursive是Form選擇時用--ê
+        # https://github.com/django/django/blob/
+        # 0dd29209091280ccf34e07c9468746c396b7778e/
+        # django/forms/fields.py#L1205
+        recursive=False,  
         allow_files=True,
         allow_folders=False,
         max_length=200,
@@ -29,6 +34,12 @@ class Sekchi(models.Model):
     class Meta:
         verbose_name = "汐止腔語料"
         verbose_name_plural = verbose_name
+
+    def 音檔網址(self):
+        return urljoin(
+            settings.SIKTSI_URL,
+            relpath(self.音檔所在, settings.SIKTSI_ROOT),
+        )
 
     def clean(self):
         sin_html = clean_html(self.羅馬字含口語調)

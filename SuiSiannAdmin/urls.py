@@ -29,4 +29,5 @@ urlpatterns = [
     ),
     path('phiaua/', include('phiaua.urls')),
 ] + static(settings.SUISIANN_URL, document_root=settings.SUISIANN_ROOT) \
+  + static(settings.SIKTSI_URL, document_root=settings.SIKTSI_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
