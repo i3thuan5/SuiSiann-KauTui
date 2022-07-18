@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.db import transaction
 from kupan.models import Lē as Le, Khuán as Khuan
 
 
@@ -20,6 +21,7 @@ ID_PIAUTE = [
 
 class Command(BaseCommand):
 
+    @transaction.atomic
     def handle(self, *args, **options):
         for thau, boe, piaute in ID_PIAUTE:
             khuan, _ = Khuan.objects.get_or_create(miâ=piaute)
