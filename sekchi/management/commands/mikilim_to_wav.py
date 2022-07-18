@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.files import File
+from django.db import transaction
 from sekchi.models import Sekchi
 from pathlib import Path
 import re
@@ -10,6 +11,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('path', nargs=1, type=str)
 
+    @transaction.atomic
     def handle(self, *args, **options):
         path = options['path'][0]
         nikiliman = []
