@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from django.core.files import File
 from django.db import transaction
 from sekchi.models import Sekchi
 from pathlib import Path
