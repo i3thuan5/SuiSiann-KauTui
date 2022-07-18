@@ -25,7 +25,7 @@ SECRET_KEY = 'd&cem&12lfw*x+hw%e6!)t#au48m-@n-8)g$tw*w60^c%^_jw6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "xn--lhrv4px6k7rz.xn--v0qr21b.xn--kpry57d"]
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -133,8 +133,8 @@ STATIC_URL = '/static/'
 # Siat-tīng tsò 14.5 kang, khah bē tsò-tsò--leh ting-tshut.
 SESSION_COOKIE_AGE = 1252800
 
-LIOKIM_ROOT = os.path.join(BASE_DIR, 'liokim')
-LIOKIM_URL = '/liokim/'
+SUISIANN_ROOT = '/台灣媠聲'
+SUISIANN_URL = '/suisiann/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

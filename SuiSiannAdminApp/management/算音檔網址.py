@@ -7,7 +7,7 @@ from django.conf import settings
 #
 def 算音檔所在():
     print('算音檔網址...')
-    目錄根 = settings.LIOKIM_ROOT
+    目錄根 = settings.SUISIANN_ROOT
     結果 = dict()
     for 這馬層, dirs, files in os.walk(目錄根):
         # 迒過

@@ -1,4 +1,4 @@
-FROM python:3.8-buster
+FROM python:3.8-bullseye
 
 RUN apt-get update && apt-get install -y sox normalize-audio libsndfile1
 
@@ -8,10 +8,9 @@ COPY requirements.txt .
 RUN pip install -r ./requirements.txt
 COPY . .
 
-RUN cat ./SuiSiannAdmin/docker_tsuki.py >> ./SuiSiannAdmin/settings.py
-
 EXPOSE 8000
-CMD gunicorn SuiSiannAdmin.wsgi \
+CMD python manage.py collectstatic --noinput --clear && \
+  gunicorn SuiSiannAdmin.wsgi \
   -b 0.0.0.0:8000 \
+  --timeout 120 \
   --log-level debug
-
