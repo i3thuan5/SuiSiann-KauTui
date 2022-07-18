@@ -23,7 +23,7 @@ FileNotFoundError: 檔案無存在，抑是指令參數愛用陣列的形式！�
 
 ## 更新套件版本
 
-1. 手動更新autuan/requirements.in。
+1. 手動更新`requirements.in`。
 2. Tàu [Pip-tools](https://github.com/jazzband/pip-tools) Python管理套件版本套件.
 ```
 pip install pip-tools

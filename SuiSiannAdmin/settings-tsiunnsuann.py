@@ -13,7 +13,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 DEBUG = False
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = '/staticfiles/'
 
 DATABASES = {
     'default': {

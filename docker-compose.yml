@@ -11,6 +11,7 @@ services:
     volumes:
       - "./台灣媠聲:/usr/share/nginx/html/suisiann:ro"
       - "./media:/usr/share/nginx/html/media:ro"
+      - "staticfiles:/usr/share/nginx/html/static:ro"
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
       - LETSENCRYPT_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
@@ -23,6 +24,7 @@ services:
       - "./汐止媠聲:/djangoAdmin/汐止媠聲:ro"
       - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
+      - "staticfiles:/staticfiles:rw"
     networks:
       default:
         aliases:
@@ -65,6 +67,7 @@ services:
 volumes:
   postgres_database:
   kaldis5:
+  staticfiles:
 
 networks:
   nginx-bridge:
