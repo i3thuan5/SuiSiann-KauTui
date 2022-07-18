@@ -9,7 +9,7 @@ RUN pip install -r ./requirements.txt
 COPY . .
 
 EXPOSE 8000
-CMD gunicorn SuiSiannAdmin.wsgi \
+CMD python manage.py collectstatic --noinput --clear && \
+  gunicorn SuiSiannAdmin.wsgi \
   -b 0.0.0.0:8000 \
   --log-level debug
-
