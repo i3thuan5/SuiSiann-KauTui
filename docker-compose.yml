@@ -21,7 +21,7 @@ services:
     build: .
     volumes:
       - "./台灣媠聲:/台灣媠聲:ro"
-      - "./汐止媠聲:/djangoAdmin/汐止媠聲:ro"
+      - "./汐止媠聲:/汐止媠聲:ro"
       - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
       - "staticfiles:/staticfiles:rw"
