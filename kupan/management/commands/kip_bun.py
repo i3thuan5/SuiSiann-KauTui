@@ -11,5 +11,4 @@ class Command(BaseCommand):
             for row in reader:
                 khuan, _ = Khuan.objects.get_or_create(miâ=row['篇名'])
                 le = Le.objects.get(id=row['語料庫ID'])
-                # print(khuan, le)
                 le.tó一款句辦.add(khuan)
