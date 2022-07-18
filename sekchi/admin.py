@@ -39,8 +39,12 @@ class SekchiAdmin(PhiauAModelAdmin):
     list_display = ('id', 'part', '編號', '漢字', '修改時間',)
     ordering = ('id',)
     list_filter = (HoAhBeFilter,)
-    fields = ('音檔檔案', '漢字', '羅馬字含口語調', '對齊', 'part', '編號', '修改時間')
-    readonly_fields = ('音檔檔案', '對齊', 'part', '編號', '修改時間')
+    fields = (
+        ('id', 'part', '編號'),
+        '音檔檔案', '漢字', '羅馬字含口語調', '對齊',
+        ('修改時間', '修改人',),
+    )
+    readonly_fields = ('id', 'part', '編號', '音檔檔案', '對齊', '修改時間', '修改人',)
     search_fields = ('part', '編號', '漢字',)
 
     def 音檔檔案(self, obj):
@@ -49,7 +53,7 @@ class SekchiAdmin(PhiauAModelAdmin):
                 Your browser does not support the audio element.</audio>
                 </div>
                 '''
-        return format_html(音檔html, obj.音檔.url)
+        return format_html(音檔html, obj.音檔所在)
 
     def 對齊(self, obj):
         return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字))
