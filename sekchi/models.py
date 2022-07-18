@@ -34,3 +34,6 @@ class Sekchi(models.Model):
         sin_html = clean_html(self.羅馬字含口語調)
         self.羅馬字含口語調 = str(sin_html)
         self.羅馬字 = get_lomaji(sin_html)
+
+    def __str__(self):
+        return self.漢字
