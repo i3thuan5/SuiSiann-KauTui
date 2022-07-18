@@ -9,11 +9,11 @@ import re
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('path', type=str)
+        parser.add_argument('path', default='/汐止媠聲', type=str)
 
     @transaction.atomic
     def handle(self, *args, **options):
-        path = options['path'][0]
+        path = options['path']
         nikiliman = []
         for file in Path(path).glob('**/*'):
             matched = re.match(r'[Pp]art([0-9])-\(([0-9]{1,4})\)\.wav', file.name)
