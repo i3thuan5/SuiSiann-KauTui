@@ -9,7 +9,7 @@ import re
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('path', nargs=1, type=str)
+        parser.add_argument('path', type=str)
 
     @transaction.atomic
     def handle(self, *args, **options):
