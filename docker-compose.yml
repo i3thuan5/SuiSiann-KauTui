@@ -9,26 +9,30 @@ services:
       - default
       - nginx-bridge
     volumes:
-      - "./liokim:/usr/share/nginx/html/liokim:ro"
+      - "./台灣媠聲:/usr/share/nginx/html/suisiann:ro"
       - "./media:/usr/share/nginx/html/media:ro"
+      - "staticfiles:/usr/share/nginx/html/static:ro"
     environment:
-       - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
-       - LETSENCRYPT_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
-       - LETSENCRYPT_EMAIL="ithuan@ithuan.tw"
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
+      - LETSENCRYPT_EMAIL=ithuan@ithuan.tw
     restart: always
   gunicorn:
     build: .
     volumes:
-      - "./liokim:/djangoAdmin/liokim:ro"
+      - "./台灣媠聲:/台灣媠聲:ro"
+      - "./汐止媠聲:/汐止媠聲:ro"
       - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
+      - "staticfiles:/staticfiles:rw"
     networks:
       default:
         aliases:
           - suisiann-kautui-autuan
     restart: always
     environment:
-      VIRTUAL_HOST: ${VIRTUAL_HOST:-sujiphuat.ithuan.tw}
+      - DJANGO_SETTINGS_MODULE=SuiSiannAdmin.settings-tsiunnsuann
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
   postgres:
     image: postgres:13
     environment:
@@ -63,6 +67,7 @@ services:
 volumes:
   postgres_database:
   kaldis5:
+  staticfiles:
 
 networks:
   nginx-bridge:
