@@ -15,10 +15,10 @@ class Sekchi(models.Model):
         # https://github.com/django/django/blob/
         # 0dd29209091280ccf34e07c9468746c396b7778e/
         # django/forms/fields.py#L1205
-        recursive=False,  
+        recursive=False,
         allow_files=True,
         allow_folders=False,
-        max_length=200,
+        max_length=1000,
     )
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
