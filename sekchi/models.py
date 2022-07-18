@@ -1,11 +1,19 @@
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.db import models
 from phiaua.clean import clean_html, get_lomaji
 
 
 # Create your models here.
 class Sekchi(models.Model):
-    音檔 = models.FileField(blank=True)
+    音檔所在 = models.FilePathField(
+        path=settings.SIKTSI_ROOT,
+        match='.*.wav',
+        recursive=True,
+        allow_files=True,
+        allow_folders=False,
+        max_length=200,
+    )
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)

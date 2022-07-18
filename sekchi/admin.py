@@ -23,6 +23,7 @@ class SekchiAdmin(PhiauAModelAdmin):
     list_display = ('漢字', 'part', '編號', '修改時間')
     fields = ('音檔檔案', '漢字', '羅馬字含口語調', '對齊', 'part', '編號', '修改時間')
     readonly_fields = ('音檔檔案', '對齊', 'part', '編號', '修改時間')
+    search_fields = ('part', '編號',)
 
     def 音檔檔案(self, obj):
         音檔html = '''<div>
