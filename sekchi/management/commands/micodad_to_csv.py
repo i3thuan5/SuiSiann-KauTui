@@ -26,6 +26,8 @@ class Command(BaseCommand):
             which_part[str(n)] = micodad(f'sekchi/csv/part{n}.csv')
 
         for i in Sekchi.objects.all():
+            if i.漢字 != '':
+                continue
             i.漢字 = which_part[i.part][i.編號][0]
             i.來源 = which_part[i.part][i.編號][1]
             i.save()
