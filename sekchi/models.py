@@ -27,6 +27,7 @@ class Sekchi(models.Model):
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
+    來源 = models.CharField(max_length=50)
     part = models.CharField(max_length=5)
     編號 = models.CharField(max_length=10)
     修改時間 = models.DateTimeField(auto_now=True)
