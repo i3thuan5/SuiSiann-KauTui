@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.db import transaction
 from sekchi.models import Sekchi
 import csv
 
@@ -15,6 +16,7 @@ def micodad(path):
 
 class Command(BaseCommand):
 
+    @transaction.atomic
     def handle(self, *args, **options):
         which_part = {}
         for n in range(1, 5):

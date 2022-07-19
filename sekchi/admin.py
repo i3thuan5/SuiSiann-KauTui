@@ -16,13 +16,36 @@ class SekchiForm(forms.ModelForm):
         )
 
 
-# Register your models here.
+class HoAhBeFilter(admin.SimpleListFilter):
+    title = '校對ah袂'
+    parameter_name = 'hoahbe'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('1', 'Ah-bē'),
+            ('2', '好勢'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == '1':
+            return queryset.filter(修改人__isnull=True)
+        if self.value() == '2':
+            return queryset.filter(修改人__isnull=False)
+
+
 @admin.register(Sekchi)
 class SekchiAdmin(PhiauAModelAdmin):
     form = SekchiForm
-    list_display = ('漢字', 'part', '編號', '修改時間')
-    fields = ('音檔檔案', '漢字', '羅馬字含口語調', '對齊', 'part', '編號', '修改時間')
-    readonly_fields = ('音檔檔案', '對齊', 'part', '編號', '修改時間')
+    list_display = ('id', 'part', '編號', '漢字', '修改時間',)
+    ordering = ('id',)
+    list_filter = (HoAhBeFilter,)
+    fields = (
+        ('id', 'part', '編號'),
+        '音檔檔案', '漢字', '羅馬字含口語調', '對齊',
+        ('修改時間', '修改人',),
+    )
+    readonly_fields = ('id', 'part', '編號', '音檔檔案', '對齊', '修改時間', '修改人',)
+    search_fields = ('part', '編號', '漢字',)
 
     def 音檔檔案(self, obj):
         音檔html = '''<div>
@@ -30,7 +53,11 @@ class SekchiAdmin(PhiauAModelAdmin):
                 Your browser does not support the audio element.</audio>
                 </div>
                 '''
-        return format_html(音檔html, obj.音檔.url)
+        return format_html(音檔html, obj.音檔網址())
 
     def 對齊(self, obj):
         return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字))
+
+    def save_model(self, request, obj, form, change):
+        obj.修改人 = request.user
+        super().save_model(request, obj, form, change)

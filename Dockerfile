@@ -2,8 +2,7 @@ FROM python:3.8-bullseye
 
 RUN apt-get update && apt-get install -y sox normalize-audio libsndfile1
 
-RUN mkdir djangoAdmin
-WORKDIR djangoAdmin
+WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r ./requirements.txt
 COPY . .

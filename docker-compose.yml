@@ -10,6 +10,7 @@ services:
       - nginx-bridge
     volumes:
       - "./台灣媠聲:/usr/share/nginx/html/suisiann:ro"
+      - "./汐止媠聲:/usr/share/nginx/html/siktsi:ro"
       - "./media:/usr/share/nginx/html/media:ro"
       - "staticfiles:/usr/share/nginx/html/static:ro"
     environment:
@@ -20,8 +21,8 @@ services:
   gunicorn:
     build: .
     volumes:
-      - "./台灣媠聲:/台灣媠聲:ro"
-      - "./汐止媠聲:/汐止媠聲:ro"
+      - "./台灣媠聲:/app/台灣媠聲:ro"
+      - "./汐止媠聲:/app/汐止媠聲:ro"
       - "./media:/djangoAdmin/media"
       - "./hue:/djangoAdmin/hue"
       - "staticfiles:/staticfiles:rw"
