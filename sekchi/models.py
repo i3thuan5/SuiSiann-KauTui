@@ -6,11 +6,15 @@ from os.path import relpath
 from urllib.parse import urljoin
 
 
+def siktsi_path():
+    return settings.SIKTSI_ROOT
+
+
 class Sekchi(models.Model):
     音檔所在 = models.FilePathField(
         match='.*.wav',
         unique=True,
-        path=settings.SIKTSI_ROOT,
+        path=siktsi_path,
         # recursive是Form選擇時用--ê
         # https://github.com/django/django/blob/
         # 0dd29209091280ccf34e07c9468746c396b7778e/
