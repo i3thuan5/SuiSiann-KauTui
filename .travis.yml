@@ -1,4 +1,4 @@
-sudo: true
+os: linux
 dist: focal
 language: python
 python:
@@ -7,7 +7,7 @@ branches:
  only:
    - master
 env:
-  matrix:
+  jobs:
   - TOX_ENV=test
   - TOX_ENV=checkmigrations
   - TOX_ENV=behave
