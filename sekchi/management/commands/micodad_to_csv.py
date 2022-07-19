@@ -7,10 +7,13 @@ import csv
 def micodad(path):
     with open(path, mode='r') as f:
         reader = csv.DictReader(f)
-
+        ayaw = None
         part_dict = {}
         for row in reader:
+            if row['來源'] == '':
+               row['來源'] = ayaw
             part_dict[row['編號']] = (row['漢字'], row['來源'])
+            ayaw = row['來源']
         return part_dict
 
 
