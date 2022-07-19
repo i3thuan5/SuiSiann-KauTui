@@ -40,7 +40,6 @@ class 匯入csv來源試驗(TestCase):
         call_command('micodad_to_csv')
         self.assertEqual(Sekchi.objects.get().來源, '三連音')
 
-
     def test_漢字(self):
         Sekchi.objects.create(
             音檔所在='音檔檔名.wav',
@@ -49,7 +48,6 @@ class 匯入csv來源試驗(TestCase):
         )
         call_command('micodad_to_csv')
         self.assertEqual(Sekchi.objects.get().漢字, '熱人的荔枝甜甜甜，')
-
 
     def test_已校對的不能更改(self):
         Sekchi.objects.create(
