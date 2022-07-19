@@ -10,7 +10,7 @@ def micodad(path):
 
         part_dict = {}
         for row in reader:
-            part_dict[row['編號']] = row['漢字'], row['來源']
+            part_dict[row['編號']] = row['漢字']
         return part_dict
 
 
@@ -23,5 +23,5 @@ class Command(BaseCommand):
             which_part[str(n)] = micodad(f'sekchi/csv/part{n}.csv')
 
         for i in Sekchi.objects.all():
-            i.漢字, i.來源 = which_part[i.part][i.編號]
+            i.漢字 = which_part[i.part][i.編號]
             i.save()
