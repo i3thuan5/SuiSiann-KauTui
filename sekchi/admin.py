@@ -38,7 +38,7 @@ class SekchiAdmin(PhiauAModelAdmin):
     form = SekchiForm
     list_display = ('id', 'part', '編號', '漢字', '備註', '修改時間',)
     ordering = ('id',)
-    list_filter = (HoAhBeFilter,)
+    list_filter = (HoAhBeFilter, '校對狀況',)
     fields = (
         ('id', 'part', '編號'),
         '音檔檔案', '漢字', '羅馬字含口語調', '對齊', '校對狀況', '備註',
@@ -46,7 +46,6 @@ class SekchiAdmin(PhiauAModelAdmin):
     )
     readonly_fields = ('id', 'part', '編號', '音檔檔案', '對齊', '修改時間', '修改人',)
     search_fields = ('part', '編號', '漢字',)
-    list_filter = ['校對狀況', ]
     autocomplete_fields = ['校對狀況', ]
 
     def 音檔檔案(self, obj):
