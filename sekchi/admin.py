@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from sekchi.models import Sekchi
+from sekchi.models import Sekchi, Tsònghóng
 from django.utils.html import format_html
 from tuitse import kiamtsa
 from tuitse.html import tuitse_html
@@ -41,11 +41,13 @@ class SekchiAdmin(PhiauAModelAdmin):
     list_filter = (HoAhBeFilter,)
     fields = (
         ('id', 'part', '編號'),
-        '音檔檔案', '漢字', '羅馬字含口語調', '對齊', '備註',
+        '音檔檔案', '漢字', '羅馬字含口語調', '對齊', '校對狀況', '備註',
         ('修改時間', '修改人',),
     )
     readonly_fields = ('id', 'part', '編號', '音檔檔案', '對齊', '修改時間', '修改人',)
     search_fields = ('part', '編號', '漢字',)
+    list_filter = ['校對狀況', ]
+    autocomplete_fields = ['校對狀況', ]
 
     def 音檔檔案(self, obj):
         音檔html = '''<div>
@@ -61,3 +63,9 @@ class SekchiAdmin(PhiauAModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.修改人 = request.user
         super().save_model(request, obj, form, change)
+
+@admin.register(Tsònghóng)
+class TsònghóngAdmin(admin.ModelAdmin):
+    search_fields = ['id', 'miâ']
+
+
