@@ -41,7 +41,7 @@ class SekchiAdmin(PhiauAModelAdmin):
     list_filter = (HoAhBeFilter,)
     fields = (
         ('id', 'part', '編號'),
-        '音檔檔案', '漢字', '羅馬字含口語調', '對齊',
+        '音檔檔案', '漢字', '羅馬字含口語調', '對齊', '備註',
         ('修改時間', '修改人',),
     )
     readonly_fields = ('id', 'part', '編號', '音檔檔案', '對齊', '修改時間', '修改人',)

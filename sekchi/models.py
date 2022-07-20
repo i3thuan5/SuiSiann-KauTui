@@ -35,6 +35,7 @@ class Sekchi(models.Model):
         User, editable=False, null=True,
         on_delete=models.PROTECT,
     )
+    備註 = models.TextField(blank=True)
 
     class Meta:
         verbose_name = "汐止腔語料"
