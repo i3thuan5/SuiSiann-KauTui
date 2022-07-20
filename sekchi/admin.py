@@ -36,7 +36,7 @@ class HoAhBeFilter(admin.SimpleListFilter):
 @admin.register(Sekchi)
 class SekchiAdmin(PhiauAModelAdmin):
     form = SekchiForm
-    list_display = ('id', 'part', '編號', '漢字', '修改時間',)
+    list_display = ('id', 'part', '編號', '漢字', '備註', '修改時間',)
     ordering = ('id',)
     list_filter = (HoAhBeFilter,)
     fields = (
