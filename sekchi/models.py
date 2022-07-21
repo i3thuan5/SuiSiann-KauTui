@@ -36,6 +36,7 @@ class Sekchi(models.Model):
         on_delete=models.PROTECT,
     )
     備註 = models.TextField(blank=True)
+    校對狀況 = models.ManyToManyField('Tsònghóng', blank=True)
 
     class Meta:
         verbose_name = "汐止腔語料"
@@ -54,3 +55,14 @@ class Sekchi(models.Model):
 
     def __str__(self):
         return self.漢字
+
+
+class Tsònghóng(models.Model):
+    miâ = models.CharField(unique=True, max_length=50)
+
+    def __str__(self):
+        return '{} {}'.format(self.id, self.miâ)
+
+    class Meta:
+        verbose_name = "Tsònghóng"
+        verbose_name_plural = verbose_name
