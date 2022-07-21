@@ -34,6 +34,7 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=SuiSiannAdmin.settings-tsiunnsuann
       - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
+      - SECRET_KEY=${SECRET_KEY}
   postgres:
     image: postgres:13
     environment:
