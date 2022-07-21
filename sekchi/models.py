@@ -56,6 +56,7 @@ class Sekchi(models.Model):
     def __str__(self):
         return self.漢字
 
+
 class Tsònghóng(models.Model):
     miâ = models.CharField(unique=True, max_length=50)
 

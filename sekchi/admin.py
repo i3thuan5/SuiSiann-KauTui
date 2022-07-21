@@ -63,8 +63,7 @@ class SekchiAdmin(PhiauAModelAdmin):
         obj.修改人 = request.user
         super().save_model(request, obj, form, change)
 
+
 @admin.register(Tsònghóng)
 class TsònghóngAdmin(admin.ModelAdmin):
     search_fields = ['id', 'miâ']
-
-
