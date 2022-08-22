@@ -59,6 +59,9 @@ Scenario Outline: Kiám html
     | hanji | lomaji | tshogoo |
     | 彼號 | <p><span class="lui-1">Hi</span>t-l<span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
 
+    Examples: 規个字無標，顯示標記錯誤
+    | hanji | lomaji | tshogoo |
+    | 的開始。 | <p><span class="lui-8">ê</span> khai-<span class="lui-2">sí</span>.</p> | khai 標記錯誤 |
 
 Scenario Outline: Kiám html hó-sè.
     When 有一句 <hanji> <lomaji>
@@ -67,7 +70,7 @@ Scenario Outline: Kiám html hó-sè.
     Examples: 標記正確
     | hanji | lomaji |
     | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
-
+    | 真重要 | <p><span class="lui-1">tsin</span>\xa0<span class="lui-1">tiōng</span>-<span class="lui-2">iàu</span></p> |
 
 Scenario Outline: Html tsuán-tsò Tâi-bûn
     When 輸入 <sujip>
