@@ -5,6 +5,8 @@ from phiaua.clean import clean_html, get_lomaji
 from os.path import relpath
 from urllib.parse import urljoin
 
+from tuitse import kiamtsa
+
 
 def siktsi_path():
     return settings.SIKTSI_ROOT
@@ -37,6 +39,7 @@ class Sekchi(models.Model):
     )
     備註 = models.TextField(blank=True)
     校對狀況 = models.ManyToManyField('Tsònghóng', blank=True)
+    對齊狀態 = models.BooleanField()
 
     class Meta:
         verbose_name = "汐止腔語料"
@@ -52,6 +55,11 @@ class Sekchi(models.Model):
         sin_html = clean_html(self.羅馬字含口語調)
         self.羅馬字含口語調 = str(sin_html)
         self.羅馬字 = get_lomaji(sin_html)
+
+    def save(self, *args, **kwargs):
+        kiatko = kiamtsa(self.漢字, self.羅馬字)
+        self.對齊狀態 = all(map(lambda x: x[3], kiatko))
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.漢字
