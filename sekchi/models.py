@@ -1,11 +1,13 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
-from phiaua.clean import clean_html, get_lomaji
+from tuitse import kiamtsa
+
 from os.path import relpath
 from urllib.parse import urljoin
 
-from tuitse import kiamtsa
+from phiaua.clean import clean_html, get_lomaji
+from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 
 def siktsi_path():
@@ -40,6 +42,7 @@ class Sekchi(models.Model):
     備註 = models.TextField(blank=True)
     校對狀況 = models.ManyToManyField('Tsònghóng', blank=True)
     對齊狀態 = models.BooleanField()
+    口語調狀態 = models.TextField(editable=False)
 
     class Meta:
         verbose_name = "汐止腔語料"
@@ -55,6 +58,7 @@ class Sekchi(models.Model):
         sin_html = clean_html(self.羅馬字含口語調)
         self.羅馬字含口語調 = str(sin_html)
         self.羅馬字 = get_lomaji(sin_html)
+        self.口語調狀態 = 檢查對齊狀態(self.漢字, self.羅馬字, sin_html)
 
     def save(self, *args, **kwargs):
         kiatko = kiamtsa(self.漢字, self.羅馬字)
