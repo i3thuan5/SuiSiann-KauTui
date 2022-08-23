@@ -3,9 +3,13 @@ Feature: 口語調標記
     2. 空白、連字符、輕聲符mài標
 
 
+Background: 資料庫內底已經有一筆錄音
+    Given 資料庫內底有一筆錄音，準備beh校對
+
+
 Scenario Outline: Tshiâu html
-    When 輸入 <sujip>
-    Then khiām做 <kiatko>
+    When 輸入口語調 <sujip>
+    Then 口語調khiām做 <kiatko>
 
     Examples: 詞kah詞中央ê空白
     | sujip | kiatko |
@@ -48,7 +52,7 @@ Scenario Outline: Tshiâu html
 
 
 Scenario Outline: Kiám html
-    When 有一句 <hanji> <lomaji>
+    When 漢字是 <hanji> ，口語調是 <lomaji>
     Then 顯示錯誤 <tshogoo>
 
     Examples: 一个字拆做兩个標仔，顯示標記錯誤
@@ -59,18 +63,24 @@ Scenario Outline: Kiám html
     | hanji | lomaji | tshogoo |
     | 彼號 | <p><span class="lui-1">Hi</span>t-l<span class="lui-3">ō</span></p> | Hit、lō 標記錯誤 |
 
+    Examples: 規个字無標，顯示標記錯誤
+    | hanji | lomaji | tshogoo |
+    | 的開始。 | <p><span class="lui-8">ê</span> khai-<span class="lui-2">sí</span>.</p> | khai 標記錯誤 |
 
 Scenario Outline: Kiám html hó-sè.
-    When 有一句 <hanji> <lomaji>
+    When 漢字是 <hanji> ，口語調是 <lomaji>
     Then 無顯示錯誤
 
     Examples: 標記正確
     | hanji | lomaji |
     | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
 
+    Examples: 標記正確，有nbsp
+    | hanji | lomaji |
+    | 真重要 | <p><span class="lui-1">tsin</span> <span class="lui-1">tiōng</span>-<span class="lui-2">iàu</span></p> |
 
 Scenario Outline: Html tsuán-tsò Tâi-bûn
-    When 輸入 <sujip>
+    When 輸入口語調 <sujip>
     Then 純文字羅馬字khiām做 <lomaji>
 
     Examples: 輸入ê <p> tī純文字mā ài保留
