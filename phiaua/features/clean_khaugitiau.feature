@@ -73,7 +73,10 @@ Scenario Outline: Kiám html hó-sè.
     Examples: 標記正確
     | hanji | lomaji |
     | 彼號 | <p><span class="lui-1">Hit</span>-<span class="lui-3">lō</span></p> |
-    | 真重要 | <p><span class="lui-1">tsin</span>\xa0<span class="lui-1">tiōng</span>-<span class="lui-2">iàu</span></p> |
+
+    Examples: 標記正確，有nbsp
+    | hanji | lomaji |
+    | 真重要 | <p><span class="lui-1">tsin</span> <span class="lui-1">tiōng</span>-<span class="lui-2">iàu</span></p> |
 
 Scenario Outline: Html tsuán-tsò Tâi-bûn
    Given 有一句錄音
