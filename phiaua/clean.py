@@ -1,5 +1,6 @@
 from kesi.butkian.kongiong import si_lomaji
 from bs4 import BeautifulSoup
+from phiaua.models import Luī
 
 
 def clean_html(羅馬字含口語調):
@@ -41,6 +42,19 @@ def clean_html(羅馬字含口語調):
         sin_html.append(sin_html_p)
 
     return sin_html
+
+
+def piann_haikhau_piantiau(羅馬字含口語調):
+    html = BeautifulSoup(羅馬字含口語調, 'html.parser')
+    # 猶未標口語調ê純文字
+    if not html.p:
+        return html
+    海口腔變調 = Luī.objects.get(miâ='海口腔變調（5=>3）')
+    規則變調 = Luī.objects.get(miâ='規則變調')
+    for p in html.find_all('p'):
+        for span in p.find_all('span', class_=f'lui-{海口腔變調.id}'):
+            span['class'] = f'lui-{規則變調.id}'
+    return html
 
 
 def get_lomaji(khaugitiau_tshiua):
