@@ -33,12 +33,29 @@ class HoAhBeFilter(admin.SimpleListFilter):
             return queryset.filter(修改人__isnull=False)
 
 
+class KhaugitiauFilter(admin.SimpleListFilter):
+    title = '口語調標記檢查'
+    parameter_name = 'hoahbe'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('1', '正確'),
+            ('2', '錯誤'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == '1':
+            return queryset.filter(口語調狀態='')
+        if self.value() == '2':
+            return queryset.exclude(口語調狀態='')
+
+
 @admin.register(Sekchi)
 class SekchiAdmin(PhiauAModelAdmin):
     form = SekchiForm
-    list_display = ('id', 'part', '編號', '漢字', '備註', '對齊狀態', '口語調狀態', '修改時間',)
+    list_display = ('id', 'part', '編號', '漢字', '備註', '對齊狀態', '口語調標記正確', '修改時間',)
     ordering = ('id',)
-    list_filter = ('對齊狀態', HoAhBeFilter, '校對狀況',)
+    list_filter = ('對齊狀態', KhaugitiauFilter, HoAhBeFilter, '校對狀況',)
     fields = (
         ('id', 'part', '編號'),
         '音檔檔案', '漢字', '羅馬字含口語調', '對齊', '口語調狀態', '校對狀況', '備註',
@@ -62,6 +79,10 @@ class SekchiAdmin(PhiauAModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.修改人 = request.user
         super().save_model(request, obj, form, change)
+
+    @admin.display(boolean=True)
+    def 口語調標記正確(self, obj):
+        return obj.口語調狀態 == ''
 
 
 @admin.register(Tsònghóng)
