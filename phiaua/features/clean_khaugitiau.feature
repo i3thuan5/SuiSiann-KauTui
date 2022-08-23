@@ -3,8 +3,11 @@ Feature: 口語調標記
     2. 空白、連字符、輕聲符mài標
 
 
+Background: 資料庫內底已經有一筆錄音
+    Given 資料庫內底有一筆錄音，準備beh校對
+
+
 Scenario Outline: Tshiâu html
-   Given 有一句錄音
     When 輸入口語調 <sujip>
     Then 口語調khiām做 <kiatko>
 
@@ -49,7 +52,6 @@ Scenario Outline: Tshiâu html
 
 
 Scenario Outline: Kiám html
-   Given 有一句錄音
     When 漢字是 <hanji> ，口語調是 <lomaji>
     Then 顯示錯誤 <tshogoo>
 
@@ -66,7 +68,6 @@ Scenario Outline: Kiám html
     | 的開始。 | <p><span class="lui-8">ê</span> khai-<span class="lui-2">sí</span>.</p> | khai 標記錯誤 |
 
 Scenario Outline: Kiám html hó-sè.
-   Given 有一句錄音
     When 漢字是 <hanji> ，口語調是 <lomaji>
     Then 無顯示錯誤
 
@@ -79,7 +80,6 @@ Scenario Outline: Kiám html hó-sè.
     | 真重要 | <p><span class="lui-1">tsin</span> <span class="lui-1">tiōng</span>-<span class="lui-2">iàu</span></p> |
 
 Scenario Outline: Html tsuán-tsò Tâi-bûn
-   Given 有一句錄音
     When 輸入口語調 <sujip>
     Then 純文字羅馬字khiām做 <lomaji>
 

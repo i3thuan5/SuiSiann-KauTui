@@ -4,7 +4,7 @@ from behave import given, when, then
 from SuiSiannAdminApp.models import 文章表, 句表
 
 
-@given(u'有一句錄音')
+@given(u'資料庫內底有一筆錄音，準備beh校對')
 def 有一句錄音(context):
     bun = 文章表.objects.create(文章名='試驗用')
     context.ku = 句表.objects.create(來源=bun)
