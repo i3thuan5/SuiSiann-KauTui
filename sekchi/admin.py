@@ -35,7 +35,7 @@ class HoAhBeFilter(admin.SimpleListFilter):
 
 class KhaugitiauFilter(admin.SimpleListFilter):
     title = '口語調標記檢查'
-    parameter_name = 'hoahbe'
+    parameter_name = 'khaugitiau'
 
     def lookups(self, request, model_admin):
         return (
