@@ -90,3 +90,4 @@ Scenario Outline: Html tsuán-tsò Tâi-bûn
     Examples: 純文字mā正常
     | sujip     | lomaji    |
     | Hit-lō... | Hit-lō... |
+    | Hi | Hi |

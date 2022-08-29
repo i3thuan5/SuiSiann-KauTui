@@ -55,10 +55,9 @@ class Sekchi(models.Model):
         )
 
     def clean(self):
-        sin_html = clean_html(self.羅馬字含口語調)
-        self.羅馬字含口語調 = str(sin_html)
-        self.羅馬字 = get_lomaji(sin_html)
-        self.口語調狀態 = 檢查對齊狀態(self.漢字, self.羅馬字, sin_html)
+        self.羅馬字含口語調 = clean_html(self.羅馬字含口語調)
+        self.羅馬字 = get_lomaji(self.羅馬字含口語調)
+        self.口語調狀態 = 檢查對齊狀態(self.漢字, self.羅馬字, self.羅馬字含口語調)
 
     def save(self, *args, **kwargs):
         kiatko = kiamtsa(self.漢字, self.羅馬字)

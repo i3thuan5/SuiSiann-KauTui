@@ -8,7 +8,7 @@ def clean_html(羅馬字含口語調):
     sin_html = BeautifulSoup('', 'html.parser')
     # 猶未標口語調ê純文字
     if not ku_html.p:
-        return ku_html
+        return 羅馬字含口語調
 
     for ku_html_p in ku_html.find_all('p'):
         sin_html_p = sin_html.new_tag('p')
@@ -41,24 +41,29 @@ def clean_html(羅馬字含口語調):
                     sin_html_p.append(sin_tag)
         sin_html.append(sin_html_p)
 
-    return sin_html
+    return str(sin_html)
 
 
 def piann_haikhau_piantiau(羅馬字含口語調):
     html = BeautifulSoup(羅馬字含口語調, 'html.parser')
     # 猶未標口語調ê純文字
     if not html.p:
-        return html
+        return 羅馬字含口語調
     海口腔變調 = Luī.objects.get(miâ='海口腔變調（5=>3）')
     規則變調 = Luī.objects.get(miâ='規則變調')
     for p in html.find_all('p'):
         for span in p.find_all('span', class_=f'lui-{海口腔變調.id}'):
             span['class'] = f'lui-{規則變調.id}'
-    return html
+    return str(html)
 
 
-def get_lomaji(khaugitiau_tshiua):
-    tshue = khaugitiau_tshiua.find_all('p')
+def get_lomaji(羅馬字含口語調):
+    html = BeautifulSoup(羅馬字含口語調, 'html.parser')
+    if not html.p:
+        return 羅馬字含口語調
+
+    tshue = html.find_all('p')
+
     if tshue:
         return '\n'.join(map(lambda x: x.get_text(), tshue))
-    return khaugitiau_tshiua.get_text()
+    return html.get_text()
