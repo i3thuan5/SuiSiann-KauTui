@@ -2,6 +2,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 from 用字.models import 用字表
 from kesi.butkian.kongiong import si_lomaji
+from bs4 import BeautifulSoup
 
 
 def 檢查對齊狀態(hanji, lomaji, khaugitiau=''):
@@ -20,14 +21,15 @@ def 檢查對齊狀態(hanji, lomaji, khaugitiau=''):
     if 毋著的字:
         return str(毋著的字)
 
+    html = BeautifulSoup(khaugitiau, 'html.parser')
     # 猶未標口語調ê純文字
-    if not getattr(khaugitiau, 'p', None):
+    if not getattr(html, 'p', None):
         return ''
     tshogoo = []
     ting1e_si_span = False
     ting1e_text = ''
     tshogoo_ji = ''
-    for phiau_tag in khaugitiau.p.contents:
+    for phiau_tag in html.p.contents:
         tsite_si_span = phiau_tag.name == 'span'
         if ting1e_si_span and tsite_si_span:
             tshogoo_ji += ting1e_text

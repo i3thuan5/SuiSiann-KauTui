@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
         # if we directly import it, it'll be the wrong version
         Sekchi = apps.get_model("sekchi", "Sekchi")
         for obj in Sekchi.objects.all():
-            obj.羅馬字含口語調 = str(piann_haikhau_piantiau(obj.羅馬字含口語調))
+            obj.羅馬字含口語調 = piann_haikhau_piantiau(obj.羅馬字含口語調)
             obj.save()
 
     dependencies = [
