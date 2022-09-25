@@ -49,7 +49,7 @@ htsengine==0.2.4
     # via tai5-uan5-gian5-gi2-kang1-ku7
 idna==3.3
     # via requests
-joblib==1.1.0
+joblib==1.2.0
     # via
     #   librosa
     #   scikit-learn
