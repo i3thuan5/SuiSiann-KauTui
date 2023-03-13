@@ -37,6 +37,8 @@ services:
       - SECRET_KEY=${SECRET_KEY}
   postgres:
     image: postgres:13
+    labels:
+      - backup.postgres=true
     environment:
       POSTGRES_PASSWORD: ithuan
     volumes:
