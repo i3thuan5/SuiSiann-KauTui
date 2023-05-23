@@ -55,9 +55,7 @@ class Sekchi(models.Model):
         verbose_name_plural = verbose_name
 
     def 音檔網址(self):
-        return KuStorage().url(
-            relpath(self.音檔所在, settings.SIKTSI_ROOT),
-        )
+        return self.S3音檔.url
 
     def clean(self):
         self.羅馬字含口語調 = clean_html(self.羅馬字含口語調)
