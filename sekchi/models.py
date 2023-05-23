@@ -41,7 +41,7 @@ class Sekchi(models.Model):
     來源 = models.CharField(max_length=50, db_index=True)
     part = models.CharField(max_length=5, db_index=True)
     編號 = models.CharField(max_length=10, db_index=True)
-    修改時間 = models.DateTimeField(auto_now=True)
+    修改時間 = models.DateTimeField(editable=False)
     修改人 = models.ForeignKey(
         User, editable=False, null=True,
         on_delete=models.PROTECT,
