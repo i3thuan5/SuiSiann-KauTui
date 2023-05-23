@@ -5,6 +5,7 @@ from tuitse import kiamtsa
 
 from os.path import relpath
 from urllib.parse import urljoin
+from storages.backends.s3boto3 import S3Boto3Storage
 
 from phiaua.clean import clean_html, get_lomaji
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
@@ -12,6 +13,11 @@ from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 def siktsi_path():
     return settings.SIKTSI_ROOT
+
+
+class KuStorage(S3Boto3Storage):
+    bucket_name = 'suisiann-kautui'
+    location = '汐止媠聲'
 
 
 class Sekchi(models.Model):
@@ -28,6 +34,7 @@ class Sekchi(models.Model):
         allow_folders=False,
         max_length=1000,
     )
+    S3音檔 = models.FileField(storage=KuStorage(), editable=False)
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
@@ -49,8 +56,7 @@ class Sekchi(models.Model):
         verbose_name_plural = verbose_name
 
     def 音檔網址(self):
-        return urljoin(
-            settings.SIKTSI_URL,
+        return KuStorage().url(
             relpath(self.音檔所在, settings.SIKTSI_ROOT),
         )
 
