@@ -1,4 +1,5 @@
 from os.path import join
+from storages.backends.s3boto3 import S3Boto3Storage
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -27,12 +28,17 @@ class 文章表(models.Model):
         verbose_name_plural = verbose_name
 
 
+class KuStorage(S3Boto3Storage):
+    bucket_name = 'suisiann-kautui'
+    location = '台灣媠聲'
+
+
 class 句表(models.Model):
     來源 = models.ForeignKey(
         文章表, editable=False,
         related_name='句', on_delete=models.PROTECT
     )
-    音檔 = models.FileField(editable=False)
+    音檔 = models.FileField(storage=KuStorage(), editable=False)
     原始漢字 = models.TextField(editable=False)
     原始羅馬字 = models.TextField(editable=False)
     漢字 = models.TextField()

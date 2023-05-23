@@ -31,6 +31,7 @@ services:
       DJANGO_SETTINGS_MODULE: SuiSiannAdmin.settings-tsiunnsuann
       HOKBU_DOMAIN_NAME: ${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
       SECRET_KEY: ${SECRET_KEY}
+      SENTRY_DSN: ${SENTRY_DSN}
   postgres:
     image: postgres:15
     labels:

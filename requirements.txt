@@ -27,7 +27,9 @@ botocore==1.29.138
     #   boto3
     #   s3transfer
 certifi==2022.12.7
-    # via requests
+    # via
+    #   requests
+    #   sentry-sdk
 cffi==1.15.1
     # via soundfile
 charset-normalizer==2.1.1
@@ -134,6 +136,8 @@ scipy==1.10.0
     # via
     #   librosa
     #   scikit-learn
+sentry-sdk==1.23.1
+    # via -r requirements.in
 six==1.16.0
     # via
     #   behave
@@ -158,6 +162,7 @@ urllib3==1.26.13
     # via
     #   botocore
     #   requests
+    #   sentry-sdk
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
