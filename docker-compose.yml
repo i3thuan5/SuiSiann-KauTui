@@ -36,7 +36,7 @@ services:
       - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
       - SECRET_KEY=${SECRET_KEY}
   postgres:
-    image: postgres:13
+    image: postgres:15
     labels:
       - backup.postgres=true
     environment:
