@@ -28,3 +28,6 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+AWS_S3_USE_SSL = True
+AWS_S3_SIGNATURE_VERSION = 's3v4'

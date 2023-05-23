@@ -6,7 +6,7 @@ from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 
 class KuPanStorage(S3Boto3Storage):
-    bucket_name = 'bucketpiensiid12ngien'
+    bucket_name = 'suisiann-kautui'
     location = 'Kù-pān'
 
 
