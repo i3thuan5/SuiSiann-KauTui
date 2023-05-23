@@ -6,6 +6,7 @@ python:
 branches:
  only:
    - master
+   - CD
 env:
   jobs:
   - TOX_ENV=test
