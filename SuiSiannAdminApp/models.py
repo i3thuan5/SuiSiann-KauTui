@@ -38,7 +38,8 @@ class 句表(models.Model):
         文章表, editable=False,
         related_name='句', on_delete=models.PROTECT
     )
-    音檔 = models.FileField(storage=KuStorage(), editable=False)
+    音檔 = models.FileField(editable=False)
+    S3音檔 = models.FileField(storage=KuStorage(), editable=False)
     原始漢字 = models.TextField(editable=False)
     原始羅馬字 = models.TextField(editable=False)
     漢字 = models.TextField()
