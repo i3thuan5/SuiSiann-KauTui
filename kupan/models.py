@@ -1,11 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phiaua.clean import clean_html, get_lomaji
+from storages.backends.s3boto3 import S3Boto3Storage
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 
+class KuPanStorage(S3Boto3Storage):
+    bucket_name = 'bucketpiensiid12ngien'
+    location = 'Kù-pān'
+
+
 class Lē(models.Model):
-    音檔 = models.FileField(blank=True)
+    音檔 = models.FileField(storage=KuPanStorage(), blank=True)
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)

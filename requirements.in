@@ -16,6 +16,9 @@ librosa
 numpy<1.23
 jsonfield
 
+django-storages
+boto3
+
 gunicorn
 psycopg2-binary
 
