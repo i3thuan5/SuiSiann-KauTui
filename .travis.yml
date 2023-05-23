@@ -18,3 +18,32 @@ install:
 - pip install tox
 script:
 - tox -e $TOX_ENV
+jobs:
+  include:
+    - stage: deploy
+      name: deploy
+      if: (type = push or type = cron) and (branch = master or branch = CD)
+      install:
+        - pip install ansible
+      before_script:
+        - mkdir -p "${HOME}/.ssh/"
+        - TRAVIS_TSUKI_SSH_KEY_PATH="${HOME}/.ssh/id_ed25519_travis"
+        - echo "${DEPLOY_HOST} ssh-ed25519 ${DEPLOY_HOST_SSH_PUBLICKEY}" >> ${HOME}/.ssh/known_hosts
+        - echo "${DEPLOY_HOST_USER_SSH_KEY}" | base64 --decode > "${TRAVIS_TSUKI_SSH_KEY_PATH}"
+        # Recreate the certificate from the secure environment variable
+        - chmod 400 "${TRAVIS_TSUKI_SSH_KEY_PATH}"
+      script:
+        - '
+          ansible-playbook -i deploy/inventory_travis deploy/deploy.yaml
+            --extra-vars "tsuanan_repo=`basename ${TRAVIS_REPO_SLUG}`"
+            --extra-vars "branch=${TRAVIS_BRANCH}"
+            --extra-vars "DEPLOY_HOST=${DEPLOY_HOST}"
+            --extra-vars "DEPLOY_HOST_USER=${DEPLOY_HOST_USER}"
+            --extra-vars "TRAVIS_TSUKI_SSH_KEY_PATH=${TRAVIS_TSUKI_SSH_KEY_PATH}"
+            --extra-vars "VIRTUAL_HOST=${VIRTUAL_HOST}"
+            --extra-vars "SECRET_KEY=${SECRET_KEY}"
+            --extra-vars "AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}"
+            --extra-vars "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            --extra-vars "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            # --extra-vars 其他 .env.template 變數
+          '
