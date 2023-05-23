@@ -4,7 +4,6 @@ from django.db import models
 from tuitse import kiamtsa
 
 from os.path import relpath
-from urllib.parse import urljoin
 from storages.backends.s3boto3 import S3Boto3Storage
 
 from phiaua.clean import clean_html, get_lomaji
