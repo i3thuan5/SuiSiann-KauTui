@@ -32,9 +32,12 @@ services:
           - suisiann-kautui-autuan
     restart: always
     environment:
-      - DJANGO_SETTINGS_MODULE=SuiSiannAdmin.settings-tsiunnsuann
-      - VIRTUAL_HOST=${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
-      - SECRET_KEY=${SECRET_KEY}
+      AWS_S3_ENDPOINT_URL: ${AWS_S3_ENDPOINT_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      DJANGO_SETTINGS_MODULE: SuiSiannAdmin.settings-tsiunnsuann
+      HOKBU_DOMAIN_NAME: ${VIRTUAL_HOST:-suisiann-kautui.ithuan.tw}
+      SECRET_KEY: ${SECRET_KEY}
   postgres:
     image: postgres:15
     labels:

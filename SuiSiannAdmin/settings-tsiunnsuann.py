@@ -1,7 +1,7 @@
 import os
 from .settings import *  # noqa
 
-VIRTUAL_HOST = os.getenv('VIRTUAL_HOST')
+VIRTUAL_HOST = os.getenv('HOKBU_DOMAIN_NAME')
 
 ALLOWED_HOSTS = [
     # For deploy
