@@ -34,7 +34,7 @@ class Sekchi(models.Model):
         allow_folders=False,
         max_length=1000,
     )
-    S3音檔 = models.FileField(storage=KuStorage(), editable=False)
+    S3音檔 = models.FileField(storage=KuStorage(), editable=False, null=True)
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
