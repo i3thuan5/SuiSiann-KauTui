@@ -77,6 +77,7 @@ class SekchiAdmin(PhiauAModelAdmin):
         return tuitse_html(kiamtsa(obj.漢字, obj.羅馬字))
 
     def save_model(self, request, obj, form, change):
+        obj.修改時間 = now()
         obj.修改人 = request.user
         super().save_model(request, obj, form, change)
 
