@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib import admin
-from sekchi.models import Sekchi, Tsònghóng
 from django.utils.html import format_html
+from django.utils.timezone import now
 from tuitse import kiamtsa
 from tuitse.html import tuitse_html
+from sekchi.models import Sekchi, Tsònghóng
 from phiaua.admin.options import PhiauAModelAdmin
 
 

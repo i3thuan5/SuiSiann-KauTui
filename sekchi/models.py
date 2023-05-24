@@ -2,8 +2,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from tuitse import kiamtsa
-
-from os.path import relpath
 from storages.backends.s3boto3 import S3Boto3Storage
 
 from phiaua.clean import clean_html, get_lomaji
