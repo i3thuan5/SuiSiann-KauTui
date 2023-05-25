@@ -43,6 +43,7 @@ jobs:
             --extra-vars "TRAVIS_TSUKI_SSH_KEY_PATH=${TRAVIS_TSUKI_SSH_KEY_PATH}"
             --extra-vars "VIRTUAL_HOST=${VIRTUAL_HOST}"
             --extra-vars "SECRET_KEY=${SECRET_KEY}"
+            --extra-vars "SENTRY_DSN=${SENTRY_DSN}"
             --extra-vars "AWS_S3_ENDPOINT_URL=${AWS_S3_ENDPOINT_URL}"
             --extra-vars "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
             --extra-vars "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
