@@ -82,6 +82,7 @@ class 匯出Dataset試驗(TestCase):
         ku = 句表.objects.create(
             來源=文章,
             音檔=basename(imtong),
+            S3音檔=basename(imtong),
             原始漢字=han,
             原始羅馬字=khaugi,
             漢字=han,

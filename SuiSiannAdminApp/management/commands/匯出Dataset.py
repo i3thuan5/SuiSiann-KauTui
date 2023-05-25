@@ -1,6 +1,8 @@
 from csv import DictWriter
 from os import makedirs
 from os.path import join
+from tempfile import TemporaryDirectory
+from urllib.request import urlopen
 import json
 
 from django.core.management.base import BaseCommand
@@ -76,47 +78,51 @@ class Command(BaseCommand):
                 except 解析錯誤 as tshongoo:
                     print(tshongoo)
                     continue
-                原始音檔 = 句.音檔檔案
-                ku_tngte = get_duration(filename=原始音檔)
-                bio += ku_tngte
-                lts += ku_tngte
-                su_soo += len(句物件.網出詞物件())
-                ji_soo += len(句物件.篩出字物件())
+                with TemporaryDirectory() as phooa:
+                    mia = join(phooa, 'imtong.wav')
+                    with open(mia, 'wb') as tsaite:
+                        with urlopen(句.S3音檔.url) as f:
+                            tsaite.write(f.read())
+                    ku_tngte = get_duration(filename=mia)
+                    bio += ku_tngte
+                    lts += ku_tngte
+                    su_soo += len(句物件.網出詞物件())
+                    ji_soo += len(句物件.篩出字物件())
 
-                for 字物件 in 句物件.篩出字物件():
-                    字物件.音 = 字物件.音.lstrip('-').lower()
-                    if not 字物件.敢是標點符號() and 字物件.音標敢著(臺灣閩南語羅馬字拼音):
-                        lmj.add(字物件.看音())
-                        siannun.add(
-                            字物件.轉音(臺灣閩南語羅馬字拼音)
-                            .看音().rstrip('0987654321')
+                    for 字物件 in 句物件.篩出字物件():
+                        字物件.音 = 字物件.音.lstrip('-').lower()
+                        if not 字物件.敢是標點符號() and 字物件.音標敢著(臺灣閩南語羅馬字拼音):
+                            lmj.add(字物件.看音())
+                            siannun.add(
+                                字物件.轉音(臺灣閩南語羅馬字拼音)
+                                .看音().rstrip('0987654321')
+                            )
+                    wavtongmia = self.tongmia.format(kui)
+                    sia.writerow({
+                        '音檔': wavtongmia,
+                        '來源': 句.來源.文章名,
+                        '漢字': 句.漢字,
+                        '羅馬字': 句.羅馬字,
+                        '口語調': hue_tacotron(lui, 句.羅馬字含口語調),
+                        '長短': '{:.2f}'.format(ku_tngte),
+                    })
+                    kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
+                    if ai_imtong:
+                        run(
+                            [
+                                'sox', mia, kiatko_mia,
+                            ],
+                            check=True,
                         )
-                wavtongmia = self.tongmia.format(kui)
-                sia.writerow({
-                    '音檔': wavtongmia,
-                    '來源': 句.來源.文章名,
-                    '漢字': 句.漢字,
-                    '羅馬字': 句.羅馬字,
-                    '口語調': hue_tacotron(lui, 句.羅馬字含口語調),
-                    '長短': '{:.2f}'.format(ku_tngte),
-                })
-                kiatko_mia = join(options['TsuLiauGiap'], wavtongmia)
-                if ai_imtong:
-                    run(
-                        [
-                            'sox', 原始音檔, kiatko_mia,
-                        ],
-                        check=True,
+                    print(
+                        (
+                            '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}\n'
+                            '總詞數：{} 總字數：{}\n'
+                            '羅馬字種類（考慮書寫聲調，bô考慮輕聲、大小寫、變調類型）：{}\n'
+                            '聲韻種類（bô考慮聲調、輕聲、大小寫）：{}\n'
+                        ).format(bio, lts, su_soo, ji_soo, len(lmj), len(siannun)),
+                        file=self.stderr
                     )
-                print(
-                    (
-                        '結果粒積秒數：{:.2f} 本底音檔秒數：{:.2f}\n'
-                        '總詞數：{} 總字數：{}\n'
-                        '羅馬字種類（考慮書寫聲調，bô考慮輕聲、大小寫、變調類型）：{}\n'
-                        '聲韻種類（bô考慮聲調、輕聲、大小寫）：{}\n'
-                    ).format(bio, lts, su_soo, ji_soo, len(lmj), len(siannun)),
-                    file=self.stderr
-                )
         with open(lmjtongmia, 'w') as tong:
             json.dump(
                 {'羅馬字': sorted(lmj), '聲韻': sorted(siannun)},

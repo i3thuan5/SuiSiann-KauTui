@@ -1,18 +1,14 @@
-from os.path import join
-from storages.backends.s3boto3 import S3Boto3Storage
-
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from kaldi.tuitse import tngku
 from jsonfield.fields import JSONField
+from storages.backends.s3boto3 import S3Boto3Storage
 
 from kesi import Ku
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 from phiaua.clean import clean_html, get_lomaji
-from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
 
 
