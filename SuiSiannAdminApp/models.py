@@ -11,7 +11,6 @@ from jsonfield.fields import JSONField
 from kesi import Ku
 
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
-from SuiSiannAdminApp.management.算音檔網址 import 算音檔所在
 from phiaua.clean import clean_html, get_lomaji
 from 臺灣言語工具.語音辨識.聲音檔 import 聲音檔
 from 臺灣言語工具.基本物件.公用變數 import 標點符號
@@ -55,8 +54,6 @@ class 句表(models.Model):
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
     kaldi切音時間 = JSONField(editable=False, default=[])
 
-    音檔所在表 = 算音檔所在()
-
     def clean(self):
         self.羅馬字含口語調 = clean_html(self.羅馬字含口語調)
         self.羅馬字 = get_lomaji(self.羅馬字含口語調)
@@ -80,17 +77,6 @@ class 句表(models.Model):
     def kaldi切音時間網址(self):
         for thau, bue in self.斷句時間:
             yield reverse('imtong', args=(self.id, thau, bue))
-
-    def 聲音檔(self):
-        return 聲音檔.對檔案讀(self.音檔檔案)
-
-    # @property
-    # def 音檔所在(self):
-    #     return self.音檔所在表[self.音檔]
-
-    # @property
-    # def 音檔檔案(self):
-    #     return join(settings.SUISIANN_ROOT, self.音檔所在)
 
     @property
     def 音檔網址(self):
