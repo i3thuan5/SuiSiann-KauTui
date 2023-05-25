@@ -54,6 +54,7 @@ class 匯出Dataset試驗(TestCase):
             ku = 句表.objects.create(
                 來源=文章,
                 音檔=im,
+                S3音檔=im,
                 原始漢字=漢,
                 原始羅馬字=lo,
                 漢字=漢,
@@ -64,7 +65,13 @@ class 匯出Dataset試驗(TestCase):
             ku.save()
 
             kiatko = join(tsuliaugiap, 'kiatko')
-            call_command('匯出Dataset', kiatko)
+            with patch('SuiSiannAdminApp.management.commands.匯出Dataset.urlopen') as mock:
+                with open(join(dirname(__file__), im), 'rb') as imtong:
+                    (
+                        mock.return_value.__enter__.return_value
+                        .read.return_value
+                    ) = imtong.read()
+                call_command('匯出Dataset', kiatko)
             with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['來源'], '33')
@@ -80,7 +87,13 @@ class 匯出Dataset試驗(TestCase):
             )
 
             kiatko = join(tsuliaugiap, 'kiatko')
-            call_command('匯出Dataset', kiatko)
+            with patch('SuiSiannAdminApp.management.commands.匯出Dataset.urlopen') as mock:
+                with open(join(dirname(__file__), im), 'rb') as imtong:
+                    (
+                        mock.return_value.__enter__.return_value
+                        .read.return_value
+                    ) = imtong.read()
+                call_command('匯出Dataset', kiatko)
             with open(join(kiatko, 'SuiSiann.csv')) as tong:
                 tsitpit = list(DictReader(tong))[0]
                 self.assertEqual(tsitpit['音檔'], 'ImTong/SuiSiann_0001.wav')
