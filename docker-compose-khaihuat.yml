@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: ithuan
+    volumes:
+      - "postgres_database:/var/lib/postgresql/data"
+    network_mode: host
+
+volumes:
+  postgres_database:

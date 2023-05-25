@@ -84,17 +84,17 @@ class 句表(models.Model):
     def 聲音檔(self):
         return 聲音檔.對檔案讀(self.音檔檔案)
 
-    @property
-    def 音檔所在(self):
-        return self.音檔所在表[self.音檔]
+    # @property
+    # def 音檔所在(self):
+    #     return self.音檔所在表[self.音檔]
 
-    @property
-    def 音檔檔案(self):
-        return join(settings.SUISIANN_ROOT, self.音檔所在)
+    # @property
+    # def 音檔檔案(self):
+    #     return join(settings.SUISIANN_ROOT, self.音檔所在)
 
     @property
     def 音檔網址(self):
-        return reverse('imtong', args=(self.id, 0, self.聲音檔().時間長度()))
+        return self.S3音檔.url
 
     class Meta:
         verbose_name = "句表"

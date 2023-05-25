@@ -21,18 +21,17 @@ class 句後台(PhiauAModelAdmin):
     search_fields = ['id', '漢字', '羅馬字', '備註', ]
 
     # change view
-    save_on_top = True
     readonly_fields = (
+        '放送',
         '對齊狀態',
-        '海湧', '音檔所在',
         '修改時間',
     )
     fields = (
+        '放送',
         '漢字', '羅馬字含口語調',
-        '海湧',
         '對齊狀態',
         '語料狀況', '備註',
-        '音檔所在', '修改時間',
+        '修改時間',
     )
     form = 句表單
     autocomplete_fields = ['語料狀況']

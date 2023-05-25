@@ -25,7 +25,7 @@ SECRET_KEY = 'd&cem&12lfw*x+hw%e6!)t#au48m-@n-8)g$tw*w60^c%^_jw6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -83,11 +83,14 @@ WSGI_APPLICATION = 'SuiSiannAdmin.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'ithuan',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
