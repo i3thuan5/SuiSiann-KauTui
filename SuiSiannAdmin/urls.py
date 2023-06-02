@@ -13,8 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from kaldi.view import kiamtsa, 傳音檔
@@ -28,6 +26,4 @@ urlpatterns = [
         傳音檔, name='imtong',
     ),
     path('phiaua/', include('phiaua.urls')),
-] + static(settings.SUISIANN_URL, document_root=settings.SUISIANN_ROOT) \
-  + static(settings.SIKTSI_URL, document_root=settings.SIKTSI_ROOT) \
-  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

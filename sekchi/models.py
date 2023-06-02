@@ -2,9 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from tuitse import kiamtsa
-
-from os.path import relpath
-from urllib.parse import urljoin
+from storages.backends.s3boto3 import S3Boto3Storage
 
 from phiaua.clean import clean_html, get_lomaji
 from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
@@ -12,6 +10,11 @@ from SuiSiannAdminApp.management.檢查對齊狀態 import 檢查對齊狀態
 
 def siktsi_path():
     return settings.SIKTSI_ROOT
+
+
+class KuStorage(S3Boto3Storage):
+    bucket_name = 'suisiann-kautui'
+    location = '汐止媠聲'
 
 
 class Sekchi(models.Model):
@@ -28,13 +31,14 @@ class Sekchi(models.Model):
         allow_folders=False,
         max_length=1000,
     )
+    S3音檔 = models.FileField(storage=KuStorage(), editable=False, null=True)
     漢字 = models.TextField()
     羅馬字含口語調 = models.TextField()
     羅馬字 = models.TextField(editable=False)
     來源 = models.CharField(max_length=50, db_index=True)
     part = models.CharField(max_length=5, db_index=True)
     編號 = models.CharField(max_length=10, db_index=True)
-    修改時間 = models.DateTimeField(auto_now=True)
+    修改時間 = models.DateTimeField(editable=False, null=True)
     修改人 = models.ForeignKey(
         User, editable=False, null=True,
         on_delete=models.PROTECT,
@@ -49,10 +53,7 @@ class Sekchi(models.Model):
         verbose_name_plural = verbose_name
 
     def 音檔網址(self):
-        return urljoin(
-            settings.SIKTSI_URL,
-            relpath(self.音檔所在, settings.SIKTSI_ROOT),
-        )
+        return self.S3音檔.url
 
     def clean(self):
         self.羅馬字含口語調 = clean_html(self.羅馬字含口語調)
