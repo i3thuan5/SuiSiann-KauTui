@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'kupan',
     'sekchi',
     'axes',
+    'password_policies',
 ]
 
 MIDDLEWARE = [
@@ -112,6 +113,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+    {
+        'NAME': 'password_policies.password_validation.ComplexityValidator',
+    },
+    {
+        'NAME': 'password_policies.password_validation.ReusedPasswordValidator',
+    },
+    {
+        'NAME': 'password_policies.password_validation.MinimumChangeIntervalValidator',
     },
 ]
 
