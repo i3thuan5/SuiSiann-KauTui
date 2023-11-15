@@ -101,7 +101,7 @@ numpy==1.22.4
     #   scipy
 odfpy==1.4.1
     # via -r requirements.in
-packaging==23.0
+packaging==23.2
     # via
     #   librosa
     #   pooch
