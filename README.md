@@ -43,6 +43,8 @@ zcat 20210514.sql.gz | docker-compose exec -T postgres psql -U postgres
 ```
 
 ## Khai-huat
+
 ```
+sudo apt install sox
 docker-compose -f docker-compose-khaihuat.yml up -d
 ```
