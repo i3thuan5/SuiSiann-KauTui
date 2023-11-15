@@ -26,5 +26,5 @@ class Migration(migrations.Migration):
             name='原始臺羅',
             field=models.CharField(blank=True, max_length=200),
         ),
-        migrations.RunPython(備份原始漢羅, lambda *x:x),
+        migrations.RunPython(備份原始漢羅, lambda *x: x),
     ]

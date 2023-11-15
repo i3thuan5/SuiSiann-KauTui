@@ -19,5 +19,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(設定S3音檔, lambda *x:x),
+        migrations.RunPython(設定S3音檔, lambda *x: x),
     ]
