@@ -1,6 +1,5 @@
 import os
 from .settings import *  # noqa
-from .settings import INSTALLED_APPS, MIDDLEWARE
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -21,10 +20,6 @@ DEBUG = False
 
 STATIC_ROOT = '/staticfiles/'
 
-INSTALLED_APPS += [
-    'axes',
-]
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -36,14 +31,6 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS = [
-    'axes.backends.AxesStandaloneBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-MIDDLEWARE += [
-    'axes.middleware.AxesMiddleware',
-]
 
 AWS_S3_USE_SSL = True
 AWS_S3_SIGNATURE_VERSION = 's3v4'
