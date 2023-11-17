@@ -40,7 +40,7 @@ defusedxml==0.7.1
     # via odfpy
 diff-match-patch==20200713
     # via -r requirements.in
-django==4.1.5
+django==4.1.13
     # via
     #   -r requirements.in
     #   django-axes
