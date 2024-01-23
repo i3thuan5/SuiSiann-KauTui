@@ -61,8 +61,6 @@ django-storages==1.13.2
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
-htsengine==0.2.4
-    # via tai5-uan5-gian5-gi2-kang1-ku7
 idna==3.4
     # via requests
 jmespath==1.0.1
@@ -121,10 +119,6 @@ pycparser==2.21
     # via cffi
 pydub==0.25.1
     # via tai5-uan5-gian5-gi2-kang1-ku7
-pypi-bleualign==0.1.1.1
-    # via tai5-uan5-gian5-gi2-kang1-ku7
-pypi-kenlm==0.1.20220713
-    # via tai5-uan5-gian5-gi2-kang1-ku7
 python-dateutil==2.8.2
     # via botocore
 python-monkey-business==1.0.0
@@ -155,13 +149,14 @@ soupsieve==2.3.2.post1
     # via beautifulsoup4
 sqlparse==0.4.4
     # via django
-tai5-uan5-gian5-gi2-kang1-ku7==1.0.0
+tai5-uan5-gian5-gi2-kang1-ku7==1.1.1
     # via
     #   -r requirements.in
     #   kau3-tian2-iong7-ji7
+    #   tuitse-tsusin
 threadpoolctl==3.1.0
     # via scikit-learn
-tuitse-tsusin==1.3.1
+tuitse-tsusin==1.3.2
     # via kaldiliau
 urllib3==1.26.18
     # via
