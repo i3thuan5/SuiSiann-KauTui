@@ -130,7 +130,7 @@ resampy==0.4.2
     # via librosa
 s3transfer==0.6.1
     # via boto3
-scikit-learn==1.2.0
+scikit-learn==1.5.0
     # via librosa
 scipy==1.10.0
     # via
