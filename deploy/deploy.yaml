@@ -20,17 +20,11 @@
       ansible.builtin.template:
         src: .env.template
         dest: "{{ tsuanan_repo }}/.env"
-    - name: 安裝python控制docker ê套件
-      ansible.builtin.pip:
-        name:
-          - docker
-          - docker-compose
-        extra_args: --user
     - name: 開docker-compose up -d
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: "{{ tsuanan_repo }}"
-        build: true
-        pull: true
+        build: "always"
+        pull: "always"
         remove_orphans: true
     - name: 等5秒hōo docker開--開
       ansible.builtin.wait_for:
