@@ -136,7 +136,7 @@ scipy==1.10.0
     # via
     #   librosa
     #   scikit-learn
-sentry-sdk==1.23.1
+sentry-sdk==2.8.0
     # via -r requirements.in
 six==1.16.0
     # via
