@@ -124,7 +124,7 @@ python-dateutil==2.8.2
     # via botocore
 python-monkey-business==1.0.0
     # via django-nested-admin
-requests==2.32.0
+requests==2.32.4
     # via pooch
 resampy==0.4.2
     # via librosa
