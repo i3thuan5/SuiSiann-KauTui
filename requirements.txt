@@ -6,7 +6,7 @@
 #
 appdirs==1.4.4
     # via pooch
-asgiref==3.6.0
+asgiref==3.12.1
     # via django
 audioread==3.0.0
     # via librosa
@@ -40,7 +40,7 @@ defusedxml==0.7.1
     # via odfpy
 diff-match-patch==20200713
     # via -r requirements.in
-django==4.2.22
+django==5.2.17
     # via
     #   -r requirements.in
     #   django-axes
@@ -61,7 +61,7 @@ django-storages==1.13.2
     # via -r requirements.in
 gunicorn==23.0.0
     # via -r requirements.in
-idna==3.7
+idna==3.15
     # via requests
 jmespath==1.0.1
     # via
@@ -124,7 +124,7 @@ python-dateutil==2.8.2
     # via botocore
 python-monkey-business==1.0.0
     # via django-nested-admin
-requests==2.32.4
+requests==2.33.0
     # via pooch
 resampy==0.4.2
     # via librosa
@@ -148,7 +148,7 @@ soundfile==0.11.0
     # via librosa
 soupsieve==2.3.2.post1
     # via beautifulsoup4
-sqlparse==0.5.0
+sqlparse==0.6.0
     # via django
 tai5-uan5-gian5-gi2-kang1-ku7==1.1.1
     # via
@@ -159,6 +159,8 @@ threadpoolctl==3.1.0
     # via scikit-learn
 tuitse-tsusin==1.3.2
     # via kaldiliau
+typing-extensions==4.16.0
+    # via asgiref
 urllib3==1.26.19
     # via
     #   botocore
