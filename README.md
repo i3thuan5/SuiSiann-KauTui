@@ -38,13 +38,13 @@ pip-compile --upgrade
 
 ## Pī-hūn
 ```
-docker-compose exec -T postgres pg_dump -U postgres | gzip > 20210514.sql.gz
-zcat 20210514.sql.gz | docker-compose exec -T postgres psql -U postgres
+docker compose exec -T postgres pg_dump -U postgres | gzip > 20210514.sql.gz
+zcat 20210514.sql.gz | docker compose exec -T postgres psql -U postgres
 ```
 
 ## Khai-huat
 
 ```
 sudo apt install sox
-docker-compose -f docker-compose-khaihuat.yml up -d
+docker compose -f docker-compose-khaihuat.yml up -d
 ```
