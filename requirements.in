@@ -13,7 +13,6 @@ django-colorfield
 
 django-ranged-response
 librosa
-numpy
 jsonfield
 
 django-storages
