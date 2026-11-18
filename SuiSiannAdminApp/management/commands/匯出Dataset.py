@@ -1,6 +1,7 @@
 from csv import DictWriter
 from os import makedirs
 from os.path import join
+from shutil import rmtree
 from tempfile import TemporaryDirectory
 from urllib.request import urlopen
 import json
@@ -35,8 +36,14 @@ class Command(BaseCommand):
             '--mai_imtong', action="store_true",
             help='Mài輸出音檔，beh看統計niâ。',
         )
+        parser.add_argument(
+            '--clear', action="store_true",
+            help='資料hìnn-sak才重匯出',
+        )
 
     def handle(self, *args, **options):
+        if options['clear']:
+            rmtree(join(options['TsuLiauGiap'], 'ImTong'))
         ai_imtong = not options['mai_imtong']
         makedirs(join(options['TsuLiauGiap'], 'ImTong'))
         csvtongmia = join(options['TsuLiauGiap'], 'SuiSiann.csv')
