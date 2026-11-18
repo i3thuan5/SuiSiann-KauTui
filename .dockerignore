@@ -10,6 +10,7 @@ Dockerfile
 .tox/
 tsu-liāu/
 /media/
+/suisiann-kautui/
 *.sql.gz
 /hue
 docker-compose.yml

@@ -25,18 +25,22 @@ FileNotFoundError: 檔案無存在，抑是指令參數愛用陣列的形式！�
 
 1. 手動更新`requirements.in`。
 2. Tàu [Pip-tools](https://github.com/jazzband/pip-tools) Python管理套件版本套件.
-```
+
+```bash
 pip install pip-tools
 ```
+
 3. `pip-compile`自動更新套件版本。
+
 ```bash
 # 有必要--ê才更新
 pip-compile
 # 盡量更新
 pip-compile --upgrade
-````
+```
 
 ## Pī-hūn
+
 ```
 docker compose exec -T postgres pg_dump -U postgres | gzip > 20210514.sql.gz
 zcat 20210514.sql.gz | docker compose exec -T postgres psql -U postgres
@@ -44,7 +48,21 @@ zcat 20210514.sql.gz | docker compose exec -T postgres psql -U postgres
 
 ## Khai-huat
 
-```
+```bash
 sudo apt install sox
 docker compose -f docker-compose-khaihuat.yml up -d
+```
+
+### 匯出Datasets
+
+檔案下載到專案`./suisiann-kautui`，開音檔服務：
+
+```bash
+python3 -m http.server 4566 --bind 127.0.0.1
+```
+
+匯出指令
+
+```bash
+python manage.py 匯出Dataset <output/SuiSiann-x.x>
 ```

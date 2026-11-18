@@ -11,7 +11,7 @@ from django.db.models.functions import Left
 from django.db.models import Value
 from django.db.models import CharField
 from django.db.models.functions import Concat
-from librosa.core.audio import get_duration
+from librosa import get_duration
 from subprocess import run
 
 from SuiSiannAdminApp.models import 句表
@@ -90,7 +90,7 @@ class Command(BaseCommand):
                     with open(mia, 'wb') as tsaite:
                         with urlopen(句.S3音檔.url) as f:
                             tsaite.write(f.read())
-                    ku_tngte = get_duration(filename=mia)
+                    ku_tngte = get_duration(path=mia)
                     bio += ku_tngte
                     lts += ku_tngte
                     su_soo += len(句物件.網出詞物件())
