@@ -39,6 +39,6 @@ class 匯出全部音節試驗(TestCase):
     def theh(self):
         with TemporaryDirectory() as sootsai:
             tongmia = join(sootsai, 'lmj.json')
-            call_command('匯出全部音節', tongmia)
+            call_command('匯出語料庫全部音節', tongmia)
             with open(tongmia) as tong:
                 return json.load(tong)

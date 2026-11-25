@@ -1,6 +1,7 @@
 from csv import DictWriter
 from os import makedirs
 from os.path import join
+from shutil import rmtree
 from tempfile import TemporaryDirectory
 from urllib.request import urlopen
 import json
@@ -10,7 +11,7 @@ from django.db.models.functions import Left
 from django.db.models import Value
 from django.db.models import CharField
 from django.db.models.functions import Concat
-from librosa.core.audio import get_duration
+from librosa import get_duration
 from subprocess import run
 
 from SuiSiannAdminApp.models import 句表
@@ -35,8 +36,14 @@ class Command(BaseCommand):
             '--mai_imtong', action="store_true",
             help='Mài輸出音檔，beh看統計niâ。',
         )
+        parser.add_argument(
+            '--clear', action="store_true",
+            help='資料hìnn-sak才重匯出',
+        )
 
     def handle(self, *args, **options):
+        if options['clear']:
+            rmtree(join(options['TsuLiauGiap'], 'ImTong'))
         ai_imtong = not options['mai_imtong']
         makedirs(join(options['TsuLiauGiap'], 'ImTong'))
         csvtongmia = join(options['TsuLiauGiap'], 'SuiSiann.csv')
@@ -83,7 +90,7 @@ class Command(BaseCommand):
                     with open(mia, 'wb') as tsaite:
                         with urlopen(句.S3音檔.url) as f:
                             tsaite.write(f.read())
-                    ku_tngte = get_duration(filename=mia)
+                    ku_tngte = get_duration(path=mia)
                     bio += ku_tngte
                     lts += ku_tngte
                     su_soo += len(句物件.網出詞物件())
