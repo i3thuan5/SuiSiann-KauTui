@@ -9,6 +9,7 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 
 
 class Command(BaseCommand):
+    help = '匯出資料庫全部ê音節，包含台灣媠聲，包含音檔猶未切--ê'
 
     def add_arguments(self, parser):
         parser.add_argument('json',)
