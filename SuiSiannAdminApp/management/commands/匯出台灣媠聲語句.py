@@ -7,7 +7,9 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class Command(BaseCommand):
-    ithuan = [
+    help = 'Ē-tàng kā 意傳有著作改作權 ê 句匯出'
+
+    ithuan來源 = [
         1, 2, 3, 4, 5,
         6, 7, 8, 9, 10,
         11, 12, 13,
@@ -30,7 +32,7 @@ class Command(BaseCommand):
         if options['tsuanpoo']:
             語句 = 句表.objects.all()
         elif options['ithuan']:
-            語句 = 句表.objects.filter(來源_id__in=self.ithuan)
+            語句 = 句表.objects.filter(來源_id__in=self.ithuan來源)
         with open(options['tongan'], 'wt', encoding='utf-8') as tong:
             for 句 in (
                 語句.order_by('來源_id', 'id').select_related('來源')
